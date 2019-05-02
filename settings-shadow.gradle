@@ -1,0 +1,2 @@
+apply from: 'settings.gradle'
+rootProject.buildFileName = 'build-shadow.gradle'
