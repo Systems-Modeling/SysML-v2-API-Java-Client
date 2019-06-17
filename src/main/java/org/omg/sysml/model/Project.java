@@ -23,29 +23,26 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
-import org.omg.sysml.model.Identified;
 
 /**
- * Element
+ * Project
  */
 
-public class Element extends HashMap<String, Object> {
+public class Project {
   public static final String SERIALIZED_NAME_AT_TYPE = "@type";
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private String atType;
 
-  public static final String SERIALIZED_NAME_CONTAINING_PROJECT = "containingProject";
-  @SerializedName(SERIALIZED_NAME_CONTAINING_PROJECT)
-  private Identified containingProject = null;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
   private UUID identifier;
 
-  public Element atType(String atType) {
+  public Project atType(String atType) {
     this.atType = atType;
     return this;
   }
@@ -63,25 +60,25 @@ public class Element extends HashMap<String, Object> {
     this.atType = atType;
   }
 
-  public Element containingProject(Identified containingProject) {
-    this.containingProject = containingProject;
+  public Project name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get containingProject
-   * @return containingProject
+   * Get name
+   * @return name
   **/
   @ApiModelProperty(value = "")
-  public Identified getContainingProject() {
-    return containingProject;
+  public String getName() {
+    return name;
   }
 
-  public void setContainingProject(Identified containingProject) {
-    this.containingProject = containingProject;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public Element identifier(UUID identifier) {
+  public Project identifier(UUID identifier) {
     this.identifier = identifier;
     return this;
   }
@@ -108,26 +105,25 @@ public class Element extends HashMap<String, Object> {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Element element = (Element) o;
-    return Objects.equals(this.atType, element.atType) &&
-        Objects.equals(this.containingProject, element.containingProject) &&
-        Objects.equals(this.identifier, element.identifier) &&
-        super.equals(o);
+    Project project = (Project) o;
+    return Objects.equals(this.atType, project.atType) &&
+        Objects.equals(this.name, project.name) &&
+        Objects.equals(this.identifier, project.identifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, containingProject, identifier, super.hashCode());
+    return Objects.hash(atType, name, identifier);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Element {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class Project {\n");
+    
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    containingProject: ").append(toIndentedString(containingProject)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("}");
     return sb.toString();

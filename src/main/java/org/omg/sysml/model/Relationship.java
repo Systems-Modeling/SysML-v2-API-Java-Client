@@ -23,100 +23,75 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.Element;
+import org.omg.sysml.model.Identified;
 
 /**
  * Relationship
  */
 
 public class Relationship extends Element {
-  public static final String SERIALIZED_NAME_SOURCE_ELEMENT_ROLE = "source_element_role";
-  @SerializedName(SERIALIZED_NAME_SOURCE_ELEMENT_ROLE)
-  private String sourceElementRole;
+  public static final String SERIALIZED_NAME_SOURCE = "source";
+  @SerializedName(SERIALIZED_NAME_SOURCE)
+  private List<Identified> source = null;
 
-  public static final String SERIALIZED_NAME_SOURCE_ELEMENT = "source_element";
-  @SerializedName(SERIALIZED_NAME_SOURCE_ELEMENT)
-  private UUID sourceElement;
+  public static final String SERIALIZED_NAME_TARGET = "target";
+  @SerializedName(SERIALIZED_NAME_TARGET)
+  private List<Identified> target = null;
 
-  public static final String SERIALIZED_NAME_TARGET_ELEMENT_ROLE = "target_element_role";
-  @SerializedName(SERIALIZED_NAME_TARGET_ELEMENT_ROLE)
-  private String targetElementRole;
+  public Relationship source(List<Identified> source) {
+    this.source = source;
+    return this;
+  }
 
-  public static final String SERIALIZED_NAME_TARGET_ELEMENT = "target_element";
-  @SerializedName(SERIALIZED_NAME_TARGET_ELEMENT)
-  private UUID targetElement;
-
-  public Relationship sourceElementRole(String sourceElementRole) {
-    this.sourceElementRole = sourceElementRole;
+  public Relationship addSourceItem(Identified sourceItem) {
+    if (this.source == null) {
+      this.source = new ArrayList<Identified>();
+    }
+    this.source.add(sourceItem);
     return this;
   }
 
    /**
-   * Get sourceElementRole
-   * @return sourceElementRole
+   * Get source
+   * @return source
   **/
   @ApiModelProperty(value = "")
-  public String getSourceElementRole() {
-    return sourceElementRole;
+  public List<Identified> getSource() {
+    return source;
   }
 
-  public void setSourceElementRole(String sourceElementRole) {
-    this.sourceElementRole = sourceElementRole;
+  public void setSource(List<Identified> source) {
+    this.source = source;
   }
 
-  public Relationship sourceElement(UUID sourceElement) {
-    this.sourceElement = sourceElement;
+  public Relationship target(List<Identified> target) {
+    this.target = target;
+    return this;
+  }
+
+  public Relationship addTargetItem(Identified targetItem) {
+    if (this.target == null) {
+      this.target = new ArrayList<Identified>();
+    }
+    this.target.add(targetItem);
     return this;
   }
 
    /**
-   * Get sourceElement
-   * @return sourceElement
+   * Get target
+   * @return target
   **/
   @ApiModelProperty(value = "")
-  public UUID getSourceElement() {
-    return sourceElement;
+  public List<Identified> getTarget() {
+    return target;
   }
 
-  public void setSourceElement(UUID sourceElement) {
-    this.sourceElement = sourceElement;
-  }
-
-  public Relationship targetElementRole(String targetElementRole) {
-    this.targetElementRole = targetElementRole;
-    return this;
-  }
-
-   /**
-   * Get targetElementRole
-   * @return targetElementRole
-  **/
-  @ApiModelProperty(value = "")
-  public String getTargetElementRole() {
-    return targetElementRole;
-  }
-
-  public void setTargetElementRole(String targetElementRole) {
-    this.targetElementRole = targetElementRole;
-  }
-
-  public Relationship targetElement(UUID targetElement) {
-    this.targetElement = targetElement;
-    return this;
-  }
-
-   /**
-   * Get targetElement
-   * @return targetElement
-  **/
-  @ApiModelProperty(value = "")
-  public UUID getTargetElement() {
-    return targetElement;
-  }
-
-  public void setTargetElement(UUID targetElement) {
-    this.targetElement = targetElement;
+  public void setTarget(List<Identified> target) {
+    this.target = target;
   }
 
 
@@ -129,16 +104,14 @@ public class Relationship extends Element {
       return false;
     }
     Relationship relationship = (Relationship) o;
-    return Objects.equals(this.sourceElementRole, relationship.sourceElementRole) &&
-        Objects.equals(this.sourceElement, relationship.sourceElement) &&
-        Objects.equals(this.targetElementRole, relationship.targetElementRole) &&
-        Objects.equals(this.targetElement, relationship.targetElement) &&
+    return Objects.equals(this.source, relationship.source) &&
+        Objects.equals(this.target, relationship.target) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sourceElementRole, sourceElement, targetElementRole, targetElement, super.hashCode());
+    return Objects.hash(source, target, super.hashCode());
   }
 
 
@@ -147,10 +120,8 @@ public class Relationship extends Element {
     StringBuilder sb = new StringBuilder();
     sb.append("class Relationship {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    sourceElementRole: ").append(toIndentedString(sourceElementRole)).append("\n");
-    sb.append("    sourceElement: ").append(toIndentedString(sourceElement)).append("\n");
-    sb.append("    targetElementRole: ").append(toIndentedString(targetElementRole)).append("\n");
-    sb.append("    targetElement: ").append(toIndentedString(targetElement)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    target: ").append(toIndentedString(target)).append("\n");
     sb.append("}");
     return sb.toString();
   }

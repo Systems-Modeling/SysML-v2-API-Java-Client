@@ -57,17 +57,17 @@ public class ElementApi {
 
     /**
      * Build call for createElement
-     * @param element  (required)
+     * @param requestBody  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createElementCall(Element element, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = element;
+    public com.squareup.okhttp.Call createElementCall(Map<String, Object> requestBody, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
-        String localVarPath = "/element";
+        String localVarPath = "/elements";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -104,15 +104,15 @@ public class ElementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createElementValidateBeforeCall(Element element, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createElementValidateBeforeCall(Map<String, Object> requestBody, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'element' is set
-        if (element == null) {
-            throw new ApiException("Missing the required parameter 'element' when calling createElement(Async)");
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling createElement(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = createElementCall(element, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createElementCall(requestBody, progressListener, progressRequestListener);
         return call;
 
     }
@@ -120,24 +120,24 @@ public class ElementApi {
     /**
      * Add a new element
      * 
-     * @param element  (required)
+     * @param requestBody  (required)
      * @return Element
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Element createElement(Element element) throws ApiException {
-        ApiResponse<Element> resp = createElementWithHttpInfo(element);
+    public Element createElement(Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Element> resp = createElementWithHttpInfo(requestBody);
         return resp.getData();
     }
 
     /**
      * Add a new element
      * 
-     * @param element  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Element> createElementWithHttpInfo(Element element) throws ApiException {
-        com.squareup.okhttp.Call call = createElementValidateBeforeCall(element, null, null);
+    public ApiResponse<Element> createElementWithHttpInfo(Map<String, Object> requestBody) throws ApiException {
+        com.squareup.okhttp.Call call = createElementValidateBeforeCall(requestBody, null, null);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -145,12 +145,12 @@ public class ElementApi {
     /**
      * Add a new element (asynchronously)
      * 
-     * @param element  (required)
+     * @param requestBody  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createElementAsync(Element element, final ApiCallback<Element> callback) throws ApiException {
+    public com.squareup.okhttp.Call createElementAsync(Map<String, Object> requestBody, final ApiCallback<Element> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -171,25 +171,25 @@ public class ElementApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createElementValidateBeforeCall(element, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createElementValidateBeforeCall(requestBody, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getElement
-     * @param id ID of the element (required)
+     * @param identifier ID of the element (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getElementCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getElementCall(String identifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/element/{id}"
-            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+        String localVarPath = "/elements/{identifier}"
+            .replaceAll("\\{" + "identifier" + "\\}", apiClient.escapeString(identifier.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -226,15 +226,15 @@ public class ElementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getElementValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getElementValidateBeforeCall(String identifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getElement(Async)");
+        // verify the required parameter 'identifier' is set
+        if (identifier == null) {
+            throw new ApiException("Missing the required parameter 'identifier' when calling getElement(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getElementCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getElementCall(identifier, progressListener, progressRequestListener);
         return call;
 
     }
@@ -242,24 +242,24 @@ public class ElementApi {
     /**
      * Get element by its ID
      * 
-     * @param id ID of the element (required)
+     * @param identifier ID of the element (required)
      * @return Element
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Element getElement(String id) throws ApiException {
-        ApiResponse<Element> resp = getElementWithHttpInfo(id);
+    public Element getElement(String identifier) throws ApiException {
+        ApiResponse<Element> resp = getElementWithHttpInfo(identifier);
         return resp.getData();
     }
 
     /**
      * Get element by its ID
      * 
-     * @param id ID of the element (required)
+     * @param identifier ID of the element (required)
      * @return ApiResponse&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Element> getElementWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = getElementValidateBeforeCall(id, null, null);
+    public ApiResponse<Element> getElementWithHttpInfo(String identifier) throws ApiException {
+        com.squareup.okhttp.Call call = getElementValidateBeforeCall(identifier, null, null);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -267,12 +267,12 @@ public class ElementApi {
     /**
      * Get element by its ID (asynchronously)
      * 
-     * @param id ID of the element (required)
+     * @param identifier ID of the element (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getElementAsync(String id, final ApiCallback<Element> callback) throws ApiException {
+    public com.squareup.okhttp.Call getElementAsync(String identifier, final ApiCallback<Element> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -293,7 +293,139 @@ public class ElementApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getElementValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getElementValidateBeforeCall(identifier, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Element>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getElementByProjectAndId
+     * @param projectIdentifier ID of the project (required)
+     * @param elementIdentifier ID of the element (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getElementByProjectAndIdCall(String projectIdentifier, String elementIdentifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/projects/{project_identifier}/elements/{element_identifier}"
+            .replaceAll("\\{" + "project_identifier" + "\\}", apiClient.escapeString(projectIdentifier.toString()))
+            .replaceAll("\\{" + "element_identifier" + "\\}", apiClient.escapeString(elementIdentifier.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getElementByProjectAndIdValidateBeforeCall(String projectIdentifier, String elementIdentifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'projectIdentifier' is set
+        if (projectIdentifier == null) {
+            throw new ApiException("Missing the required parameter 'projectIdentifier' when calling getElementByProjectAndId(Async)");
+        }
+        
+        // verify the required parameter 'elementIdentifier' is set
+        if (elementIdentifier == null) {
+            throw new ApiException("Missing the required parameter 'elementIdentifier' when calling getElementByProjectAndId(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getElementByProjectAndIdCall(projectIdentifier, elementIdentifier, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get element by project ID and its ID
+     * 
+     * @param projectIdentifier ID of the project (required)
+     * @param elementIdentifier ID of the element (required)
+     * @return Element
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Element getElementByProjectAndId(String projectIdentifier, String elementIdentifier) throws ApiException {
+        ApiResponse<Element> resp = getElementByProjectAndIdWithHttpInfo(projectIdentifier, elementIdentifier);
+        return resp.getData();
+    }
+
+    /**
+     * Get element by project ID and its ID
+     * 
+     * @param projectIdentifier ID of the project (required)
+     * @param elementIdentifier ID of the element (required)
+     * @return ApiResponse&lt;Element&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Element> getElementByProjectAndIdWithHttpInfo(String projectIdentifier, String elementIdentifier) throws ApiException {
+        com.squareup.okhttp.Call call = getElementByProjectAndIdValidateBeforeCall(projectIdentifier, elementIdentifier, null, null);
+        Type localVarReturnType = new TypeToken<Element>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get element by project ID and its ID (asynchronously)
+     * 
+     * @param projectIdentifier ID of the project (required)
+     * @param elementIdentifier ID of the element (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getElementByProjectAndIdAsync(String projectIdentifier, String elementIdentifier, final ApiCallback<Element> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getElementByProjectAndIdValidateBeforeCall(projectIdentifier, elementIdentifier, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -309,7 +441,7 @@ public class ElementApi {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/element";
+        String localVarPath = "/elements";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -411,19 +543,19 @@ public class ElementApi {
         return call;
     }
     /**
-     * Build call for getElementsInModel
-     * @param modelId ID of the model (required)
+     * Build call for getElementsInProject
+     * @param projectIdentifier ID of the project (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getElementsInModelCall(String modelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getElementsInProjectCall(String projectIdentifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/element/model/{model_id}"
-            .replaceAll("\\{" + "model_id" + "\\}", apiClient.escapeString(modelId.toString()));
+        String localVarPath = "/projects/{project_identifier}/elements"
+            .replaceAll("\\{" + "project_identifier" + "\\}", apiClient.escapeString(projectIdentifier.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -460,53 +592,53 @@ public class ElementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getElementsInModelValidateBeforeCall(String modelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getElementsInProjectValidateBeforeCall(String projectIdentifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'modelId' is set
-        if (modelId == null) {
-            throw new ApiException("Missing the required parameter 'modelId' when calling getElementsInModel(Async)");
+        // verify the required parameter 'projectIdentifier' is set
+        if (projectIdentifier == null) {
+            throw new ApiException("Missing the required parameter 'projectIdentifier' when calling getElementsInProject(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getElementsInModelCall(modelId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getElementsInProjectCall(projectIdentifier, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Get all elements in the model
+     * Get all elements in the project
      * 
-     * @param modelId ID of the model (required)
+     * @param projectIdentifier ID of the project (required)
      * @return Element
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Element getElementsInModel(String modelId) throws ApiException {
-        ApiResponse<Element> resp = getElementsInModelWithHttpInfo(modelId);
+    public Element getElementsInProject(String projectIdentifier) throws ApiException {
+        ApiResponse<Element> resp = getElementsInProjectWithHttpInfo(projectIdentifier);
         return resp.getData();
     }
 
     /**
-     * Get all elements in the model
+     * Get all elements in the project
      * 
-     * @param modelId ID of the model (required)
+     * @param projectIdentifier ID of the project (required)
      * @return ApiResponse&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Element> getElementsInModelWithHttpInfo(String modelId) throws ApiException {
-        com.squareup.okhttp.Call call = getElementsInModelValidateBeforeCall(modelId, null, null);
+    public ApiResponse<Element> getElementsInProjectWithHttpInfo(String projectIdentifier) throws ApiException {
+        com.squareup.okhttp.Call call = getElementsInProjectValidateBeforeCall(projectIdentifier, null, null);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get all elements in the model (asynchronously)
+     * Get all elements in the project (asynchronously)
      * 
-     * @param modelId ID of the model (required)
+     * @param projectIdentifier ID of the project (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getElementsInModelAsync(String modelId, final ApiCallback<Element> callback) throws ApiException {
+    public com.squareup.okhttp.Call getElementsInProjectAsync(String projectIdentifier, final ApiCallback<Element> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -527,7 +659,7 @@ public class ElementApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getElementsInModelValidateBeforeCall(modelId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getElementsInProjectValidateBeforeCall(projectIdentifier, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

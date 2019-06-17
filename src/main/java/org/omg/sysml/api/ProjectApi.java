@@ -28,7 +28,7 @@ import java.io.IOException;
 
 
 import org.omg.sysml.model.Error;
-import org.omg.sysml.model.Relationship;
+import org.omg.sysml.model.Project;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,14 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RelationshipApi {
+public class ProjectApi {
     private ApiClient apiClient;
 
-    public RelationshipApi() {
+    public ProjectApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public RelationshipApi(ApiClient apiClient) {
+    public ProjectApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -56,18 +56,18 @@ public class RelationshipApi {
     }
 
     /**
-     * Build call for createRelationship
-     * @param relationship  (required)
+     * Build call for createProject
+     * @param project  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createRelationshipCall(Relationship relationship, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = relationship;
+    public com.squareup.okhttp.Call createProjectCall(Project project, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = project;
 
         // create path and map variables
-        String localVarPath = "/relationships";
+        String localVarPath = "/projects";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -104,53 +104,48 @@ public class RelationshipApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createRelationshipValidateBeforeCall(Relationship relationship, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'relationship' is set
-        if (relationship == null) {
-            throw new ApiException("Missing the required parameter 'relationship' when calling createRelationship(Async)");
-        }
+    private com.squareup.okhttp.Call createProjectValidateBeforeCall(Project project, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = createRelationshipCall(relationship, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createProjectCall(project, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Add a new relationship
+     * Add a new project
      * 
-     * @param relationship  (required)
-     * @return Relationship
+     * @param project  (optional)
+     * @return Project
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Relationship createRelationship(Relationship relationship) throws ApiException {
-        ApiResponse<Relationship> resp = createRelationshipWithHttpInfo(relationship);
+    public Project createProject(Project project) throws ApiException {
+        ApiResponse<Project> resp = createProjectWithHttpInfo(project);
         return resp.getData();
     }
 
     /**
-     * Add a new relationship
+     * Add a new project
      * 
-     * @param relationship  (required)
-     * @return ApiResponse&lt;Relationship&gt;
+     * @param project  (optional)
+     * @return ApiResponse&lt;Project&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Relationship> createRelationshipWithHttpInfo(Relationship relationship) throws ApiException {
-        com.squareup.okhttp.Call call = createRelationshipValidateBeforeCall(relationship, null, null);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
+    public ApiResponse<Project> createProjectWithHttpInfo(Project project) throws ApiException {
+        com.squareup.okhttp.Call call = createProjectValidateBeforeCall(project, null, null);
+        Type localVarReturnType = new TypeToken<Project>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Add a new relationship (asynchronously)
+     * Add a new project (asynchronously)
      * 
-     * @param relationship  (required)
+     * @param project  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createRelationshipAsync(Relationship relationship, final ApiCallback<Relationship> callback) throws ApiException {
+    public com.squareup.okhttp.Call createProjectAsync(Project project, final ApiCallback<Project> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -171,24 +166,24 @@ public class RelationshipApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createRelationshipValidateBeforeCall(relationship, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
+        com.squareup.okhttp.Call call = createProjectValidateBeforeCall(project, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Project>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getRelationship
-     * @param identifier ID of the relationship (required)
+     * Build call for getProject
+     * @param identifier ID of the project (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getRelationshipCall(String identifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getProjectCall(String identifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/relationships/{identifier}"
+        String localVarPath = "/projects/{identifier}"
             .replaceAll("\\{" + "identifier" + "\\}", apiClient.escapeString(identifier.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -226,53 +221,53 @@ public class RelationshipApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getRelationshipValidateBeforeCall(String identifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getProjectValidateBeforeCall(String identifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'identifier' is set
         if (identifier == null) {
-            throw new ApiException("Missing the required parameter 'identifier' when calling getRelationship(Async)");
+            throw new ApiException("Missing the required parameter 'identifier' when calling getProject(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getRelationshipCall(identifier, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getProjectCall(identifier, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Get relationship by its ID
+     * Get project by its ID
      * 
-     * @param identifier ID of the relationship (required)
-     * @return Relationship
+     * @param identifier ID of the project (required)
+     * @return Project
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Relationship getRelationship(String identifier) throws ApiException {
-        ApiResponse<Relationship> resp = getRelationshipWithHttpInfo(identifier);
+    public Project getProject(String identifier) throws ApiException {
+        ApiResponse<Project> resp = getProjectWithHttpInfo(identifier);
         return resp.getData();
     }
 
     /**
-     * Get relationship by its ID
+     * Get project by its ID
      * 
-     * @param identifier ID of the relationship (required)
-     * @return ApiResponse&lt;Relationship&gt;
+     * @param identifier ID of the project (required)
+     * @return ApiResponse&lt;Project&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Relationship> getRelationshipWithHttpInfo(String identifier) throws ApiException {
-        com.squareup.okhttp.Call call = getRelationshipValidateBeforeCall(identifier, null, null);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
+    public ApiResponse<Project> getProjectWithHttpInfo(String identifier) throws ApiException {
+        com.squareup.okhttp.Call call = getProjectValidateBeforeCall(identifier, null, null);
+        Type localVarReturnType = new TypeToken<Project>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get relationship by its ID (asynchronously)
+     * Get project by its ID (asynchronously)
      * 
-     * @param identifier ID of the relationship (required)
+     * @param identifier ID of the project (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getRelationshipAsync(String identifier, final ApiCallback<Relationship> callback) throws ApiException {
+    public com.squareup.okhttp.Call getProjectAsync(String identifier, final ApiCallback<Project> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -293,23 +288,23 @@ public class RelationshipApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getRelationshipValidateBeforeCall(identifier, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
+        com.squareup.okhttp.Call call = getProjectValidateBeforeCall(identifier, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Project>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getRelationships
+     * Build call for getProjects
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getRelationshipsCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getProjectsCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/relationships";
+        String localVarPath = "/projects";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -346,45 +341,45 @@ public class RelationshipApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getRelationshipsValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getProjectsValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = getRelationshipsCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getProjectsCall(progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Get all relationships
+     * Get all projects
      * 
-     * @return List&lt;Relationship&gt;
+     * @return List&lt;Project&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Relationship> getRelationships() throws ApiException {
-        ApiResponse<List<Relationship>> resp = getRelationshipsWithHttpInfo();
+    public List<Project> getProjects() throws ApiException {
+        ApiResponse<List<Project>> resp = getProjectsWithHttpInfo();
         return resp.getData();
     }
 
     /**
-     * Get all relationships
+     * Get all projects
      * 
-     * @return ApiResponse&lt;List&lt;Relationship&gt;&gt;
+     * @return ApiResponse&lt;List&lt;Project&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Relationship>> getRelationshipsWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getRelationshipsValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
+    public ApiResponse<List<Project>> getProjectsWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = getProjectsValidateBeforeCall(null, null);
+        Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get all relationships (asynchronously)
+     * Get all projects (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getRelationshipsAsync(final ApiCallback<List<Relationship>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getProjectsAsync(final ApiCallback<List<Project>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -405,130 +400,8 @@ public class RelationshipApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getRelationshipsValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getRelationshipsByProject
-     * @param projectIdentifier ID of the project (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call getRelationshipsByProjectCall(String projectIdentifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = new Object();
-
-        // create path and map variables
-        String localVarPath = "/projects/{project_identifier}/relationships"
-            .replaceAll("\\{" + "project_identifier" + "\\}", apiClient.escapeString(projectIdentifier.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getRelationshipsByProjectValidateBeforeCall(String projectIdentifier, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'projectIdentifier' is set
-        if (projectIdentifier == null) {
-            throw new ApiException("Missing the required parameter 'projectIdentifier' when calling getRelationshipsByProject(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = getRelationshipsByProjectCall(projectIdentifier, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * Get all relationships in the project
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @return List&lt;Relationship&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public List<Relationship> getRelationshipsByProject(String projectIdentifier) throws ApiException {
-        ApiResponse<List<Relationship>> resp = getRelationshipsByProjectWithHttpInfo(projectIdentifier);
-        return resp.getData();
-    }
-
-    /**
-     * Get all relationships in the project
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @return ApiResponse&lt;List&lt;Relationship&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<List<Relationship>> getRelationshipsByProjectWithHttpInfo(String projectIdentifier) throws ApiException {
-        com.squareup.okhttp.Call call = getRelationshipsByProjectValidateBeforeCall(projectIdentifier, null, null);
-        Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Get all relationships in the project (asynchronously)
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getRelationshipsByProjectAsync(String projectIdentifier, final ApiCallback<List<Relationship>> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getRelationshipsByProjectValidateBeforeCall(projectIdentifier, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
+        com.squareup.okhttp.Call call = getProjectsValidateBeforeCall(progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

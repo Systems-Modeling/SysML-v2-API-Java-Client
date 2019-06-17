@@ -4,12 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRelationship**](RelationshipApi.md#createRelationship) | **POST** /relationship | Add a new relationship
-[**getRelationship**](RelationshipApi.md#getRelationship) | **GET** /relationship/{id} | Get relationship by its ID
-[**getRelationships**](RelationshipApi.md#getRelationships) | **GET** /relationship | Get all relationships
-[**getRelationshipsByElement**](RelationshipApi.md#getRelationshipsByElement) | **GET** /relationship/element/{element_id} | Get all relationships with the given element as either source or target
-[**getRelationshipsBySource**](RelationshipApi.md#getRelationshipsBySource) | **GET** /relationship/source/{source_id} | Get all relationships with the given element as the source
-[**getRelationshipsByTarget**](RelationshipApi.md#getRelationshipsByTarget) | **GET** /relationship/target/{target_id} | Get all relationships with the given element as the target
+[**createRelationship**](RelationshipApi.md#createRelationship) | **POST** /relationships | Add a new relationship
+[**getRelationship**](RelationshipApi.md#getRelationship) | **GET** /relationships/{identifier} | Get relationship by its ID
+[**getRelationships**](RelationshipApi.md#getRelationships) | **GET** /relationships | Get all relationships
+[**getRelationshipsByProject**](RelationshipApi.md#getRelationshipsByProject) | **GET** /projects/{project_identifier}/relationships | Get all relationships in the project
 
 
 <a name="createRelationship"></a>
@@ -57,7 +55,7 @@ No authorization required
 
 <a name="getRelationship"></a>
 # **getRelationship**
-> Relationship getRelationship(id)
+> Relationship getRelationship(identifier)
 
 Get relationship by its ID
 
@@ -69,9 +67,9 @@ Get relationship by its ID
 
 
 RelationshipApi apiInstance = new RelationshipApi();
-String id = "id_example"; // String | ID of the relationship
+String identifier = "identifier_example"; // String | ID of the relationship
 try {
-    Relationship result = apiInstance.getRelationship(id);
+    Relationship result = apiInstance.getRelationship(identifier);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RelationshipApi#getRelationship");
@@ -83,7 +81,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| ID of the relationship |
+ **identifier** | **String**| ID of the relationship |
 
 ### Return type
 
@@ -137,54 +135,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getRelationshipsByElement"></a>
-# **getRelationshipsByElement**
-> List&lt;Relationship&gt; getRelationshipsByElement(elementId)
+<a name="getRelationshipsByProject"></a>
+# **getRelationshipsByProject**
+> List&lt;Relationship&gt; getRelationshipsByProject(projectIdentifier)
 
-Get all relationships with the given element as either source or target
-
-### Example
-```java
-// Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.RelationshipApi;
-
-
-RelationshipApi apiInstance = new RelationshipApi();
-String elementId = "elementId_example"; // String | ID of the element that is the source or target of relationships
-try {
-    List<Relationship> result = apiInstance.getRelationshipsByElement(elementId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling RelationshipApi#getRelationshipsByElement");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **elementId** | **String**| ID of the element that is the source or target of relationships |
-
-### Return type
-
-[**List&lt;Relationship&gt;**](Relationship.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getRelationshipsBySource"></a>
-# **getRelationshipsBySource**
-> List&lt;Relationship&gt; getRelationshipsBySource(sourceId)
-
-Get all relationships with the given element as the source
+Get all relationships in the project
 
 ### Example
 ```java
@@ -194,12 +149,12 @@ Get all relationships with the given element as the source
 
 
 RelationshipApi apiInstance = new RelationshipApi();
-String sourceId = "sourceId_example"; // String | ID of the element that is the source of relationships
+String projectIdentifier = "projectIdentifier_example"; // String | ID of the project
 try {
-    List<Relationship> result = apiInstance.getRelationshipsBySource(sourceId);
+    List<Relationship> result = apiInstance.getRelationshipsByProject(projectIdentifier);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RelationshipApi#getRelationshipsBySource");
+    System.err.println("Exception when calling RelationshipApi#getRelationshipsByProject");
     e.printStackTrace();
 }
 ```
@@ -208,50 +163,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sourceId** | **String**| ID of the element that is the source of relationships |
-
-### Return type
-
-[**List&lt;Relationship&gt;**](Relationship.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getRelationshipsByTarget"></a>
-# **getRelationshipsByTarget**
-> List&lt;Relationship&gt; getRelationshipsByTarget(targetId)
-
-Get all relationships with the given element as the target
-
-### Example
-```java
-// Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.RelationshipApi;
-
-
-RelationshipApi apiInstance = new RelationshipApi();
-String targetId = "targetId_example"; // String | ID of the element that is the target of relationships
-try {
-    List<Relationship> result = apiInstance.getRelationshipsByTarget(targetId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling RelationshipApi#getRelationshipsByTarget");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **targetId** | **String**| ID of the element that is the target of relationships |
+ **projectIdentifier** | **String**| ID of the project |
 
 ### Return type
 

@@ -23,65 +23,18 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
-import org.omg.sysml.model.Identified;
 
 /**
- * Element
+ * Identified
  */
 
-public class Element extends HashMap<String, Object> {
-  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
-  @SerializedName(SERIALIZED_NAME_AT_TYPE)
-  private String atType;
-
-  public static final String SERIALIZED_NAME_CONTAINING_PROJECT = "containingProject";
-  @SerializedName(SERIALIZED_NAME_CONTAINING_PROJECT)
-  private Identified containingProject = null;
-
+public class Identified {
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
   private UUID identifier;
 
-  public Element atType(String atType) {
-    this.atType = atType;
-    return this;
-  }
-
-   /**
-   * Get atType
-   * @return atType
-  **/
-  @ApiModelProperty(value = "")
-  public String getAtType() {
-    return atType;
-  }
-
-  public void setAtType(String atType) {
-    this.atType = atType;
-  }
-
-  public Element containingProject(Identified containingProject) {
-    this.containingProject = containingProject;
-    return this;
-  }
-
-   /**
-   * Get containingProject
-   * @return containingProject
-  **/
-  @ApiModelProperty(value = "")
-  public Identified getContainingProject() {
-    return containingProject;
-  }
-
-  public void setContainingProject(Identified containingProject) {
-    this.containingProject = containingProject;
-  }
-
-  public Element identifier(UUID identifier) {
+  public Identified identifier(UUID identifier) {
     this.identifier = identifier;
     return this;
   }
@@ -108,26 +61,21 @@ public class Element extends HashMap<String, Object> {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Element element = (Element) o;
-    return Objects.equals(this.atType, element.atType) &&
-        Objects.equals(this.containingProject, element.containingProject) &&
-        Objects.equals(this.identifier, element.identifier) &&
-        super.equals(o);
+    Identified identified = (Identified) o;
+    return Objects.equals(this.identifier, identified.identifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, containingProject, identifier, super.hashCode());
+    return Objects.hash(identifier);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Element {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    containingProject: ").append(toIndentedString(containingProject)).append("\n");
+    sb.append("class Identified {\n");
+    
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("}");
     return sb.toString();
