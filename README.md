@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-api-client</artifactId>
-  <version>0.1.0</version>
+  <version>2019-05</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-api-client:0.1.0"
+compile "org.omg.sysml:sysml-api-client:2019-05"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-api-client-0.1.0.jar`
+* `target/sysml-api-client-2019-05.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -84,9 +84,9 @@ public class ElementApiExample {
     public static void main(String[] args) {
         
         ElementApi apiInstance = new ElementApi();
-        Element element = new Element(); // Element | 
+        Map<String, Object> requestBody = null; // Map<String, Object> | 
         try {
-            Element result = apiInstance.createElement(element);
+            Element result = apiInstance.createElement(requestBody);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ElementApi#createElement");
@@ -103,26 +103,26 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ElementApi* | [**createElement**](docs/ElementApi.md#createElement) | **POST** /element | Add a new element
-*ElementApi* | [**getElement**](docs/ElementApi.md#getElement) | **GET** /element/{id} | Get element by its ID
-*ElementApi* | [**getElements**](docs/ElementApi.md#getElements) | **GET** /element | Get all elements
-*ElementApi* | [**getElementsInModel**](docs/ElementApi.md#getElementsInModel) | **GET** /element/model/{model_id} | Get all elements in the model
-*ModelApi* | [**createModel**](docs/ModelApi.md#createModel) | **POST** /model | Add a new model
-*ModelApi* | [**getModel**](docs/ModelApi.md#getModel) | **GET** /model/{id} | Get model by its ID
-*ModelApi* | [**getModels**](docs/ModelApi.md#getModels) | **GET** /model | Get all models
-*RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **POST** /relationship | Add a new relationship
-*RelationshipApi* | [**getRelationship**](docs/RelationshipApi.md#getRelationship) | **GET** /relationship/{id} | Get relationship by its ID
-*RelationshipApi* | [**getRelationships**](docs/RelationshipApi.md#getRelationships) | **GET** /relationship | Get all relationships
-*RelationshipApi* | [**getRelationshipsByElement**](docs/RelationshipApi.md#getRelationshipsByElement) | **GET** /relationship/element/{element_id} | Get all relationships with the given element as either source or target
-*RelationshipApi* | [**getRelationshipsBySource**](docs/RelationshipApi.md#getRelationshipsBySource) | **GET** /relationship/source/{source_id} | Get all relationships with the given element as the source
-*RelationshipApi* | [**getRelationshipsByTarget**](docs/RelationshipApi.md#getRelationshipsByTarget) | **GET** /relationship/target/{target_id} | Get all relationships with the given element as the target
+*ElementApi* | [**createElement**](docs/ElementApi.md#createElement) | **POST** /elements | Add a new element
+*ElementApi* | [**getElement**](docs/ElementApi.md#getElement) | **GET** /elements/{identifier} | Get element by its ID
+*ElementApi* | [**getElementByProjectAndId**](docs/ElementApi.md#getElementByProjectAndId) | **GET** /projects/{project_identifier}/elements/{element_identifier} | Get element by project ID and its ID
+*ElementApi* | [**getElements**](docs/ElementApi.md#getElements) | **GET** /elements | Get all elements
+*ElementApi* | [**getElementsInProject**](docs/ElementApi.md#getElementsInProject) | **GET** /projects/{project_identifier}/elements | Get all elements in the project
+*ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Add a new project
+*ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{identifier} | Get project by its ID
+*ProjectApi* | [**getProjects**](docs/ProjectApi.md#getProjects) | **GET** /projects | Get all projects
+*RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **POST** /relationships | Add a new relationship
+*RelationshipApi* | [**getRelationship**](docs/RelationshipApi.md#getRelationship) | **GET** /relationships/{identifier} | Get relationship by its ID
+*RelationshipApi* | [**getRelationships**](docs/RelationshipApi.md#getRelationships) | **GET** /relationships | Get all relationships
+*RelationshipApi* | [**getRelationshipsByProject**](docs/RelationshipApi.md#getRelationshipsByProject) | **GET** /projects/{project_identifier}/relationships | Get all relationships in the project
 
 
 ## Documentation for Models
 
  - [Element](docs/Element.md)
  - [Error](docs/Error.md)
- - [Model](docs/Model.md)
+ - [Identified](docs/Identified.md)
+ - [Project](docs/Project.md)
  - [Relationship](docs/Relationship.md)
 
 

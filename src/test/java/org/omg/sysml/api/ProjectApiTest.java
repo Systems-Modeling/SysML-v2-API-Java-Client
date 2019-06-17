@@ -15,7 +15,6 @@ package org.omg.sysml.api;
 
 import org.omg.sysml.ApiException;
 import org.omg.sysml.model.Error;
-import org.omg.sysml.model.Identified;
 import org.omg.sysml.model.Project;
 import org.junit.Test;
 import org.junit.Ignore;

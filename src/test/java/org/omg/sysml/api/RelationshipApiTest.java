@@ -59,8 +59,8 @@ public class RelationshipApiTest {
      */
     @Test
     public void getRelationshipTest() throws ApiException {
-        String id = null;
-        Relationship response = api.getRelationship(id);
+        String identifier = null;
+        Relationship response = api.getRelationship(identifier);
 
         // TODO: test validations
     }
@@ -81,7 +81,7 @@ public class RelationshipApiTest {
     }
     
     /**
-     * Get all relationships with the given element as either source or target
+     * Get all relationships in the project
      *
      * 
      *
@@ -89,41 +89,9 @@ public class RelationshipApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getRelationshipsByElementTest() throws ApiException {
-        String elementId = null;
-        List<Relationship> response = api.getRelationshipsByElement(elementId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all relationships with the given element as the source
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getRelationshipsBySourceTest() throws ApiException {
-        String sourceId = null;
-        List<Relationship> response = api.getRelationshipsBySource(sourceId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all relationships with the given element as the target
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getRelationshipsByTargetTest() throws ApiException {
-        String targetId = null;
-        List<Relationship> response = api.getRelationshipsByTarget(targetId);
+    public void getRelationshipsByProjectTest() throws ApiException {
+        String projectIdentifier = null;
+        List<Relationship> response = api.getRelationshipsByProject(projectIdentifier);
 
         // TODO: test validations
     }

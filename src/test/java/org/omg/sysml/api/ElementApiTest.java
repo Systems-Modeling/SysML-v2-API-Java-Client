@@ -43,8 +43,8 @@ public class ElementApiTest {
      */
     @Test
     public void createElementTest() throws ApiException {
-        Element element = null;
-        Element response = api.createElement(element);
+        Map<String, Object> requestBody = null;
+        Element response = api.createElement(requestBody);
 
         // TODO: test validations
     }
@@ -59,8 +59,25 @@ public class ElementApiTest {
      */
     @Test
     public void getElementTest() throws ApiException {
-        String id = null;
-        Element response = api.getElement(id);
+        String identifier = null;
+        Element response = api.getElement(identifier);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get element by project ID and its ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getElementByProjectAndIdTest() throws ApiException {
+        String projectIdentifier = null;
+        String elementIdentifier = null;
+        Element response = api.getElementByProjectAndId(projectIdentifier, elementIdentifier);
 
         // TODO: test validations
     }
@@ -81,7 +98,7 @@ public class ElementApiTest {
     }
     
     /**
-     * Get all elements in the model
+     * Get all elements in the project
      *
      * 
      *
@@ -89,9 +106,9 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getElementsInModelTest() throws ApiException {
-        String modelId = null;
-        Element response = api.getElementsInModel(modelId);
+    public void getElementsInProjectTest() throws ApiException {
+        String projectIdentifier = null;
+        Element response = api.getElementsInProject(projectIdentifier);
 
         // TODO: test validations
     }

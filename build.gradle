@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'org.omg.sysml'
-version = '0.1.0'
+version = '2019-05'
 
 buildscript {
     repositories {
