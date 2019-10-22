@@ -1,4 +1,4 @@
-# sysml-api-client
+# sysml-v2-api-client
 
 SysML v2 API and Services
 - API version: 1.0.0
@@ -38,8 +38,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>org.omg.sysml</groupId>
-  <artifactId>sysml-api-client</artifactId>
-  <version>2019-05</version>
+  <artifactId>sysml-v2-api-client</artifactId>
+  <version>2019-09</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-api-client:2019-05"
+compile "org.omg.sysml:sysml-v2-api-client:2019-09"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-api-client-2019-05.jar`
+* `target/sysml-v2-api-client-2019-09.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -71,28 +71,31 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.omg.sysml.*;
-import org.omg.sysml.auth.*;
-import org.omg.sysml.model.*;
+// Import classes:
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
 import org.omg.sysml.api.ElementApi;
 
-import java.io.File;
-import java.util.*;
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-public class ElementApiExample {
-
-    public static void main(String[] args) {
-        
-        ElementApi apiInstance = new ElementApi();
-        Map<String, Object> requestBody = null; // Map<String, Object> | 
-        try {
-            Element result = apiInstance.createElement(requestBody);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ElementApi#createElement");
-            e.printStackTrace();
-        }
+    ElementApi apiInstance = new ElementApi(defaultClient);
+    Map<String, Object> body = null; // Map<String, Object> | 
+    try {
+      Element result = apiInstance.createElement(body);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ElementApi#createElement");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 
 ```
@@ -124,6 +127,7 @@ Class | Method | HTTP request | Description
  - [Identified](docs/Identified.md)
  - [Project](docs/Project.md)
  - [Relationship](docs/Relationship.md)
+ - [RelationshipAllOf](docs/RelationshipAllOf.md)
 
 
 ## Documentation for Authorization

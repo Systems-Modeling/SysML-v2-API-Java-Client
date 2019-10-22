@@ -25,28 +25,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Identified;
-import org.omg.sysml.model.RelationshipAllOf;
 
 /**
- * Relationship
+ * RelationshipAllOf
  */
 
-public class Relationship {
-  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
-  @SerializedName(SERIALIZED_NAME_AT_TYPE)
-  private String atType;
-
-  public static final String SERIALIZED_NAME_CONTAINING_PROJECT = "containingProject";
-  @SerializedName(SERIALIZED_NAME_CONTAINING_PROJECT)
-  private Identified containingProject;
-
-  public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
-  @SerializedName(SERIALIZED_NAME_IDENTIFIER)
-  private UUID identifier;
-
+public class RelationshipAllOf {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private List<Identified> source = null;
@@ -56,85 +41,13 @@ public class Relationship {
   private List<Identified> target = null;
 
 
-  public Relationship atType(String atType) {
-    
-    this.atType = atType;
-    return this;
-  }
-
-   /**
-   * Get atType
-   * @return atType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getAtType() {
-    return atType;
-  }
-
-
-
-  public void setAtType(String atType) {
-    this.atType = atType;
-  }
-
-
-  public Relationship containingProject(Identified containingProject) {
-    
-    this.containingProject = containingProject;
-    return this;
-  }
-
-   /**
-   * Get containingProject
-   * @return containingProject
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Identified getContainingProject() {
-    return containingProject;
-  }
-
-
-
-  public void setContainingProject(Identified containingProject) {
-    this.containingProject = containingProject;
-  }
-
-
-  public Relationship identifier(UUID identifier) {
-    
-    this.identifier = identifier;
-    return this;
-  }
-
-   /**
-   * Get identifier
-   * @return identifier
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getIdentifier() {
-    return identifier;
-  }
-
-
-
-  public void setIdentifier(UUID identifier) {
-    this.identifier = identifier;
-  }
-
-
-  public Relationship source(List<Identified> source) {
+  public RelationshipAllOf source(List<Identified> source) {
     
     this.source = source;
     return this;
   }
 
-  public Relationship addSourceItem(Identified sourceItem) {
+  public RelationshipAllOf addSourceItem(Identified sourceItem) {
     if (this.source == null) {
       this.source = new ArrayList<Identified>();
     }
@@ -160,13 +73,13 @@ public class Relationship {
   }
 
 
-  public Relationship target(List<Identified> target) {
+  public RelationshipAllOf target(List<Identified> target) {
     
     this.target = target;
     return this;
   }
 
-  public Relationship addTargetItem(Identified targetItem) {
+  public RelationshipAllOf addTargetItem(Identified targetItem) {
     if (this.target == null) {
       this.target = new ArrayList<Identified>();
     }
@@ -200,27 +113,21 @@ public class Relationship {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Relationship relationship = (Relationship) o;
-    return Objects.equals(this.atType, relationship.atType) &&
-        Objects.equals(this.containingProject, relationship.containingProject) &&
-        Objects.equals(this.identifier, relationship.identifier) &&
-        Objects.equals(this.source, relationship.source) &&
-        Objects.equals(this.target, relationship.target);
+    RelationshipAllOf relationshipAllOf = (RelationshipAllOf) o;
+    return Objects.equals(this.source, relationshipAllOf.source) &&
+        Objects.equals(this.target, relationshipAllOf.target);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, containingProject, identifier, source, target);
+    return Objects.hash(source, target);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Relationship {\n");
-    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    containingProject: ").append(toIndentedString(containingProject)).append("\n");
-    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("class RelationshipAllOf {\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    target: ").append(toIndentedString(target)).append("\n");
     sb.append("}");
