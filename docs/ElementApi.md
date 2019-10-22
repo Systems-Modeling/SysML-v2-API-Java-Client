@@ -13,25 +13,37 @@ Method | HTTP request | Description
 
 <a name="createElement"></a>
 # **createElement**
-> Element createElement(requestBody)
+> Element createElement(body)
 
 Add a new element
 
 ### Example
 ```java
 // Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.ElementApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-ElementApi apiInstance = new ElementApi();
-Map<String, Object> requestBody = null; // Map<String, Object> | 
-try {
-    Element result = apiInstance.createElement(requestBody);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling ElementApi#createElement");
-    e.printStackTrace();
+    ElementApi apiInstance = new ElementApi(defaultClient);
+    Map<String, Object> body = null; // Map<String, Object> | 
+    try {
+      Element result = apiInstance.createElement(body);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ElementApi#createElement");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -39,7 +51,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  |
+ **body** | [**Map&lt;String, Object&gt;**](Object.md)|  |
 
 ### Return type
 
@@ -54,6 +66,14 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
+
 <a name="getElement"></a>
 # **getElement**
 > Element getElement(identifier)
@@ -63,18 +83,30 @@ Get element by its ID
 ### Example
 ```java
 // Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.ElementApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-ElementApi apiInstance = new ElementApi();
-String identifier = "identifier_example"; // String | ID of the element
-try {
-    Element result = apiInstance.getElement(identifier);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling ElementApi#getElement");
-    e.printStackTrace();
+    ElementApi apiInstance = new ElementApi(defaultClient);
+    String identifier = "identifier_example"; // String | ID of the element
+    try {
+      Element result = apiInstance.getElement(identifier);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ElementApi#getElement");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -97,6 +129,15 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**404** | Not found. |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
+
 <a name="getElementByProjectAndId"></a>
 # **getElementByProjectAndId**
 > Element getElementByProjectAndId(projectIdentifier, elementIdentifier)
@@ -106,19 +147,31 @@ Get element by project ID and its ID
 ### Example
 ```java
 // Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.ElementApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-ElementApi apiInstance = new ElementApi();
-String projectIdentifier = "projectIdentifier_example"; // String | ID of the project
-String elementIdentifier = "elementIdentifier_example"; // String | ID of the element
-try {
-    Element result = apiInstance.getElementByProjectAndId(projectIdentifier, elementIdentifier);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling ElementApi#getElementByProjectAndId");
-    e.printStackTrace();
+    ElementApi apiInstance = new ElementApi(defaultClient);
+    String projectIdentifier = "projectIdentifier_example"; // String | ID of the project
+    String elementIdentifier = "elementIdentifier_example"; // String | ID of the element
+    try {
+      Element result = apiInstance.getElementByProjectAndId(projectIdentifier, elementIdentifier);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ElementApi#getElementByProjectAndId");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -142,6 +195,15 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**404** | Not found. |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
+
 <a name="getElements"></a>
 # **getElements**
 > List&lt;Element&gt; getElements()
@@ -151,17 +213,29 @@ Get all elements
 ### Example
 ```java
 // Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.ElementApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-ElementApi apiInstance = new ElementApi();
-try {
-    List<Element> result = apiInstance.getElements();
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling ElementApi#getElements");
-    e.printStackTrace();
+    ElementApi apiInstance = new ElementApi(defaultClient);
+    try {
+      List<Element> result = apiInstance.getElements();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ElementApi#getElements");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -181,6 +255,14 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
+
 <a name="getElementsInProject"></a>
 # **getElementsInProject**
 > Element getElementsInProject(projectIdentifier)
@@ -190,18 +272,30 @@ Get all elements in the project
 ### Example
 ```java
 // Import classes:
-//import org.omg.sysml.ApiException;
-//import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.ElementApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-ElementApi apiInstance = new ElementApi();
-String projectIdentifier = "projectIdentifier_example"; // String | ID of the project
-try {
-    Element result = apiInstance.getElementsInProject(projectIdentifier);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling ElementApi#getElementsInProject");
-    e.printStackTrace();
+    ElementApi apiInstance = new ElementApi(defaultClient);
+    String projectIdentifier = "projectIdentifier_example"; // String | ID of the project
+    try {
+      Element result = apiInstance.getElementsInProject(projectIdentifier);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ElementApi#getElementsInProject");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -223,4 +317,13 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**404** | Not found. |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
 
