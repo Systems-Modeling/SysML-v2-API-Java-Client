@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-v2-api-client</artifactId>
-  <version>2020-03</version>
+  <version>2020-03-rc2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2020-03"
+compile "org.omg.sysml:sysml-v2-api-client:2020-03-rc2"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-v2-api-client-2020-03.jar`
+* `target/sysml-v2-api-client-2020-03-rc2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -122,20 +122,14 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Commit](docs/Commit.md)
- - [CommitAllOf](docs/CommitAllOf.md)
  - [Element](docs/Element.md)
- - [ElementAllOf](docs/ElementAllOf.md)
  - [ElementIdentity](docs/ElementIdentity.md)
- - [ElementIdentityAllOf](docs/ElementIdentityAllOf.md)
  - [ElementVersion](docs/ElementVersion.md)
- - [ElementVersionAllOf](docs/ElementVersionAllOf.md)
  - [Error](docs/Error.md)
  - [Identified](docs/Identified.md)
  - [Project](docs/Project.md)
- - [ProjectAllOf](docs/ProjectAllOf.md)
  - [Record](docs/Record.md)
  - [Relationship](docs/Relationship.md)
- - [RelationshipAllOf](docs/RelationshipAllOf.md)
 
 
 ## Documentation for Authorization
