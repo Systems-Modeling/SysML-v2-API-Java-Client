@@ -21,27 +21,26 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import org.omg.sysml.model.Identified;
+import org.omg.sysml.model.Element;
+import org.omg.sysml.model.ElementIdentity;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Relationship
+ * Model tests for ElementVersion
  */
-public class RelationshipTest {
-    private final Relationship model = new Relationship();
+public class ElementVersionTest {
+    private final ElementVersion model = new ElementVersion();
 
     /**
-     * Model tests for Relationship
+     * Model tests for ElementVersion
      */
     @Test
-    public void testRelationship() {
-        // TODO: test Relationship
+    public void testElementVersion() {
+        // TODO: test ElementVersion
     }
 
     /**
@@ -53,27 +52,27 @@ public class RelationshipTest {
     }
 
     /**
-     * Test the property 'identifier'
+     * Test the property 'data'
      */
     @Test
-    public void identifierTest() {
-        // TODO: test identifier
+    public void dataTest() {
+        // TODO: test data
     }
 
     /**
-     * Test the property 'source'
+     * Test the property 'id'
      */
     @Test
-    public void sourceTest() {
-        // TODO: test source
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
-     * Test the property 'target'
+     * Test the property 'identity'
      */
     @Test
-    public void targetTest() {
-        // TODO: test target
+    public void identityTest() {
+        // TODO: test identity
     }
 
 }

@@ -23,19 +23,23 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import org.omg.sysml.model.ElementVersion;
+import org.omg.sysml.model.Record;
 
 /**
- * Project
+ * Commit
  */
 
-public class Project {
+public class Commit {
   /**
    * Gets or Sets atType
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    PROJECT("Project");
+    COMMIT("Commit");
 
     private String value;
 
@@ -79,16 +83,20 @@ public class Project {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
+  public static final String SERIALIZED_NAME_CHANGES = "changes";
+  @SerializedName(SERIALIZED_NAME_CHANGES)
+  private List<ElementVersion> changes = null;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_PREVIOUS_COMMIT = "previousCommit";
+  @SerializedName(SERIALIZED_NAME_PREVIOUS_COMMIT)
+  private Record previousCommit;
 
 
-  public Project atType(AtTypeEnum atType) {
+  public Commit atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -111,7 +119,38 @@ public class Project {
   }
 
 
-  public Project id(UUID id) {
+  public Commit changes(List<ElementVersion> changes) {
+    
+    this.changes = changes;
+    return this;
+  }
+
+  public Commit addChangesItem(ElementVersion changesItem) {
+    if (this.changes == null) {
+      this.changes = new ArrayList<ElementVersion>();
+    }
+    this.changes.add(changesItem);
+    return this;
+  }
+
+   /**
+   * Get changes
+   * @return changes
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<ElementVersion> getChanges() {
+    return changes;
+  }
+
+
+  public void setChanges(List<ElementVersion> changes) {
+    this.changes = changes;
+  }
+
+
+  public Commit id(UUID id) {
     
     this.id = id;
     return this;
@@ -134,26 +173,26 @@ public class Project {
   }
 
 
-  public Project name(String name) {
+  public Commit previousCommit(Record previousCommit) {
     
-    this.name = name;
+    this.previousCommit = previousCommit;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get previousCommit
+   * @return previousCommit
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getName() {
-    return name;
+  public Record getPreviousCommit() {
+    return previousCommit;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setPreviousCommit(Record previousCommit) {
+    this.previousCommit = previousCommit;
   }
 
 
@@ -165,25 +204,27 @@ public class Project {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Project project = (Project) o;
-    return Objects.equals(this.atType, project.atType) &&
-        Objects.equals(this.id, project.id) &&
-        Objects.equals(this.name, project.name);
+    Commit commit = (Commit) o;
+    return Objects.equals(this.atType, commit.atType) &&
+        Objects.equals(this.changes, commit.changes) &&
+        Objects.equals(this.id, commit.id) &&
+        Objects.equals(this.previousCommit, commit.previousCommit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, id, name);
+    return Objects.hash(atType, changes, id, previousCommit);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Project {\n");
+    sb.append("class Commit {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    changes: ").append(toIndentedString(changes)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    previousCommit: ").append(toIndentedString(previousCommit)).append("\n");
     sb.append("}");
     return sb.toString();
   }

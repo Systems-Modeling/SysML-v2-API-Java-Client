@@ -50,19 +50,19 @@ public class ProjectTest {
     }
 
     /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
      * Test the property 'name'
      */
     @Test
     public void nameTest() {
         // TODO: test name
-    }
-
-    /**
-     * Test the property 'identifier'
-     */
-    @Test
-    public void identifierTest() {
-        // TODO: test identifier
     }
 
 }

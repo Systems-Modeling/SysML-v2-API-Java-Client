@@ -16,6 +16,7 @@ package org.omg.sysml.api;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.model.Error;
 import org.omg.sysml.model.Project;
+import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -34,7 +35,7 @@ public class ProjectApiTest {
 
     
     /**
-     * Add a new project
+     * Get project by ID
      *
      * 
      *
@@ -42,31 +43,15 @@ public class ProjectApiTest {
      *          if the Api call fails
      */
     @Test
-    public void createProjectTest() throws ApiException {
-        Project body = null;
-        Project response = api.createProject(body);
+    public void getProjectByIdTest() throws ApiException {
+        UUID projectId = null;
+        Project response = api.getProjectById(projectId);
 
         // TODO: test validations
     }
     
     /**
-     * Get project by its ID
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getProjectTest() throws ApiException {
-        String identifier = null;
-        Project response = api.getProject(identifier);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all projects
+     * Get projects
      *
      * 
      *
@@ -76,6 +61,22 @@ public class ProjectApiTest {
     @Test
     public void getProjectsTest() throws ApiException {
         List<Project> response = api.getProjects();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Create project
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void postProjectTest() throws ApiException {
+        Project body = null;
+        Project response = api.postProject(body);
 
         // TODO: test validations
     }

@@ -26,9 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Identified;
-import org.omg.sysml.model.RelationshipAllOf;
 
 /**
  * Relationship
@@ -38,10 +36,6 @@ public class Relationship {
   public static final String SERIALIZED_NAME_AT_TYPE = "@type";
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private String atType;
-
-  public static final String SERIALIZED_NAME_CONTAINING_PROJECT = "containingProject";
-  @SerializedName(SERIALIZED_NAME_CONTAINING_PROJECT)
-  private Identified containingProject;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
@@ -74,33 +68,8 @@ public class Relationship {
   }
 
 
-
   public void setAtType(String atType) {
     this.atType = atType;
-  }
-
-
-  public Relationship containingProject(Identified containingProject) {
-    
-    this.containingProject = containingProject;
-    return this;
-  }
-
-   /**
-   * Get containingProject
-   * @return containingProject
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Identified getContainingProject() {
-    return containingProject;
-  }
-
-
-
-  public void setContainingProject(Identified containingProject) {
-    this.containingProject = containingProject;
   }
 
 
@@ -120,7 +89,6 @@ public class Relationship {
   public UUID getIdentifier() {
     return identifier;
   }
-
 
 
   public void setIdentifier(UUID identifier) {
@@ -154,7 +122,6 @@ public class Relationship {
   }
 
 
-
   public void setSource(List<Identified> source) {
     this.source = source;
   }
@@ -186,7 +153,6 @@ public class Relationship {
   }
 
 
-
   public void setTarget(List<Identified> target) {
     this.target = target;
   }
@@ -202,7 +168,6 @@ public class Relationship {
     }
     Relationship relationship = (Relationship) o;
     return Objects.equals(this.atType, relationship.atType) &&
-        Objects.equals(this.containingProject, relationship.containingProject) &&
         Objects.equals(this.identifier, relationship.identifier) &&
         Objects.equals(this.source, relationship.source) &&
         Objects.equals(this.target, relationship.target);
@@ -210,7 +175,7 @@ public class Relationship {
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, containingProject, identifier, source, target);
+    return Objects.hash(atType, identifier, source, target);
   }
 
 
@@ -219,7 +184,6 @@ public class Relationship {
     StringBuilder sb = new StringBuilder();
     sb.append("class Relationship {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    containingProject: ").append(toIndentedString(containingProject)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    target: ").append(toIndentedString(target)).append("\n");

@@ -1,13 +1,12 @@
 
 
-# Element
+# Record
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**atType** | **String** |  |  [optional]
-**identifier** | [**UUID**](UUID.md) |  |  [optional]
+**id** | [**UUID**](UUID.md) |  |  [optional]
 
 
 

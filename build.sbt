@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "org.omg.sysml",
     name := "sysml-v2-api-client",
-    version := "2019-09",
+    version := "2020-03",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
@@ -14,10 +14,10 @@ lazy val root = (project in file(".")).
       "com.squareup.okhttp3" % "logging-interceptor" % "3.14.2",
       "com.google.code.gson" % "gson" % "2.8.5",
       "org.apache.commons" % "commons-lang3" % "3.9",
-      "org.threeten" % "threetenbp" % "1.3.5" % "compile",
+      "org.threeten" % "threetenbp" % "1.4.0" % "compile",
       "io.gsonfire" % "gson-fire" % "1.8.3" % "compile",
       "javax.annotation" % "jsr250-api" % "1.0" % "compile",
-      "junit" % "junit" % "4.12" % "test",
+      "junit" % "junit" % "4.13" % "test",
       "com.novocode" % "junit-interface" % "0.10" % "test"
     )
   )
