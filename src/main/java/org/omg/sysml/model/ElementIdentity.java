@@ -23,25 +23,68 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
- * Element
+ * ElementIdentity
  */
 
-public class Element extends HashMap<String, Object> {
+public class ElementIdentity {
+  /**
+   * Gets or Sets atType
+   */
+  @JsonAdapter(AtTypeEnum.Adapter.class)
+  public enum AtTypeEnum {
+    ELEMENTIDENTITY("ElementIdentity");
+
+    private String value;
+
+    AtTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AtTypeEnum fromValue(String value) {
+      for (AtTypeEnum b : AtTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<AtTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AtTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AtTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AtTypeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_AT_TYPE = "@type";
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
-  private String atType;
+  private AtTypeEnum atType;
 
-  public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
-  @SerializedName(SERIALIZED_NAME_IDENTIFIER)
-  private UUID identifier;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
 
 
-  public Element atType(String atType) {
+  public ElementIdentity atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -54,36 +97,36 @@ public class Element extends HashMap<String, Object> {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getAtType() {
+  public AtTypeEnum getAtType() {
     return atType;
   }
 
 
-  public void setAtType(String atType) {
+  public void setAtType(AtTypeEnum atType) {
     this.atType = atType;
   }
 
 
-  public Element identifier(UUID identifier) {
+  public ElementIdentity id(UUID id) {
     
-    this.identifier = identifier;
+    this.id = id;
     return this;
   }
 
    /**
-   * Get identifier
-   * @return identifier
+   * Get id
+   * @return id
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public UUID getIdentifier() {
-    return identifier;
+  public UUID getId() {
+    return id;
   }
 
 
-  public void setIdentifier(UUID identifier) {
-    this.identifier = identifier;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
 
@@ -95,25 +138,23 @@ public class Element extends HashMap<String, Object> {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Element element = (Element) o;
-    return Objects.equals(this.atType, element.atType) &&
-        Objects.equals(this.identifier, element.identifier) &&
-        super.equals(o);
+    ElementIdentity elementIdentity = (ElementIdentity) o;
+    return Objects.equals(this.atType, elementIdentity.atType) &&
+        Objects.equals(this.id, elementIdentity.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, identifier, super.hashCode());
+    return Objects.hash(atType, id);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Element {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class ElementIdentity {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

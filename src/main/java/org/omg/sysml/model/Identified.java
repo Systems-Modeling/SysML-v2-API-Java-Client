@@ -53,7 +53,6 @@ public class Identified {
   }
 
 
-
   public void setIdentifier(UUID identifier) {
     this.identifier = identifier;
   }

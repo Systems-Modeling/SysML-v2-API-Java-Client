@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.Error;
-import org.omg.sysml.model.Project;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
@@ -37,14 +37,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjectApi {
+public class CommitApi {
     private ApiClient localVarApiClient;
 
-    public ProjectApi() {
+    public CommitApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ProjectApi(ApiClient apiClient) {
+    public CommitApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -57,7 +57,144 @@ public class ProjectApi {
     }
 
     /**
-     * Build call for getProjectById
+     * Build call for getCommitByProjectAndId
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCommitByProjectAndIdCall(String projectId, String commitId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/projects/{projectId}/commits/{commitId}"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "commitId" + "\\}", localVarApiClient.escapeString(commitId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getCommitByProjectAndIdValidateBeforeCall(String projectId, String commitId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getCommitByProjectAndId(Async)");
+        }
+        
+        // verify the required parameter 'commitId' is set
+        if (commitId == null) {
+            throw new ApiException("Missing the required parameter 'commitId' when calling getCommitByProjectAndId(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getCommitByProjectAndIdCall(projectId, commitId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get commit by project and ID
+     * 
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @return Commit
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Commit getCommitByProjectAndId(String projectId, String commitId) throws ApiException {
+        ApiResponse<Commit> localVarResp = getCommitByProjectAndIdWithHttpInfo(projectId, commitId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get commit by project and ID
+     * 
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @return ApiResponse&lt;Commit&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Commit> getCommitByProjectAndIdWithHttpInfo(String projectId, String commitId) throws ApiException {
+        okhttp3.Call localVarCall = getCommitByProjectAndIdValidateBeforeCall(projectId, commitId, null);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get commit by project and ID (asynchronously)
+     * 
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCommitByProjectAndIdAsync(String projectId, String commitId, final ApiCallback<Commit> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getCommitByProjectAndIdValidateBeforeCall(projectId, commitId, _callback);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getCommitsByProject
      * @param projectId ID of the project (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -72,11 +209,11 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectByIdCall(UUID projectId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCommitsByProjectCall(UUID projectId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/projects/{projectId}"
+        String localVarPath = "/projects/{projectId}/commits"
             .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -103,24 +240,24 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProjectByIdValidateBeforeCall(UUID projectId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCommitsByProjectValidateBeforeCall(UUID projectId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
-            throw new ApiException("Missing the required parameter 'projectId' when calling getProjectById(Async)");
+            throw new ApiException("Missing the required parameter 'projectId' when calling getCommitsByProject(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getProjectByIdCall(projectId, _callback);
+        okhttp3.Call localVarCall = getCommitsByProjectCall(projectId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get project by ID
+     * Get commits by project
      * 
      * @param projectId ID of the project (required)
-     * @return Project
+     * @return Commit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -132,16 +269,16 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Project getProjectById(UUID projectId) throws ApiException {
-        ApiResponse<Project> localVarResp = getProjectByIdWithHttpInfo(projectId);
+    public Commit getCommitsByProject(UUID projectId) throws ApiException {
+        ApiResponse<Commit> localVarResp = getCommitsByProjectWithHttpInfo(projectId);
         return localVarResp.getData();
     }
 
     /**
-     * Get project by ID
+     * Get commits by project
      * 
      * @param projectId ID of the project (required)
-     * @return ApiResponse&lt;Project&gt;
+     * @return ApiResponse&lt;Commit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -153,14 +290,14 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Project> getProjectByIdWithHttpInfo(UUID projectId) throws ApiException {
-        okhttp3.Call localVarCall = getProjectByIdValidateBeforeCall(projectId, null);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+    public ApiResponse<Commit> getCommitsByProjectWithHttpInfo(UUID projectId) throws ApiException {
+        okhttp3.Call localVarCall = getCommitsByProjectValidateBeforeCall(projectId, null);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get project by ID (asynchronously)
+     * Get commits by project (asynchronously)
      * 
      * @param projectId ID of the project (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -176,15 +313,16 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectByIdAsync(UUID projectId, final ApiCallback<Project> _callback) throws ApiException {
+    public okhttp3.Call getCommitsByProjectAsync(UUID projectId, final ApiCallback<Commit> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProjectByIdValidateBeforeCall(projectId, _callback);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+        okhttp3.Call localVarCall = getCommitsByProjectValidateBeforeCall(projectId, _callback);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getProjects
+     * Build call for getHeadCommitByProject
+     * @param projectId ID of the project (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -192,16 +330,18 @@ public class ProjectApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getHeadCommitByProjectCall(String projectId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/projects";
+        String localVarPath = "/projects/{projectId}/head"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -227,56 +367,66 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProjectsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getHeadCommitByProjectValidateBeforeCall(String projectId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getHeadCommitByProject(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = getProjectsCall(_callback);
+        okhttp3.Call localVarCall = getHeadCommitByProjectCall(projectId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get projects
+     * Get head commit by project
      * 
-     * @return List&lt;Project&gt;
+     * @param projectId ID of the project (required)
+     * @return Commit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Project> getProjects() throws ApiException {
-        ApiResponse<List<Project>> localVarResp = getProjectsWithHttpInfo();
+    public Commit getHeadCommitByProject(String projectId) throws ApiException {
+        ApiResponse<Commit> localVarResp = getHeadCommitByProjectWithHttpInfo(projectId);
         return localVarResp.getData();
     }
 
     /**
-     * Get projects
+     * Get head commit by project
      * 
-     * @return ApiResponse&lt;List&lt;Project&gt;&gt;
+     * @param projectId ID of the project (required)
+     * @return ApiResponse&lt;Commit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Project>> getProjectsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
+    public ApiResponse<Commit> getHeadCommitByProjectWithHttpInfo(String projectId) throws ApiException {
+        okhttp3.Call localVarCall = getHeadCommitByProjectValidateBeforeCall(projectId, null);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get projects (asynchronously)
+     * Get head commit by project (asynchronously)
      * 
+     * @param projectId ID of the project (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -284,21 +434,23 @@ public class ProjectApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectsAsync(final ApiCallback<List<Project>> _callback) throws ApiException {
+    public okhttp3.Call getHeadCommitByProjectAsync(String projectId, final ApiCallback<Commit> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
+        okhttp3.Call localVarCall = getHeadCommitByProjectValidateBeforeCall(projectId, _callback);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for postProject
-     * @param body  (optional)
+     * Build call for postCommitByProject
+     * @param projectId ID of the project (required)
+     * @param body  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -311,11 +463,12 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postProjectCall(Project body, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postCommitByProjectCall(UUID projectId, Commit body, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
-        String localVarPath = "/projects";
+        String localVarPath = "/projects/{projectId}/commits"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -341,19 +494,30 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postProjectValidateBeforeCall(Project body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call postCommitByProjectValidateBeforeCall(UUID projectId, Commit body, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling postCommitByProject(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling postCommitByProject(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = postProjectCall(body, _callback);
+        okhttp3.Call localVarCall = postCommitByProjectCall(projectId, body, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Create project
+     * Create commit by project
      * 
-     * @param body  (optional)
-     * @return Project
+     * @param projectId ID of the project (required)
+     * @param body  (required)
+     * @return Commit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -364,16 +528,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Project postProject(Project body) throws ApiException {
-        ApiResponse<Project> localVarResp = postProjectWithHttpInfo(body);
+    public Commit postCommitByProject(UUID projectId, Commit body) throws ApiException {
+        ApiResponse<Commit> localVarResp = postCommitByProjectWithHttpInfo(projectId, body);
         return localVarResp.getData();
     }
 
     /**
-     * Create project
+     * Create commit by project
      * 
-     * @param body  (optional)
-     * @return ApiResponse&lt;Project&gt;
+     * @param projectId ID of the project (required)
+     * @param body  (required)
+     * @return ApiResponse&lt;Commit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -384,16 +549,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Project> postProjectWithHttpInfo(Project body) throws ApiException {
-        okhttp3.Call localVarCall = postProjectValidateBeforeCall(body, null);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+    public ApiResponse<Commit> postCommitByProjectWithHttpInfo(UUID projectId, Commit body) throws ApiException {
+        okhttp3.Call localVarCall = postCommitByProjectValidateBeforeCall(projectId, body, null);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create project (asynchronously)
+     * Create commit by project (asynchronously)
      * 
-     * @param body  (optional)
+     * @param projectId ID of the project (required)
+     * @param body  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -406,10 +572,10 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postProjectAsync(Project body, final ApiCallback<Project> _callback) throws ApiException {
+    public okhttp3.Call postCommitByProjectAsync(UUID projectId, Commit body, final ApiCallback<Commit> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postProjectValidateBeforeCall(body, _callback);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+        okhttp3.Call localVarCall = postCommitByProjectValidateBeforeCall(projectId, body, _callback);
+        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

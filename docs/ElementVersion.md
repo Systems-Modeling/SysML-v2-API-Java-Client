@@ -1,14 +1,15 @@
 
 
-# Project
+# ElementVersion
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
+**data** | [**Element**](Element.md) |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
-**name** | **String** |  |  [optional]
+**identity** | [**ElementIdentity**](ElementIdentity.md) |  |  [optional]
 
 
 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-PROJECT | &quot;Project&quot;
+ELEMENTVERSION | &quot;ElementVersion&quot;
 
 
 

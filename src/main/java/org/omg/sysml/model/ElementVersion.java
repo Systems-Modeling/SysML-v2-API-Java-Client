@@ -24,18 +24,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+import org.omg.sysml.model.Element;
+import org.omg.sysml.model.ElementIdentity;
 
 /**
- * Project
+ * ElementVersion
  */
 
-public class Project {
+public class ElementVersion {
   /**
    * Gets or Sets atType
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    PROJECT("Project");
+    ELEMENTVERSION("ElementVersion");
 
     private String value;
 
@@ -79,16 +81,20 @@ public class Project {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private Element data;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_IDENTITY = "identity";
+  @SerializedName(SERIALIZED_NAME_IDENTITY)
+  private ElementIdentity identity;
 
 
-  public Project atType(AtTypeEnum atType) {
+  public ElementVersion atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -111,7 +117,30 @@ public class Project {
   }
 
 
-  public Project id(UUID id) {
+  public ElementVersion data(Element data) {
+    
+    this.data = data;
+    return this;
+  }
+
+   /**
+   * Get data
+   * @return data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Element getData() {
+    return data;
+  }
+
+
+  public void setData(Element data) {
+    this.data = data;
+  }
+
+
+  public ElementVersion id(UUID id) {
     
     this.id = id;
     return this;
@@ -134,26 +163,26 @@ public class Project {
   }
 
 
-  public Project name(String name) {
+  public ElementVersion identity(ElementIdentity identity) {
     
-    this.name = name;
+    this.identity = identity;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get identity
+   * @return identity
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getName() {
-    return name;
+  public ElementIdentity getIdentity() {
+    return identity;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setIdentity(ElementIdentity identity) {
+    this.identity = identity;
   }
 
 
@@ -165,25 +194,27 @@ public class Project {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Project project = (Project) o;
-    return Objects.equals(this.atType, project.atType) &&
-        Objects.equals(this.id, project.id) &&
-        Objects.equals(this.name, project.name);
+    ElementVersion elementVersion = (ElementVersion) o;
+    return Objects.equals(this.atType, elementVersion.atType) &&
+        Objects.equals(this.data, elementVersion.data) &&
+        Objects.equals(this.id, elementVersion.id) &&
+        Objects.equals(this.identity, elementVersion.identity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, id, name);
+    return Objects.hash(atType, data, id, identity);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Project {\n");
+    sb.append("class ElementVersion {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
     sb.append("}");
     return sb.toString();
   }

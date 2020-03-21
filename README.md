@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-v2-api-client</artifactId>
-  <version>2019-09</version>
+  <version>2020-03-rc2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2019-09"
+compile "org.omg.sysml:sysml-v2-api-client:2020-03-rc2"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-v2-api-client-2019-09.jar`
+* `target/sysml-v2-api-client-2020-03-rc2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -76,20 +76,21 @@ import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.models.*;
-import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.api.CommitApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    ElementApi apiInstance = new ElementApi(defaultClient);
-    Map<String, Object> body = null; // Map<String, Object> | 
+    CommitApi apiInstance = new CommitApi(defaultClient);
+    String projectId = "projectId_example"; // String | ID of the project
+    String commitId = "commitId_example"; // String | ID of the commit
     try {
-      Element result = apiInstance.createElement(body);
+      Commit result = apiInstance.getCommitByProjectAndId(projectId, commitId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ElementApi#createElement");
+      System.err.println("Exception when calling CommitApi#getCommitByProjectAndId");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -106,28 +107,29 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ElementApi* | [**createElement**](docs/ElementApi.md#createElement) | **POST** /elements | Add a new element
-*ElementApi* | [**getElement**](docs/ElementApi.md#getElement) | **GET** /elements/{identifier} | Get element by its ID
-*ElementApi* | [**getElementByProjectAndId**](docs/ElementApi.md#getElementByProjectAndId) | **GET** /projects/{project_identifier}/elements/{element_identifier} | Get element by project ID and its ID
-*ElementApi* | [**getElements**](docs/ElementApi.md#getElements) | **GET** /elements | Get all elements
-*ElementApi* | [**getElementsInProject**](docs/ElementApi.md#getElementsInProject) | **GET** /projects/{project_identifier}/elements | Get all elements in the project
-*ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Add a new project
-*ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{identifier} | Get project by its ID
-*ProjectApi* | [**getProjects**](docs/ProjectApi.md#getProjects) | **GET** /projects | Get all projects
-*RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **POST** /relationships | Add a new relationship
-*RelationshipApi* | [**getRelationship**](docs/RelationshipApi.md#getRelationship) | **GET** /relationships/{identifier} | Get relationship by its ID
-*RelationshipApi* | [**getRelationships**](docs/RelationshipApi.md#getRelationships) | **GET** /relationships | Get all relationships
-*RelationshipApi* | [**getRelationshipsByProject**](docs/RelationshipApi.md#getRelationshipsByProject) | **GET** /projects/{project_identifier}/relationships | Get all relationships in the project
+*CommitApi* | [**getCommitByProjectAndId**](docs/CommitApi.md#getCommitByProjectAndId) | **GET** /projects/{projectId}/commits/{commitId} | Get commit by project and ID
+*CommitApi* | [**getCommitsByProject**](docs/CommitApi.md#getCommitsByProject) | **GET** /projects/{projectId}/commits | Get commits by project
+*CommitApi* | [**getHeadCommitByProject**](docs/CommitApi.md#getHeadCommitByProject) | **GET** /projects/{projectId}/head | Get head commit by project
+*CommitApi* | [**postCommitByProject**](docs/CommitApi.md#postCommitByProject) | **POST** /projects/{projectId}/commits | Create commit by project
+*ElementApi* | [**getElementByProjectCommitId**](docs/ElementApi.md#getElementByProjectCommitId) | **GET** /projects/{projectId}/commits/{commitId}/elements/{elementId} | Get element by project, commit and ID
+*ElementApi* | [**getElementsByProjectCommit**](docs/ElementApi.md#getElementsByProjectCommit) | **GET** /projects/{projectId}/commits/{commitId}/elements | Get elements by project and commit
+*ProjectApi* | [**getProjectById**](docs/ProjectApi.md#getProjectById) | **GET** /projects/{projectId} | Get project by ID
+*ProjectApi* | [**getProjects**](docs/ProjectApi.md#getProjects) | **GET** /projects | Get projects
+*ProjectApi* | [**postProject**](docs/ProjectApi.md#postProject) | **POST** /projects | Create project
+*RelationshipApi* | [**getRelationshipsByProjectCommitRelatedElement**](docs/RelationshipApi.md#getRelationshipsByProjectCommitRelatedElement) | **GET** /projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships | Get relationships by project, commit, and related element.
 
 
 ## Documentation for Models
 
+ - [Commit](docs/Commit.md)
  - [Element](docs/Element.md)
+ - [ElementIdentity](docs/ElementIdentity.md)
+ - [ElementVersion](docs/ElementVersion.md)
  - [Error](docs/Error.md)
  - [Identified](docs/Identified.md)
  - [Project](docs/Project.md)
+ - [Record](docs/Record.md)
  - [Relationship](docs/Relationship.md)
- - [RelationshipAllOf](docs/RelationshipAllOf.md)
 
 
 ## Documentation for Authorization

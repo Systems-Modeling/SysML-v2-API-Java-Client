@@ -24,24 +24,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.omg.sysml.model.Identified;
+import org.omg.sysml.model.ElementVersion;
+import org.omg.sysml.model.Record;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Relationship
+ * Model tests for Commit
  */
-public class RelationshipTest {
-    private final Relationship model = new Relationship();
+public class CommitTest {
+    private final Commit model = new Commit();
 
     /**
-     * Model tests for Relationship
+     * Model tests for Commit
      */
     @Test
-    public void testRelationship() {
-        // TODO: test Relationship
+    public void testCommit() {
+        // TODO: test Commit
     }
 
     /**
@@ -53,27 +54,27 @@ public class RelationshipTest {
     }
 
     /**
-     * Test the property 'identifier'
+     * Test the property 'changes'
      */
     @Test
-    public void identifierTest() {
-        // TODO: test identifier
+    public void changesTest() {
+        // TODO: test changes
     }
 
     /**
-     * Test the property 'source'
+     * Test the property 'id'
      */
     @Test
-    public void sourceTest() {
-        // TODO: test source
+    public void idTest() {
+        // TODO: test id
     }
 
     /**
-     * Test the property 'target'
+     * Test the property 'previousCommit'
      */
     @Test
-    public void targetTest() {
-        // TODO: test target
+    public void previousCommitTest() {
+        // TODO: test previousCommit
     }
 
 }
