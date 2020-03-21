@@ -1,14 +1,15 @@
 
 
-# Project
+# Commit
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
+**changes** | [**List&lt;ElementVersion&gt;**](ElementVersion.md) |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
-**name** | **String** |  |  [optional]
+**previousCommit** | [**Record**](Record.md) |  |  [optional]
 
 
 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-PROJECT | &quot;Project&quot;
+COMMIT | &quot;Commit&quot;
 
 
 

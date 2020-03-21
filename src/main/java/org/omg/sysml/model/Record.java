@@ -23,67 +23,38 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
- * Element
+ * Record
  */
 
-public class Element extends HashMap<String, Object> {
-  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
-  @SerializedName(SERIALIZED_NAME_AT_TYPE)
-  private String atType;
-
-  public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
-  @SerializedName(SERIALIZED_NAME_IDENTIFIER)
-  private UUID identifier;
+public class Record {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
 
 
-  public Element atType(String atType) {
+  public Record id(UUID id) {
     
-    this.atType = atType;
+    this.id = id;
     return this;
   }
 
    /**
-   * Get atType
-   * @return atType
+   * Get id
+   * @return id
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getAtType() {
-    return atType;
+  public UUID getId() {
+    return id;
   }
 
 
-  public void setAtType(String atType) {
-    this.atType = atType;
-  }
-
-
-  public Element identifier(UUID identifier) {
-    
-    this.identifier = identifier;
-    return this;
-  }
-
-   /**
-   * Get identifier
-   * @return identifier
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getIdentifier() {
-    return identifier;
-  }
-
-
-  public void setIdentifier(UUID identifier) {
-    this.identifier = identifier;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
 
@@ -95,25 +66,21 @@ public class Element extends HashMap<String, Object> {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Element element = (Element) o;
-    return Objects.equals(this.atType, element.atType) &&
-        Objects.equals(this.identifier, element.identifier) &&
-        super.equals(o);
+    Record record = (Record) o;
+    return Objects.equals(this.id, record.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, identifier, super.hashCode());
+    return Objects.hash(id);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Element {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("class Record {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

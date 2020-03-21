@@ -16,6 +16,7 @@ package org.omg.sysml.api;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Error;
+import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -34,7 +35,7 @@ public class ElementApiTest {
 
     
     /**
-     * Add a new element
+     * Get element by project, commit and ID
      *
      * 
      *
@@ -42,15 +43,17 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void createElementTest() throws ApiException {
-        Map<String, Object> body = null;
-        Element response = api.createElement(body);
+    public void getElementByProjectCommitIdTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        UUID elementId = null;
+        Element response = api.getElementByProjectCommitId(projectId, commitId, elementId);
 
         // TODO: test validations
     }
     
     /**
-     * Get element by its ID
+     * Get elements by project and commit
      *
      * 
      *
@@ -58,57 +61,10 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getElementTest() throws ApiException {
-        String identifier = null;
-        Element response = api.getElement(identifier);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get element by project ID and its ID
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getElementByProjectAndIdTest() throws ApiException {
-        String projectIdentifier = null;
-        String elementIdentifier = null;
-        Element response = api.getElementByProjectAndId(projectIdentifier, elementIdentifier);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all elements
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getElementsTest() throws ApiException {
-        List<Element> response = api.getElements();
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all elements in the project
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getElementsInProjectTest() throws ApiException {
-        String projectIdentifier = null;
-        Element response = api.getElementsInProject(projectIdentifier);
+    public void getElementsByProjectCommitTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        Element response = api.getElementsByProjectCommit(projectId, commitId);
 
         // TODO: test validations
     }

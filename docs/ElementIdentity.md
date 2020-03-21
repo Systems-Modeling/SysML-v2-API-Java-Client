@@ -1,6 +1,6 @@
 
 
-# Project
+# ElementIdentity
 
 ## Properties
 
@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
-**name** | **String** |  |  [optional]
 
 
 
@@ -16,7 +15,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-PROJECT | &quot;Project&quot;
+ELEMENTIDENTITY | &quot;ElementIdentity&quot;
 
 
 

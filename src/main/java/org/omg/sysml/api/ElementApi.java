@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Error;
+import java.util.UUID;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,129 +57,10 @@ public class ElementApi {
     }
 
     /**
-     * Build call for createElement
-     * @param body  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createElementCall(Map<String, Object> body, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/elements";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call createElementValidateBeforeCall(Map<String, Object> body, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling createElement(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = createElementCall(body, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Add a new element
-     * 
-     * @param body  (required)
-     * @return Element
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Element createElement(Map<String, Object> body) throws ApiException {
-        ApiResponse<Element> localVarResp = createElementWithHttpInfo(body);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Add a new element
-     * 
-     * @param body  (required)
-     * @return ApiResponse&lt;Element&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Element> createElementWithHttpInfo(Map<String, Object> body) throws ApiException {
-        okhttp3.Call localVarCall = createElementValidateBeforeCall(body, null);
-        Type localVarReturnType = new TypeToken<Element>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Add a new element (asynchronously)
-     * 
-     * @param body  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createElementAsync(Map<String, Object> body, final ApiCallback<Element> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = createElementValidateBeforeCall(body, _callback);
-        Type localVarReturnType = new TypeToken<Element>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getElement
-     * @param identifier ID of the element (required)
+     * Build call for getElementByProjectCommitId
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param elementId ID of the element (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -192,16 +74,19 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementCall(String identifier, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getElementByProjectCommitIdCall(UUID projectId, UUID commitId, UUID elementId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/elements/{identifier}"
-            .replaceAll("\\{" + "identifier" + "\\}", localVarApiClient.escapeString(identifier.toString()));
+        String localVarPath = "/projects/{projectId}/commits/{commitId}/elements/{elementId}"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "commitId" + "\\}", localVarApiClient.escapeString(commitId.toString()))
+            .replaceAll("\\{" + "elementId" + "\\}", localVarApiClient.escapeString(elementId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
             "application/json"
@@ -218,27 +103,39 @@ public class ElementApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getElementValidateBeforeCall(String identifier, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getElementByProjectCommitIdValidateBeforeCall(UUID projectId, UUID commitId, UUID elementId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'identifier' is set
-        if (identifier == null) {
-            throw new ApiException("Missing the required parameter 'identifier' when calling getElement(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getElementByProjectCommitId(Async)");
+        }
+        
+        // verify the required parameter 'commitId' is set
+        if (commitId == null) {
+            throw new ApiException("Missing the required parameter 'commitId' when calling getElementByProjectCommitId(Async)");
+        }
+        
+        // verify the required parameter 'elementId' is set
+        if (elementId == null) {
+            throw new ApiException("Missing the required parameter 'elementId' when calling getElementByProjectCommitId(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getElementCall(identifier, _callback);
+        okhttp3.Call localVarCall = getElementByProjectCommitIdCall(projectId, commitId, elementId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get element by its ID
+     * Get element by project, commit and ID
      * 
-     * @param identifier ID of the element (required)
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param elementId ID of the element (required)
      * @return Element
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -251,15 +148,17 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Element getElement(String identifier) throws ApiException {
-        ApiResponse<Element> localVarResp = getElementWithHttpInfo(identifier);
+    public Element getElementByProjectCommitId(UUID projectId, UUID commitId, UUID elementId) throws ApiException {
+        ApiResponse<Element> localVarResp = getElementByProjectCommitIdWithHttpInfo(projectId, commitId, elementId);
         return localVarResp.getData();
     }
 
     /**
-     * Get element by its ID
+     * Get element by project, commit and ID
      * 
-     * @param identifier ID of the element (required)
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param elementId ID of the element (required)
      * @return ApiResponse&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -272,16 +171,18 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Element> getElementWithHttpInfo(String identifier) throws ApiException {
-        okhttp3.Call localVarCall = getElementValidateBeforeCall(identifier, null);
+    public ApiResponse<Element> getElementByProjectCommitIdWithHttpInfo(UUID projectId, UUID commitId, UUID elementId) throws ApiException {
+        okhttp3.Call localVarCall = getElementByProjectCommitIdValidateBeforeCall(projectId, commitId, elementId, null);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get element by its ID (asynchronously)
+     * Get element by project, commit and ID (asynchronously)
      * 
-     * @param identifier ID of the element (required)
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param elementId ID of the element (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -295,17 +196,17 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementAsync(String identifier, final ApiCallback<Element> _callback) throws ApiException {
+    public okhttp3.Call getElementByProjectCommitIdAsync(UUID projectId, UUID commitId, UUID elementId, final ApiCallback<Element> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getElementValidateBeforeCall(identifier, _callback);
+        okhttp3.Call localVarCall = getElementByProjectCommitIdValidateBeforeCall(projectId, commitId, elementId, _callback);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getElementByProjectAndId
-     * @param projectIdentifier ID of the project (required)
-     * @param elementIdentifier ID of the element (required)
+     * Build call for getElementsByProjectCommit
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -319,17 +220,18 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementByProjectAndIdCall(String projectIdentifier, String elementIdentifier, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getElementsByProjectCommitCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/projects/{project_identifier}/elements/{element_identifier}"
-            .replaceAll("\\{" + "project_identifier" + "\\}", localVarApiClient.escapeString(projectIdentifier.toString()))
-            .replaceAll("\\{" + "element_identifier" + "\\}", localVarApiClient.escapeString(elementIdentifier.toString()));
+        String localVarPath = "/projects/{projectId}/commits/{commitId}/elements"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "commitId" + "\\}", localVarApiClient.escapeString(commitId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
             "application/json"
@@ -346,33 +248,33 @@ public class ElementApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getElementByProjectAndIdValidateBeforeCall(String projectIdentifier, String elementIdentifier, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getElementsByProjectCommitValidateBeforeCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'projectIdentifier' is set
-        if (projectIdentifier == null) {
-            throw new ApiException("Missing the required parameter 'projectIdentifier' when calling getElementByProjectAndId(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getElementsByProjectCommit(Async)");
         }
         
-        // verify the required parameter 'elementIdentifier' is set
-        if (elementIdentifier == null) {
-            throw new ApiException("Missing the required parameter 'elementIdentifier' when calling getElementByProjectAndId(Async)");
+        // verify the required parameter 'commitId' is set
+        if (commitId == null) {
+            throw new ApiException("Missing the required parameter 'commitId' when calling getElementsByProjectCommit(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getElementByProjectAndIdCall(projectIdentifier, elementIdentifier, _callback);
+        okhttp3.Call localVarCall = getElementsByProjectCommitCall(projectId, commitId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get element by project ID and its ID
+     * Get elements by project and commit
      * 
-     * @param projectIdentifier ID of the project (required)
-     * @param elementIdentifier ID of the element (required)
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
      * @return Element
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -385,16 +287,16 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Element getElementByProjectAndId(String projectIdentifier, String elementIdentifier) throws ApiException {
-        ApiResponse<Element> localVarResp = getElementByProjectAndIdWithHttpInfo(projectIdentifier, elementIdentifier);
+    public Element getElementsByProjectCommit(UUID projectId, UUID commitId) throws ApiException {
+        ApiResponse<Element> localVarResp = getElementsByProjectCommitWithHttpInfo(projectId, commitId);
         return localVarResp.getData();
     }
 
     /**
-     * Get element by project ID and its ID
+     * Get elements by project and commit
      * 
-     * @param projectIdentifier ID of the project (required)
-     * @param elementIdentifier ID of the element (required)
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
      * @return ApiResponse&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -407,17 +309,17 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Element> getElementByProjectAndIdWithHttpInfo(String projectIdentifier, String elementIdentifier) throws ApiException {
-        okhttp3.Call localVarCall = getElementByProjectAndIdValidateBeforeCall(projectIdentifier, elementIdentifier, null);
+    public ApiResponse<Element> getElementsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId) throws ApiException {
+        okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, null);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get element by project ID and its ID (asynchronously)
+     * Get elements by project and commit (asynchronously)
      * 
-     * @param projectIdentifier ID of the project (required)
-     * @param elementIdentifier ID of the element (required)
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -431,247 +333,9 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementByProjectAndIdAsync(String projectIdentifier, String elementIdentifier, final ApiCallback<Element> _callback) throws ApiException {
+    public okhttp3.Call getElementsByProjectCommitAsync(UUID projectId, UUID commitId, final ApiCallback<Element> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getElementByProjectAndIdValidateBeforeCall(projectIdentifier, elementIdentifier, _callback);
-        Type localVarReturnType = new TypeToken<Element>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getElements
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getElementsCall(final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/elements";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getElementsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getElementsCall(_callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get all elements
-     * 
-     * @return List&lt;Element&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public List<Element> getElements() throws ApiException {
-        ApiResponse<List<Element>> localVarResp = getElementsWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get all elements
-     * 
-     * @return ApiResponse&lt;List&lt;Element&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<List<Element>> getElementsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getElementsValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get all elements (asynchronously)
-     * 
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getElementsAsync(final ApiCallback<List<Element>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getElementsValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getElementsInProject
-     * @param projectIdentifier ID of the project (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getElementsInProjectCall(String projectIdentifier, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/projects/{project_identifier}/elements"
-            .replaceAll("\\{" + "project_identifier" + "\\}", localVarApiClient.escapeString(projectIdentifier.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getElementsInProjectValidateBeforeCall(String projectIdentifier, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'projectIdentifier' is set
-        if (projectIdentifier == null) {
-            throw new ApiException("Missing the required parameter 'projectIdentifier' when calling getElementsInProject(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = getElementsInProjectCall(projectIdentifier, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get all elements in the project
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @return Element
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Element getElementsInProject(String projectIdentifier) throws ApiException {
-        ApiResponse<Element> localVarResp = getElementsInProjectWithHttpInfo(projectIdentifier);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get all elements in the project
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @return ApiResponse&lt;Element&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Element> getElementsInProjectWithHttpInfo(String projectIdentifier) throws ApiException {
-        okhttp3.Call localVarCall = getElementsInProjectValidateBeforeCall(projectIdentifier, null);
-        Type localVarReturnType = new TypeToken<Element>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get all elements in the project (asynchronously)
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getElementsInProjectAsync(String projectIdentifier, final ApiCallback<Element> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getElementsInProjectValidateBeforeCall(projectIdentifier, _callback);
+        okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, _callback);
         Type localVarReturnType = new TypeToken<Element>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

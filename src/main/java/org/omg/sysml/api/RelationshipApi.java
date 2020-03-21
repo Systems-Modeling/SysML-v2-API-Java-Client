@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import org.omg.sysml.model.Error;
 import org.omg.sysml.model.Relationship;
+import java.util.UUID;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,129 +57,10 @@ public class RelationshipApi {
     }
 
     /**
-     * Build call for createRelationship
-     * @param body  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createRelationshipCall(Relationship body, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/relationships";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call createRelationshipValidateBeforeCall(Relationship body, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling createRelationship(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = createRelationshipCall(body, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Add a new relationship
-     * 
-     * @param body  (required)
-     * @return Relationship
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Relationship createRelationship(Relationship body) throws ApiException {
-        ApiResponse<Relationship> localVarResp = createRelationshipWithHttpInfo(body);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Add a new relationship
-     * 
-     * @param body  (required)
-     * @return ApiResponse&lt;Relationship&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Relationship> createRelationshipWithHttpInfo(Relationship body) throws ApiException {
-        okhttp3.Call localVarCall = createRelationshipValidateBeforeCall(body, null);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Add a new relationship (asynchronously)
-     * 
-     * @param body  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createRelationshipAsync(Relationship body, final ApiCallback<Relationship> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = createRelationshipValidateBeforeCall(body, _callback);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getRelationship
-     * @param identifier ID of the relationship (required)
+     * Build call for getRelationshipsByProjectCommitRelatedElement
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param relatedElementId ID of the related element (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -186,22 +68,24 @@ public class RelationshipApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRelationshipCall(String identifier, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getRelationshipsByProjectCommitRelatedElementCall(UUID projectId, UUID commitId, UUID relatedElementId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/relationships/{identifier}"
-            .replaceAll("\\{" + "identifier" + "\\}", localVarApiClient.escapeString(identifier.toString()));
+        String localVarPath = "/projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "commitId" + "\\}", localVarApiClient.escapeString(commitId.toString()))
+            .replaceAll("\\{" + "relatedElementId" + "\\}", localVarApiClient.escapeString(relatedElementId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
             "application/json"
@@ -218,144 +102,39 @@ public class RelationshipApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRelationshipValidateBeforeCall(String identifier, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(UUID projectId, UUID commitId, UUID relatedElementId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'identifier' is set
-        if (identifier == null) {
-            throw new ApiException("Missing the required parameter 'identifier' when calling getRelationship(Async)");
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getRelationshipsByProjectCommitRelatedElement(Async)");
+        }
+        
+        // verify the required parameter 'commitId' is set
+        if (commitId == null) {
+            throw new ApiException("Missing the required parameter 'commitId' when calling getRelationshipsByProjectCommitRelatedElement(Async)");
+        }
+        
+        // verify the required parameter 'relatedElementId' is set
+        if (relatedElementId == null) {
+            throw new ApiException("Missing the required parameter 'relatedElementId' when calling getRelationshipsByProjectCommitRelatedElement(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getRelationshipCall(identifier, _callback);
+        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementCall(projectId, commitId, relatedElementId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get relationship by its ID
+     * Get relationships by project, commit, and related element.
      * 
-     * @param identifier ID of the relationship (required)
-     * @return Relationship
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Relationship getRelationship(String identifier) throws ApiException {
-        ApiResponse<Relationship> localVarResp = getRelationshipWithHttpInfo(identifier);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get relationship by its ID
-     * 
-     * @param identifier ID of the relationship (required)
-     * @return ApiResponse&lt;Relationship&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Relationship> getRelationshipWithHttpInfo(String identifier) throws ApiException {
-        okhttp3.Call localVarCall = getRelationshipValidateBeforeCall(identifier, null);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get relationship by its ID (asynchronously)
-     * 
-     * @param identifier ID of the relationship (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getRelationshipAsync(String identifier, final ApiCallback<Relationship> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getRelationshipValidateBeforeCall(identifier, _callback);
-        Type localVarReturnType = new TypeToken<Relationship>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getRelationships
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getRelationshipsCall(final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/relationships";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRelationshipsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getRelationshipsCall(_callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get all relationships
-     * 
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param relatedElementId ID of the related element (required)
      * @return List&lt;Relationship&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -367,14 +146,17 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Relationship> getRelationships() throws ApiException {
-        ApiResponse<List<Relationship>> localVarResp = getRelationshipsWithHttpInfo();
+    public List<Relationship> getRelationshipsByProjectCommitRelatedElement(UUID projectId, UUID commitId, UUID relatedElementId) throws ApiException {
+        ApiResponse<List<Relationship>> localVarResp = getRelationshipsByProjectCommitRelatedElementWithHttpInfo(projectId, commitId, relatedElementId);
         return localVarResp.getData();
     }
 
     /**
-     * Get all relationships
+     * Get relationships by project, commit, and related element.
      * 
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param relatedElementId ID of the related element (required)
      * @return ApiResponse&lt;List&lt;Relationship&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -386,15 +168,18 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Relationship>> getRelationshipsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getRelationshipsValidateBeforeCall(null);
+    public ApiResponse<List<Relationship>> getRelationshipsByProjectCommitRelatedElementWithHttpInfo(UUID projectId, UUID commitId, UUID relatedElementId) throws ApiException {
+        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(projectId, commitId, relatedElementId, null);
         Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get all relationships (asynchronously)
+     * Get relationships by project, commit, and related element. (asynchronously)
      * 
+     * @param projectId ID of the project (required)
+     * @param commitId ID of the commit (required)
+     * @param relatedElementId ID of the related element (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -407,131 +192,9 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRelationshipsAsync(final ApiCallback<List<Relationship>> _callback) throws ApiException {
+    public okhttp3.Call getRelationshipsByProjectCommitRelatedElementAsync(UUID projectId, UUID commitId, UUID relatedElementId, final ApiCallback<List<Relationship>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getRelationshipsValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getRelationshipsByProject
-     * @param projectIdentifier ID of the project (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getRelationshipsByProjectCall(String projectIdentifier, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/projects/{project_identifier}/relationships"
-            .replaceAll("\\{" + "project_identifier" + "\\}", localVarApiClient.escapeString(projectIdentifier.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRelationshipsByProjectValidateBeforeCall(String projectIdentifier, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'projectIdentifier' is set
-        if (projectIdentifier == null) {
-            throw new ApiException("Missing the required parameter 'projectIdentifier' when calling getRelationshipsByProject(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = getRelationshipsByProjectCall(projectIdentifier, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get all relationships in the project
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @return List&lt;Relationship&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public List<Relationship> getRelationshipsByProject(String projectIdentifier) throws ApiException {
-        ApiResponse<List<Relationship>> localVarResp = getRelationshipsByProjectWithHttpInfo(projectIdentifier);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get all relationships in the project
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @return ApiResponse&lt;List&lt;Relationship&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<List<Relationship>> getRelationshipsByProjectWithHttpInfo(String projectIdentifier) throws ApiException {
-        okhttp3.Call localVarCall = getRelationshipsByProjectValidateBeforeCall(projectIdentifier, null);
-        Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get all relationships in the project (asynchronously)
-     * 
-     * @param projectIdentifier ID of the project (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getRelationshipsByProjectAsync(String projectIdentifier, final ApiCallback<List<Relationship>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getRelationshipsByProjectValidateBeforeCall(projectIdentifier, _callback);
+        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(projectId, commitId, relatedElementId, _callback);
         Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

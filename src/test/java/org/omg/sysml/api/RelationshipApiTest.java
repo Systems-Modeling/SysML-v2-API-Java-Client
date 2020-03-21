@@ -16,6 +16,7 @@ package org.omg.sysml.api;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.model.Error;
 import org.omg.sysml.model.Relationship;
+import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -34,7 +35,7 @@ public class RelationshipApiTest {
 
     
     /**
-     * Add a new relationship
+     * Get relationships by project, commit, and related element.
      *
      * 
      *
@@ -42,56 +43,11 @@ public class RelationshipApiTest {
      *          if the Api call fails
      */
     @Test
-    public void createRelationshipTest() throws ApiException {
-        Relationship body = null;
-        Relationship response = api.createRelationship(body);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get relationship by its ID
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getRelationshipTest() throws ApiException {
-        String identifier = null;
-        Relationship response = api.getRelationship(identifier);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all relationships
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getRelationshipsTest() throws ApiException {
-        List<Relationship> response = api.getRelationships();
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get all relationships in the project
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getRelationshipsByProjectTest() throws ApiException {
-        String projectIdentifier = null;
-        List<Relationship> response = api.getRelationshipsByProject(projectIdentifier);
+    public void getRelationshipsByProjectCommitRelatedElementTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        UUID relatedElementId = null;
+        List<Relationship> response = api.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId);
 
         // TODO: test validations
     }

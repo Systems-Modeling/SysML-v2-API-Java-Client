@@ -21,42 +21,32 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import org.omg.sysml.model.Identified;
+import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for RelationshipAllOf
+ * Model tests for Record
  */
-public class RelationshipAllOfTest {
-    private final RelationshipAllOf model = new RelationshipAllOf();
+public class RecordTest {
+    private final Record model = new Record();
 
     /**
-     * Model tests for RelationshipAllOf
+     * Model tests for Record
      */
     @Test
-    public void testRelationshipAllOf() {
-        // TODO: test RelationshipAllOf
+    public void testRecord() {
+        // TODO: test Record
     }
 
     /**
-     * Test the property 'source'
+     * Test the property 'id'
      */
     @Test
-    public void sourceTest() {
-        // TODO: test source
-    }
-
-    /**
-     * Test the property 'target'
-     */
-    @Test
-    public void targetTest() {
-        // TODO: test target
+    public void idTest() {
+        // TODO: test id
     }
 
 }
