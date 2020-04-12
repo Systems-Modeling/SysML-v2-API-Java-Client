@@ -44,8 +44,8 @@ public class CommitApiTest {
      */
     @Test
     public void getCommitByProjectAndIdTest() throws ApiException {
-        String projectId = null;
-        String commitId = null;
+        UUID projectId = null;
+        UUID commitId = null;
         Commit response = api.getCommitByProjectAndId(projectId, commitId);
 
         // TODO: test validations
@@ -62,7 +62,7 @@ public class CommitApiTest {
     @Test
     public void getCommitsByProjectTest() throws ApiException {
         UUID projectId = null;
-        Commit response = api.getCommitsByProject(projectId);
+        List<Commit> response = api.getCommitsByProject(projectId);
 
         // TODO: test validations
     }
@@ -77,7 +77,7 @@ public class CommitApiTest {
      */
     @Test
     public void getHeadCommitByProjectTest() throws ApiException {
-        String projectId = null;
+        UUID projectId = null;
         Commit response = api.getHeadCommitByProject(projectId);
 
         // TODO: test validations
