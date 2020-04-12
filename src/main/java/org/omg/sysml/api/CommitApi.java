@@ -73,7 +73,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCommitByProjectAndIdCall(String projectId, String commitId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCommitByProjectAndIdCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -105,7 +105,7 @@ public class CommitApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCommitByProjectAndIdValidateBeforeCall(String projectId, String commitId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCommitByProjectAndIdValidateBeforeCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
@@ -140,7 +140,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Commit getCommitByProjectAndId(String projectId, String commitId) throws ApiException {
+    public Commit getCommitByProjectAndId(UUID projectId, UUID commitId) throws ApiException {
         ApiResponse<Commit> localVarResp = getCommitByProjectAndIdWithHttpInfo(projectId, commitId);
         return localVarResp.getData();
     }
@@ -162,7 +162,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Commit> getCommitByProjectAndIdWithHttpInfo(String projectId, String commitId) throws ApiException {
+    public ApiResponse<Commit> getCommitByProjectAndIdWithHttpInfo(UUID projectId, UUID commitId) throws ApiException {
         okhttp3.Call localVarCall = getCommitByProjectAndIdValidateBeforeCall(projectId, commitId, null);
         Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -186,7 +186,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCommitByProjectAndIdAsync(String projectId, String commitId, final ApiCallback<Commit> _callback) throws ApiException {
+    public okhttp3.Call getCommitByProjectAndIdAsync(UUID projectId, UUID commitId, final ApiCallback<Commit> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getCommitByProjectAndIdValidateBeforeCall(projectId, commitId, _callback);
         Type localVarReturnType = new TypeToken<Commit>(){}.getType();
@@ -257,7 +257,7 @@ public class CommitApi {
      * Get commits by project
      * 
      * @param projectId ID of the project (required)
-     * @return Commit
+     * @return List&lt;Commit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -269,8 +269,8 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Commit getCommitsByProject(UUID projectId) throws ApiException {
-        ApiResponse<Commit> localVarResp = getCommitsByProjectWithHttpInfo(projectId);
+    public List<Commit> getCommitsByProject(UUID projectId) throws ApiException {
+        ApiResponse<List<Commit>> localVarResp = getCommitsByProjectWithHttpInfo(projectId);
         return localVarResp.getData();
     }
 
@@ -278,7 +278,7 @@ public class CommitApi {
      * Get commits by project
      * 
      * @param projectId ID of the project (required)
-     * @return ApiResponse&lt;Commit&gt;
+     * @return ApiResponse&lt;List&lt;Commit&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -290,9 +290,9 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Commit> getCommitsByProjectWithHttpInfo(UUID projectId) throws ApiException {
+    public ApiResponse<List<Commit>> getCommitsByProjectWithHttpInfo(UUID projectId) throws ApiException {
         okhttp3.Call localVarCall = getCommitsByProjectValidateBeforeCall(projectId, null);
-        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Commit>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -313,10 +313,10 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCommitsByProjectAsync(UUID projectId, final ApiCallback<Commit> _callback) throws ApiException {
+    public okhttp3.Call getCommitsByProjectAsync(UUID projectId, final ApiCallback<List<Commit>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getCommitsByProjectValidateBeforeCall(projectId, _callback);
-        Type localVarReturnType = new TypeToken<Commit>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Commit>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -336,7 +336,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getHeadCommitByProjectCall(String projectId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getHeadCommitByProjectCall(UUID projectId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -367,7 +367,7 @@ public class CommitApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getHeadCommitByProjectValidateBeforeCall(String projectId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getHeadCommitByProjectValidateBeforeCall(UUID projectId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
@@ -396,7 +396,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Commit getHeadCommitByProject(String projectId) throws ApiException {
+    public Commit getHeadCommitByProject(UUID projectId) throws ApiException {
         ApiResponse<Commit> localVarResp = getHeadCommitByProjectWithHttpInfo(projectId);
         return localVarResp.getData();
     }
@@ -417,7 +417,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Commit> getHeadCommitByProjectWithHttpInfo(String projectId) throws ApiException {
+    public ApiResponse<Commit> getHeadCommitByProjectWithHttpInfo(UUID projectId) throws ApiException {
         okhttp3.Call localVarCall = getHeadCommitByProjectValidateBeforeCall(projectId, null);
         Type localVarReturnType = new TypeToken<Commit>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -440,7 +440,7 @@ public class CommitApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getHeadCommitByProjectAsync(String projectId, final ApiCallback<Commit> _callback) throws ApiException {
+    public okhttp3.Call getHeadCommitByProjectAsync(UUID projectId, final ApiCallback<Commit> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getHeadCommitByProjectValidateBeforeCall(projectId, _callback);
         Type localVarReturnType = new TypeToken<Commit>(){}.getType();

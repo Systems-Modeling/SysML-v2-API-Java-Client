@@ -31,8 +31,8 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     CommitApi apiInstance = new CommitApi(defaultClient);
-    String projectId = "projectId_example"; // String | ID of the project
-    String commitId = "commitId_example"; // String | ID of the commit
+    UUID projectId = new UUID(); // UUID | ID of the project
+    UUID commitId = new UUID(); // UUID | ID of the commit
     try {
       Commit result = apiInstance.getCommitByProjectAndId(projectId, commitId);
       System.out.println(result);
@@ -51,8 +51,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **String**| ID of the project |
- **commitId** | **String**| ID of the commit |
+ **projectId** | [**UUID**](.md)| ID of the project |
+ **commitId** | [**UUID**](.md)| ID of the commit |
 
 ### Return type
 
@@ -78,7 +78,7 @@ No authorization required
 
 <a name="getCommitsByProject"></a>
 # **getCommitsByProject**
-> Commit getCommitsByProject(projectId)
+> List&lt;Commit&gt; getCommitsByProject(projectId)
 
 Get commits by project
 
@@ -99,7 +99,7 @@ public class Example {
     CommitApi apiInstance = new CommitApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
     try {
-      Commit result = apiInstance.getCommitsByProject(projectId);
+      List<Commit> result = apiInstance.getCommitsByProject(projectId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CommitApi#getCommitsByProject");
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Commit**](Commit.md)
+[**List&lt;Commit&gt;**](Commit.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     CommitApi apiInstance = new CommitApi(defaultClient);
-    String projectId = "projectId_example"; // String | ID of the project
+    UUID projectId = new UUID(); // UUID | ID of the project
     try {
       Commit result = apiInstance.getHeadCommitByProject(projectId);
       System.out.println(result);
@@ -180,7 +180,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **String**| ID of the project |
+ **projectId** | [**UUID**](.md)| ID of the project |
 
 ### Return type
 

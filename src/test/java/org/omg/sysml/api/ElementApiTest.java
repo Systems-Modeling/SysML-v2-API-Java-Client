@@ -64,7 +64,7 @@ public class ElementApiTest {
     public void getElementsByProjectCommitTest() throws ApiException {
         UUID projectId = null;
         UUID commitId = null;
-        Element response = api.getElementsByProjectCommit(projectId, commitId);
+        List<Element> response = api.getElementsByProjectCommit(projectId, commitId);
 
         // TODO: test validations
     }

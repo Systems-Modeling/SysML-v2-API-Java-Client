@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-v2-api-client</artifactId>
-  <version>2020-03</version>
+  <version>2020-03-p1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2020-03"
+compile "org.omg.sysml:sysml-v2-api-client:2020-03-p1"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-v2-api-client-2020-03.jar`
+* `target/sysml-v2-api-client-2020-03-p1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -84,8 +84,8 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     CommitApi apiInstance = new CommitApi(defaultClient);
-    String projectId = "projectId_example"; // String | ID of the project
-    String commitId = "commitId_example"; // String | ID of the commit
+    UUID projectId = new UUID(); // UUID | ID of the project
+    UUID commitId = new UUID(); // UUID | ID of the commit
     try {
       Commit result = apiInstance.getCommitByProjectAndId(projectId, commitId);
       System.out.println(result);
