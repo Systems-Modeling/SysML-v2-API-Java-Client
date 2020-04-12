@@ -78,7 +78,7 @@ No authorization required
 
 <a name="getElementsByProjectCommit"></a>
 # **getElementsByProjectCommit**
-> Element getElementsByProjectCommit(projectId, commitId)
+> List&lt;Element&gt; getElementsByProjectCommit(projectId, commitId)
 
 Get elements by project and commit
 
@@ -100,7 +100,7 @@ public class Example {
     UUID projectId = new UUID(); // UUID | ID of the project
     UUID commitId = new UUID(); // UUID | ID of the commit
     try {
-      Element result = apiInstance.getElementsByProjectCommit(projectId, commitId);
+      List<Element> result = apiInstance.getElementsByProjectCommit(projectId, commitId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ElementApi#getElementsByProjectCommit");
@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Element**](Element.md)
+[**List&lt;Element&gt;**](Element.md)
 
 ### Authorization
 

@@ -275,7 +275,7 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
-     * @return Element
+     * @return List&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -287,8 +287,8 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Element getElementsByProjectCommit(UUID projectId, UUID commitId) throws ApiException {
-        ApiResponse<Element> localVarResp = getElementsByProjectCommitWithHttpInfo(projectId, commitId);
+    public List<Element> getElementsByProjectCommit(UUID projectId, UUID commitId) throws ApiException {
+        ApiResponse<List<Element>> localVarResp = getElementsByProjectCommitWithHttpInfo(projectId, commitId);
         return localVarResp.getData();
     }
 
@@ -297,7 +297,7 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
-     * @return ApiResponse&lt;Element&gt;
+     * @return ApiResponse&lt;List&lt;Element&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -309,9 +309,9 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Element> getElementsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId) throws ApiException {
+    public ApiResponse<List<Element>> getElementsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId) throws ApiException {
         okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, null);
-        Type localVarReturnType = new TypeToken<Element>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -333,10 +333,10 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementsByProjectCommitAsync(UUID projectId, UUID commitId, final ApiCallback<Element> _callback) throws ApiException {
+    public okhttp3.Call getElementsByProjectCommitAsync(UUID projectId, UUID commitId, final ApiCallback<List<Element>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, _callback);
-        Type localVarReturnType = new TypeToken<Element>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
