@@ -30,31 +30,31 @@ import java.util.UUID;
  */
 
 public class Identified {
-  public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
-  @SerializedName(SERIALIZED_NAME_IDENTIFIER)
-  private UUID identifier;
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
 
 
-  public Identified identifier(UUID identifier) {
+  public Identified atId(UUID atId) {
     
-    this.identifier = identifier;
+    this.atId = atId;
     return this;
   }
 
    /**
-   * Get identifier
-   * @return identifier
+   * Get atId
+   * @return atId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public UUID getIdentifier() {
-    return identifier;
+  public UUID getAtId() {
+    return atId;
   }
 
 
-  public void setIdentifier(UUID identifier) {
-    this.identifier = identifier;
+  public void setAtId(UUID atId) {
+    this.atId = atId;
   }
 
 
@@ -67,12 +67,12 @@ public class Identified {
       return false;
     }
     Identified identified = (Identified) o;
-    return Objects.equals(this.identifier, identified.identifier);
+    return Objects.equals(this.atId, identified.atId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(identifier);
+    return Objects.hash(atId);
   }
 
 
@@ -80,7 +80,7 @@ public class Identified {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Identified {\n");
-    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -64,7 +64,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/ld+json, application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

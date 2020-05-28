@@ -37,6 +37,10 @@ public class Relationship {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private String atType;
 
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
   private UUID identifier;
@@ -70,6 +74,29 @@ public class Relationship {
 
   public void setAtType(String atType) {
     this.atType = atType;
+  }
+
+
+  public Relationship atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
   }
 
 
@@ -168,6 +195,7 @@ public class Relationship {
     }
     Relationship relationship = (Relationship) o;
     return Objects.equals(this.atType, relationship.atType) &&
+        Objects.equals(this.atId, relationship.atId) &&
         Objects.equals(this.identifier, relationship.identifier) &&
         Objects.equals(this.source, relationship.source) &&
         Objects.equals(this.target, relationship.target);
@@ -175,7 +203,7 @@ public class Relationship {
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, identifier, source, target);
+    return Objects.hash(atType, atId, identifier, source, target);
   }
 
 
@@ -184,6 +212,7 @@ public class Relationship {
     StringBuilder sb = new StringBuilder();
     sb.append("class Relationship {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    target: ").append(toIndentedString(target)).append("\n");

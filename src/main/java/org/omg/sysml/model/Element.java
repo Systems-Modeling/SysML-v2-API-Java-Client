@@ -36,6 +36,10 @@ public class Element extends HashMap<String, Object> {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private String atType;
 
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
   private UUID identifier;
@@ -61,6 +65,29 @@ public class Element extends HashMap<String, Object> {
 
   public void setAtType(String atType) {
     this.atType = atType;
+  }
+
+
+  public Element atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
   }
 
 
@@ -97,13 +124,14 @@ public class Element extends HashMap<String, Object> {
     }
     Element element = (Element) o;
     return Objects.equals(this.atType, element.atType) &&
+        Objects.equals(this.atId, element.atId) &&
         Objects.equals(this.identifier, element.identifier) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, identifier, super.hashCode());
+    return Objects.hash(atType, atId, identifier, super.hashCode());
   }
 
 
@@ -113,6 +141,7 @@ public class Element extends HashMap<String, Object> {
     sb.append("class Element {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("}");
     return sb.toString();
