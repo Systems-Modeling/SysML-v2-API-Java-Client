@@ -42,11 +42,11 @@ public class IdentifiedTest {
     }
 
     /**
-     * Test the property 'identifier'
+     * Test the property 'atId'
      */
     @Test
-    public void identifierTest() {
-        // TODO: test identifier
+    public void atIdTest() {
+        // TODO: test atId
     }
 
 }

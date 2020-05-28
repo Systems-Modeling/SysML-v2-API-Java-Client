@@ -1,5 +1,5 @@
 //usr/bin/env jshell --show-version "$0" "$@"; exit $?
-/env -class-path ~/SysML-v2-API-Java-Client/build/libs/sysml-v2-api-client-2020-03-all.jar
+/env -class-path ~/SysML-v2-API-Java-Client/build/libs/sysml-v2-api-client-2020-05-rc1-all.jar
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -37,9 +37,9 @@ System.out.println(firstCommitResponse);
 
 var generalization = new Element();
 generalization.put("@type", "Generalization");
-var firstBlockIdentified = new Identified().identifier(UUID.fromString("b92bb8e8-740b-4eee-b621-91a82be67d6a"));
+var firstBlockIdentified = new Identified().atId(UUID.fromString("b92bb8e8-740b-4eee-b621-91a82be67d6a"));
 generalization.put("source", Arrays.asList(firstBlockIdentified));
-var secondBlockIdentified = new Identified().identifier(UUID.fromString("a429229d-333a-4f2d-89b4-82354d29109d"));
+var secondBlockIdentified = new Identified().atId(UUID.fromString("a429229d-333a-4f2d-89b4-82354d29109d"));
 generalization.put("target", Arrays.asList(secondBlockIdentified));
 // Note that no ElementIdentity is provided. Server will generate one when not provided.
 var generalizationElementVersion = new ElementVersion().data(generalization);

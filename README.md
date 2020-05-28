@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-v2-api-client</artifactId>
-  <version>2020-03-p1</version>
+  <version>2020-05-rc1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2020-03-p1"
+compile "org.omg.sysml:sysml-v2-api-client:2020-05-rc1"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-v2-api-client-2020-03-p1.jar`
+* `target/sysml-v2-api-client-2020-05-rc1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *CommitApi* | [**postCommitByProject**](docs/CommitApi.md#postCommitByProject) | **POST** /projects/{projectId}/commits | Create commit by project
 *ElementApi* | [**getElementByProjectCommitId**](docs/ElementApi.md#getElementByProjectCommitId) | **GET** /projects/{projectId}/commits/{commitId}/elements/{elementId} | Get element by project, commit and ID
 *ElementApi* | [**getElementsByProjectCommit**](docs/ElementApi.md#getElementsByProjectCommit) | **GET** /projects/{projectId}/commits/{commitId}/elements | Get elements by project and commit
+*ElementApi* | [**getRootsByProjectCommit**](docs/ElementApi.md#getRootsByProjectCommit) | **GET** /projects/{projectId}/commits/{commitId}/roots | Get root elements by project and commit
 *ProjectApi* | [**getProjectById**](docs/ProjectApi.md#getProjectById) | **GET** /projects/{projectId} | Get project by ID
 *ProjectApi* | [**getProjects**](docs/ProjectApi.md#getProjects) | **GET** /projects | Get projects
 *ProjectApi* | [**postProject**](docs/ProjectApi.md#postProject) | **POST** /projects | Create project

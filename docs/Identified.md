@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identifier** | [**UUID**](UUID.md) |  |  [optional]
+**atId** | [**UUID**](UUID.md) |  |  [optional]
 
 
 
