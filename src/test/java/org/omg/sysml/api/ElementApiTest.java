@@ -69,4 +69,21 @@ public class ElementApiTest {
         // TODO: test validations
     }
     
+    /**
+     * Get root elements by project and commit
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getRootsByProjectCommitTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        List<Element> response = api.getRootsByProjectCommit(projectId, commitId);
+
+        // TODO: test validations
+    }
+    
 }
