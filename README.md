@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-v2-api-client</artifactId>
-  <version>2020-05-rc1</version>
+  <version>2020-05</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2020-05-rc1"
+compile "org.omg.sysml:sysml-v2-api-client:2020-05"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-v2-api-client-2020-05-rc1.jar`
+* `target/sysml-v2-api-client-2020-05.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
