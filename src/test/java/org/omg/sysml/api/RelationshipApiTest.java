@@ -47,7 +47,8 @@ public class RelationshipApiTest {
         UUID projectId = null;
         UUID commitId = null;
         UUID relatedElementId = null;
-        List<Relationship> response = api.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId);
+        String direction = null;
+        List<Relationship> response = api.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction);
 
         // TODO: test validations
     }
