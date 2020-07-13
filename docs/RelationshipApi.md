@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getRelationshipsByProjectCommitRelatedElement"></a>
 # **getRelationshipsByProjectCommitRelatedElement**
-> List&lt;Relationship&gt; getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId)
+> List&lt;Relationship&gt; getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction)
 
 Get relationships by project, commit, and related element.
 
@@ -31,8 +31,9 @@ public class Example {
     UUID projectId = new UUID(); // UUID | ID of the project
     UUID commitId = new UUID(); // UUID | ID of the commit
     UUID relatedElementId = new UUID(); // UUID | ID of the related element
+    String direction = "both"; // String | Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element
     try {
-      List<Relationship> result = apiInstance.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId);
+      List<Relationship> result = apiInstance.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RelationshipApi#getRelationshipsByProjectCommitRelatedElement");
@@ -52,6 +53,7 @@ Name | Type | Description  | Notes
  **projectId** | [**UUID**](.md)| ID of the project |
  **commitId** | [**UUID**](.md)| ID of the commit |
  **relatedElementId** | [**UUID**](.md)| ID of the related element |
+ **direction** | **String**| Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element | [optional] [default to both] [enum: in, out, both]
 
 ### Return type
 
