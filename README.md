@@ -17,53 +17,13 @@ Building the API client library requires:
 
 ## Installation
 
-To install the API client library to your local Maven repository, simply execute:
+The accompanying JAR file `sysml-v2-api-client-*-all.jar` includes all dependencies required to run it. You can add it to an existing project via Maven, Gradle, sbt, etc. in the standard manner for the tool.
 
-```shell
-mvn clean install
-```
+### JShell Quickstart
 
-To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
+If you are using Java 9+ you can use [JShell](http://cr.openjdk.java.net/~rfield/tutorial/JShellTutorial.html) to quickly interact with the client.
 
-```shell
-mvn clean deploy
-```
-
-Refer to the [OSSRH Guide](http://central.sonatype.org/pages/ossrh-guide.html) for more information.
-
-### Maven users
-
-Add this dependency to your project's POM:
-
-```xml
-<dependency>
-  <groupId>org.omg.sysml</groupId>
-  <artifactId>sysml-v2-api-client</artifactId>
-  <version>2020-06</version>
-  <scope>compile</scope>
-</dependency>
-```
-
-### Gradle users
-
-Add this dependency to your project's build file:
-
-```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2020-06"
-```
-
-### Others
-
-At first generate the JAR by executing:
-
-```shell
-mvn clean package
-```
-
-Then manually install the following JARs:
-
-* `target/sysml-v2-api-client-2020-06.jar`
-* `target/lib/*.jar`
+`jshell --classpath /path/to/sysml-v2-api-client-*-all.jar`
 
 ## Getting Started
 
