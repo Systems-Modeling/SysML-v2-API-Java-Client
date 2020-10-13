@@ -1,0 +1,1175 @@
+openapi: 3.0.1
+info:
+  description: REST/HTTP binding (PSM) for the SysML v2 standard API.
+  title: SysML v2 API and Services
+  version: 1.0.0
+servers:
+- url: /
+tags:
+- name: Project
+- name: Commit
+- name: Element
+- name: Relationship
+- name: Query
+paths:
+  /projects:
+    get:
+      operationId: getProjects
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Project'
+                type: array
+          description: Ok
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get projects
+      tags:
+      - Project
+      x-accepts: application/json
+    post:
+      operationId: postProject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Created
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Create project
+      tags:
+      - Project
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /projects/{projectId}:
+    get:
+      operationId: getProjectById
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get project by ID
+      tags:
+      - Project
+      x-accepts: application/json
+  /projects/{projectId}/commits:
+    get:
+      operationId: getCommitsByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Commit'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get commits by project
+      tags:
+      - Commit
+      x-accepts: application/json
+    post:
+      operationId: postCommitByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Commit'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commit'
+          description: Created
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Create commit by project
+      tags:
+      - Commit
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /projects/{projectId}/commits/{commitId}:
+    get:
+      operationId: getCommitByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit
+        in: path
+        name: commitId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commit'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get commit by project and ID
+      tags:
+      - Commit
+      x-accepts: application/json
+  /projects/{projectId}/head:
+    get:
+      operationId: getHeadCommitByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commit'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get head commit by project
+      tags:
+      - Commit
+      x-accepts: application/json
+  /projects/{projectId}/commits/{commitId}/elements:
+    get:
+      operationId: getElementsByProjectCommit
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit
+        in: path
+        name: commitId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get elements by project and commit
+      tags:
+      - Element
+      x-accepts: application/json
+  /projects/{projectId}/commits/{commitId}/elements/{elementId}:
+    get:
+      operationId: getElementByProjectCommitId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit
+        in: path
+        name: commitId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the element
+        in: path
+        name: elementId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Element'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Element'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get element by project, commit and ID
+      tags:
+      - Element
+      x-accepts: application/json
+  /projects/{projectId}/commits/{commitId}/roots:
+    get:
+      operationId: getRootsByProjectCommit
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit
+        in: path
+        name: commitId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get root elements by project and commit
+      tags:
+      - Element
+      x-accepts: application/json
+  /projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships:
+    get:
+      operationId: getRelationshipsByProjectCommitRelatedElement
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit
+        in: path
+        name: commitId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the related element
+        in: path
+        name: relatedElementId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Filter for relationships that are incoming (in), outgoing (out),
+          or both relative to the related element
+        in: query
+        name: direction
+        schema:
+          default: both
+          enum:
+          - in
+          - out
+          - both
+          type: string
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Relationship'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Relationship'
+                type: array
+          description: Ok
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get relationships by project, commit, and related element
+      tags:
+      - Relationship
+      x-accepts: application/json
+  /projects/{projectId}/queries:
+    get:
+      operationId: getQueriesByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Query'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get queries by project
+      tags:
+      - Query
+      x-accepts: application/json
+    post:
+      operationId: postQueryByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+          description: Created
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Create query by project
+      tags:
+      - Query
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /projects/{projectId}/queries/{queryId}:
+    get:
+      operationId: getQueryByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the query
+        in: path
+        name: queryId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get query by project and ID
+      tags:
+      - Query
+      x-accepts: application/json
+  /projects/{projectId}/queries/{queryId}/results:
+    get:
+      operationId: getQueryResultsByProjectIdQueryId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the query
+        in: path
+        name: queryId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit - defaults to head of project
+        in: query
+        name: commitId
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get query results by project and query
+      tags:
+      - Query
+      x-accepts: application/json
+  /projects/{projectId}/query-results:
+    get:
+      operationId: getQueryResultsByProjectIdQuery
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit - defaults to head of project
+        in: query
+        name: commitId
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+        required: true
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get query results by project and query definition
+      tags:
+      - Query
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+    post:
+      description: For compatibility with clients that don't support GET requests
+        with a body
+      operationId: getQueryResultsByProjectIdQueryPost
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the commit - defaults to head of project
+        in: query
+        name: commitId
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+        required: true
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Element'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get query results by project and query definition via POST
+      tags:
+      - Query
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  responses:
+    BadContentType:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: The requested content type is not acceptable.
+    Default:
+      content: {}
+      description: Unexpected response.
+    InternalServerError:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Internal server error.
+    NoContent:
+      content: {}
+      description: No Content
+    NotFound:
+      content: {}
+      description: Not found.
+    Ok:
+      content: {}
+      description: Ok
+  schemas:
+    Record:
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+      type: object
+    Project:
+      example:
+        '@type': Project
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          enum:
+          - Project
+          type: string
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
+    Commit:
+      example:
+        '@type': Commit
+        change:
+        - data:
+            identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            '@type': '@type'
+            '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@type': ElementVersion
+          identity:
+            '@type': ElementIdentity
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - data:
+            identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            '@type': '@type'
+            '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@type': ElementVersion
+          identity:
+            '@type': ElementIdentity
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        previousCommit:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        containingProject:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          enum:
+          - Commit
+          type: string
+        change:
+          items:
+            $ref: '#/components/schemas/ElementVersion'
+          type: array
+        containingProject:
+          $ref: '#/components/schemas/Commit_containingProject'
+        id:
+          format: uuid
+          type: string
+        previousCommit:
+          $ref: '#/components/schemas/Record'
+      type: object
+    ElementVersion:
+      example:
+        data:
+          identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@type': '@type'
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@type': ElementVersion
+        identity:
+          '@type': ElementIdentity
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          enum:
+          - ElementVersion
+          type: string
+        data:
+          $ref: '#/components/schemas/Element'
+        id:
+          format: uuid
+          type: string
+        identity:
+          $ref: '#/components/schemas/ElementIdentity'
+      type: object
+    ElementIdentity:
+      example:
+        '@type': ElementIdentity
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          enum:
+          - ElementIdentity
+          type: string
+        id:
+          format: uuid
+          type: string
+      type: object
+    Identified:
+      example:
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@id':
+          format: uuid
+          type: string
+      type: object
+    Element:
+      additionalProperties:
+        properties: {}
+        type: object
+      example:
+        identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@type': '@type'
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          type: string
+        '@id':
+          format: uuid
+          type: string
+        identifier:
+          format: uuid
+          type: string
+      type: object
+    Relationship:
+      example:
+        identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@type': '@type'
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        source:
+        - '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        target:
+        - '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          type: string
+        '@id':
+          format: uuid
+          type: string
+        identifier:
+          format: uuid
+          type: string
+        source:
+          items:
+            $ref: '#/components/schemas/Identified'
+          type: array
+        target:
+          items:
+            $ref: '#/components/schemas/Identified'
+          type: array
+      type: object
+    Query:
+      example:
+        select:
+        - select
+        - select
+        '@type': Query
+        scope:
+        - '@type': ElementIdentity
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - '@type': ElementIdentity
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        where:
+          '@type': PrimitiveConstraint
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        containingProject:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          enum:
+          - Query
+          type: string
+        containingProject:
+          $ref: '#/components/schemas/Commit_containingProject'
+        id:
+          format: uuid
+          type: string
+        scope:
+          items:
+            $ref: '#/components/schemas/ElementIdentity'
+          type: array
+        select:
+          items:
+            type: string
+          type: array
+        where:
+          $ref: '#/components/schemas/Constraint'
+      type: object
+    Constraint:
+      additionalProperties:
+        properties: {}
+        type: object
+      discriminator:
+        propertyName: '@type'
+      example:
+        '@type': PrimitiveConstraint
+      properties:
+        '@type':
+          enum:
+          - PrimitiveConstraint
+          - CompositeConstraint
+          type: string
+      required:
+      - '@type'
+      type: object
+    PrimitiveConstraint:
+      properties:
+        '@type':
+          enum:
+          - PrimitiveConstraint
+          type: string
+        inverse:
+          type: boolean
+        property:
+          type: string
+        value:
+          type: string
+        operator:
+          enum:
+          - =
+          - '>'
+          - <
+          type: string
+      type: object
+    CompositeConstraint:
+      properties:
+        '@type':
+          enum:
+          - CompositeConstraint
+          type: string
+        constraint:
+          items:
+            $ref: '#/components/schemas/Constraint'
+          type: array
+        operator:
+          enum:
+          - and
+          - or
+          type: string
+      type: object
+    Error:
+      properties:
+        error:
+          type: string
+      type: object
+    Commit_containingProject:
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+

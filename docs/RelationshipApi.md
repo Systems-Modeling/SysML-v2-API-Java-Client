@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getRelationshipsByProjectCommitRelatedElement**](RelationshipApi.md#getRelationshipsByProjectCommitRelatedElement) | **GET** /projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships | Get relationships by project, commit, and related element.
+[**getRelationshipsByProjectCommitRelatedElement**](RelationshipApi.md#getRelationshipsByProjectCommitRelatedElement) | **GET** /projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships | Get relationships by project, commit, and related element
 
 
 <a name="getRelationshipsByProjectCommitRelatedElement"></a>
 # **getRelationshipsByProjectCommitRelatedElement**
 > List&lt;Relationship&gt; getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction)
 
-Get relationships by project, commit, and related element.
+Get relationships by project, commit, and related element
 
 ### Example
 ```java

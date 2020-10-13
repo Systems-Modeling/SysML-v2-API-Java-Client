@@ -21,53 +21,24 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import org.omg.sysml.model.CommitContainingProject;
-import org.omg.sysml.model.ElementVersion;
-import org.omg.sysml.model.Record;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Commit
+ * Model tests for CommitContainingProject
  */
-public class CommitTest {
-    private final Commit model = new Commit();
+public class CommitContainingProjectTest {
+    private final CommitContainingProject model = new CommitContainingProject();
 
     /**
-     * Model tests for Commit
+     * Model tests for CommitContainingProject
      */
     @Test
-    public void testCommit() {
-        // TODO: test Commit
-    }
-
-    /**
-     * Test the property 'atType'
-     */
-    @Test
-    public void atTypeTest() {
-        // TODO: test atType
-    }
-
-    /**
-     * Test the property 'change'
-     */
-    @Test
-    public void changeTest() {
-        // TODO: test change
-    }
-
-    /**
-     * Test the property 'containingProject'
-     */
-    @Test
-    public void containingProjectTest() {
-        // TODO: test containingProject
+    public void testCommitContainingProject() {
+        // TODO: test CommitContainingProject
     }
 
     /**
@@ -76,14 +47,6 @@ public class CommitTest {
     @Test
     public void idTest() {
         // TODO: test id
-    }
-
-    /**
-     * Test the property 'previousCommit'
-     */
-    @Test
-    public void previousCommitTest() {
-        // TODO: test previousCommit
     }
 
 }

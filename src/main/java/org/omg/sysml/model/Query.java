@@ -27,20 +27,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.CommitContainingProject;
-import org.omg.sysml.model.ElementVersion;
-import org.omg.sysml.model.Record;
+import org.omg.sysml.model.Constraint;
+import org.omg.sysml.model.ElementIdentity;
 
 /**
- * Commit
+ * Query
  */
 
-public class Commit {
+public class Query {
   /**
    * Gets or Sets atType
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    COMMIT("Commit");
+    QUERY("Query");
 
     private String value;
 
@@ -84,10 +84,6 @@ public class Commit {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
-  public static final String SERIALIZED_NAME_CHANGE = "change";
-  @SerializedName(SERIALIZED_NAME_CHANGE)
-  private List<ElementVersion> change = null;
-
   public static final String SERIALIZED_NAME_CONTAINING_PROJECT = "containingProject";
   @SerializedName(SERIALIZED_NAME_CONTAINING_PROJECT)
   private CommitContainingProject containingProject;
@@ -96,12 +92,20 @@ public class Commit {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_PREVIOUS_COMMIT = "previousCommit";
-  @SerializedName(SERIALIZED_NAME_PREVIOUS_COMMIT)
-  private Record previousCommit;
+  public static final String SERIALIZED_NAME_SCOPE = "scope";
+  @SerializedName(SERIALIZED_NAME_SCOPE)
+  private List<ElementIdentity> scope = null;
+
+  public static final String SERIALIZED_NAME_SELECT = "select";
+  @SerializedName(SERIALIZED_NAME_SELECT)
+  private List<String> select = null;
+
+  public static final String SERIALIZED_NAME_WHERE = "where";
+  @SerializedName(SERIALIZED_NAME_WHERE)
+  private Constraint where;
 
 
-  public Commit atType(AtTypeEnum atType) {
+  public Query atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -124,38 +128,7 @@ public class Commit {
   }
 
 
-  public Commit change(List<ElementVersion> change) {
-    
-    this.change = change;
-    return this;
-  }
-
-  public Commit addChangeItem(ElementVersion changeItem) {
-    if (this.change == null) {
-      this.change = new ArrayList<ElementVersion>();
-    }
-    this.change.add(changeItem);
-    return this;
-  }
-
-   /**
-   * Get change
-   * @return change
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<ElementVersion> getChange() {
-    return change;
-  }
-
-
-  public void setChange(List<ElementVersion> change) {
-    this.change = change;
-  }
-
-
-  public Commit containingProject(CommitContainingProject containingProject) {
+  public Query containingProject(CommitContainingProject containingProject) {
     
     this.containingProject = containingProject;
     return this;
@@ -178,7 +151,7 @@ public class Commit {
   }
 
 
-  public Commit id(UUID id) {
+  public Query id(UUID id) {
     
     this.id = id;
     return this;
@@ -201,26 +174,88 @@ public class Commit {
   }
 
 
-  public Commit previousCommit(Record previousCommit) {
+  public Query scope(List<ElementIdentity> scope) {
     
-    this.previousCommit = previousCommit;
+    this.scope = scope;
+    return this;
+  }
+
+  public Query addScopeItem(ElementIdentity scopeItem) {
+    if (this.scope == null) {
+      this.scope = new ArrayList<ElementIdentity>();
+    }
+    this.scope.add(scopeItem);
     return this;
   }
 
    /**
-   * Get previousCommit
-   * @return previousCommit
+   * Get scope
+   * @return scope
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Record getPreviousCommit() {
-    return previousCommit;
+  public List<ElementIdentity> getScope() {
+    return scope;
   }
 
 
-  public void setPreviousCommit(Record previousCommit) {
-    this.previousCommit = previousCommit;
+  public void setScope(List<ElementIdentity> scope) {
+    this.scope = scope;
+  }
+
+
+  public Query select(List<String> select) {
+    
+    this.select = select;
+    return this;
+  }
+
+  public Query addSelectItem(String selectItem) {
+    if (this.select == null) {
+      this.select = new ArrayList<String>();
+    }
+    this.select.add(selectItem);
+    return this;
+  }
+
+   /**
+   * Get select
+   * @return select
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<String> getSelect() {
+    return select;
+  }
+
+
+  public void setSelect(List<String> select) {
+    this.select = select;
+  }
+
+
+  public Query where(Constraint where) {
+    
+    this.where = where;
+    return this;
+  }
+
+   /**
+   * Get where
+   * @return where
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Constraint getWhere() {
+    return where;
+  }
+
+
+  public void setWhere(Constraint where) {
+    this.where = where;
   }
 
 
@@ -232,29 +267,31 @@ public class Commit {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Commit commit = (Commit) o;
-    return Objects.equals(this.atType, commit.atType) &&
-        Objects.equals(this.change, commit.change) &&
-        Objects.equals(this.containingProject, commit.containingProject) &&
-        Objects.equals(this.id, commit.id) &&
-        Objects.equals(this.previousCommit, commit.previousCommit);
+    Query query = (Query) o;
+    return Objects.equals(this.atType, query.atType) &&
+        Objects.equals(this.containingProject, query.containingProject) &&
+        Objects.equals(this.id, query.id) &&
+        Objects.equals(this.scope, query.scope) &&
+        Objects.equals(this.select, query.select) &&
+        Objects.equals(this.where, query.where);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, change, containingProject, id, previousCommit);
+    return Objects.hash(atType, containingProject, id, scope, select, where);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Commit {\n");
+    sb.append("class Query {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    change: ").append(toIndentedString(change)).append("\n");
     sb.append("    containingProject: ").append(toIndentedString(containingProject)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    previousCommit: ").append(toIndentedString(previousCommit)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    select: ").append(toIndentedString(select)).append("\n");
+    sb.append("    where: ").append(toIndentedString(where)).append("\n");
     sb.append("}");
     return sb.toString();
   }

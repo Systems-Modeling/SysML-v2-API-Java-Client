@@ -21,29 +21,23 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import org.omg.sysml.model.CommitContainingProject;
-import org.omg.sysml.model.ElementVersion;
-import org.omg.sysml.model.Record;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Commit
+ * Model tests for PrimitiveConstraint
  */
-public class CommitTest {
-    private final Commit model = new Commit();
+public class PrimitiveConstraintTest {
+    private final PrimitiveConstraint model = new PrimitiveConstraint();
 
     /**
-     * Model tests for Commit
+     * Model tests for PrimitiveConstraint
      */
     @Test
-    public void testCommit() {
-        // TODO: test Commit
+    public void testPrimitiveConstraint() {
+        // TODO: test PrimitiveConstraint
     }
 
     /**
@@ -55,35 +49,35 @@ public class CommitTest {
     }
 
     /**
-     * Test the property 'change'
+     * Test the property 'inverse'
      */
     @Test
-    public void changeTest() {
-        // TODO: test change
+    public void inverseTest() {
+        // TODO: test inverse
     }
 
     /**
-     * Test the property 'containingProject'
+     * Test the property 'property'
      */
     @Test
-    public void containingProjectTest() {
-        // TODO: test containingProject
+    public void propertyTest() {
+        // TODO: test property
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'value'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
+    public void valueTest() {
+        // TODO: test value
     }
 
     /**
-     * Test the property 'previousCommit'
+     * Test the property 'operator'
      */
     @Test
-    public void previousCommitTest() {
-        // TODO: test previousCommit
+    public void operatorTest() {
+        // TODO: test operator
     }
 
 }

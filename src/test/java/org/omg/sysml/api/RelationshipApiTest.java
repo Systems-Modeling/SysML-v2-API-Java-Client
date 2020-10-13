@@ -35,7 +35,7 @@ public class RelationshipApiTest {
 
     
     /**
-     * Get relationships by project, commit, and related element.
+     * Get relationships by project, commit, and related element
      *
      * 
      *

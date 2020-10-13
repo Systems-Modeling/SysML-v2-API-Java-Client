@@ -1,16 +1,17 @@
 
 
-# Commit
+# Query
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
-**change** | [**List&lt;ElementVersion&gt;**](ElementVersion.md) |  |  [optional]
 **containingProject** | [**CommitContainingProject**](CommitContainingProject.md) |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
-**previousCommit** | [**Record**](Record.md) |  |  [optional]
+**scope** | [**List&lt;ElementIdentity&gt;**](ElementIdentity.md) |  |  [optional]
+**select** | **List&lt;String&gt;** |  |  [optional]
+**where** | [**Constraint**](Constraint.md) |  |  [optional]
 
 
 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-COMMIT | &quot;Commit&quot;
+QUERY | &quot;Query&quot;
 
 
 
