@@ -25,22 +25,19 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import org.omg.sysml.model.CommitContainingProject;
-import org.omg.sysml.model.ElementVersion;
-import org.omg.sysml.model.Record;
+import org.omg.sysml.model.Constraint;
 
 /**
- * Commit
+ * CompositeConstraint
  */
 
-public class Commit {
+public class CompositeConstraint {
   /**
    * Gets or Sets atType
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    COMMIT("Commit");
+    COMPOSITECONSTRAINT("CompositeConstraint");
 
     private String value;
 
@@ -84,24 +81,63 @@ public class Commit {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
-  public static final String SERIALIZED_NAME_CHANGE = "change";
-  @SerializedName(SERIALIZED_NAME_CHANGE)
-  private List<ElementVersion> change = null;
+  public static final String SERIALIZED_NAME_CONSTRAINT = "constraint";
+  @SerializedName(SERIALIZED_NAME_CONSTRAINT)
+  private List<Constraint> constraint = null;
 
-  public static final String SERIALIZED_NAME_CONTAINING_PROJECT = "containingProject";
-  @SerializedName(SERIALIZED_NAME_CONTAINING_PROJECT)
-  private CommitContainingProject containingProject;
+  /**
+   * Gets or Sets operator
+   */
+  @JsonAdapter(OperatorEnum.Adapter.class)
+  public enum OperatorEnum {
+    AND("and"),
+    
+    OR("or");
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
+    private String value;
 
-  public static final String SERIALIZED_NAME_PREVIOUS_COMMIT = "previousCommit";
-  @SerializedName(SERIALIZED_NAME_PREVIOUS_COMMIT)
-  private Record previousCommit;
+    OperatorEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OperatorEnum fromValue(String value) {
+      for (OperatorEnum b : OperatorEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<OperatorEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OperatorEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OperatorEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return OperatorEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_OPERATOR = "operator";
+  @SerializedName(SERIALIZED_NAME_OPERATOR)
+  private OperatorEnum operator;
 
 
-  public Commit atType(AtTypeEnum atType) {
+  public CompositeConstraint atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -124,103 +160,57 @@ public class Commit {
   }
 
 
-  public Commit change(List<ElementVersion> change) {
+  public CompositeConstraint constraint(List<Constraint> constraint) {
     
-    this.change = change;
+    this.constraint = constraint;
     return this;
   }
 
-  public Commit addChangeItem(ElementVersion changeItem) {
-    if (this.change == null) {
-      this.change = new ArrayList<ElementVersion>();
+  public CompositeConstraint addConstraintItem(Constraint constraintItem) {
+    if (this.constraint == null) {
+      this.constraint = new ArrayList<Constraint>();
     }
-    this.change.add(changeItem);
+    this.constraint.add(constraintItem);
     return this;
   }
 
    /**
-   * Get change
-   * @return change
+   * Get constraint
+   * @return constraint
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<ElementVersion> getChange() {
-    return change;
+  public List<Constraint> getConstraint() {
+    return constraint;
   }
 
 
-  public void setChange(List<ElementVersion> change) {
-    this.change = change;
+  public void setConstraint(List<Constraint> constraint) {
+    this.constraint = constraint;
   }
 
 
-  public Commit containingProject(CommitContainingProject containingProject) {
+  public CompositeConstraint operator(OperatorEnum operator) {
     
-    this.containingProject = containingProject;
+    this.operator = operator;
     return this;
   }
 
    /**
-   * Get containingProject
-   * @return containingProject
+   * Get operator
+   * @return operator
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public CommitContainingProject getContainingProject() {
-    return containingProject;
+  public OperatorEnum getOperator() {
+    return operator;
   }
 
 
-  public void setContainingProject(CommitContainingProject containingProject) {
-    this.containingProject = containingProject;
-  }
-
-
-  public Commit id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
-  public Commit previousCommit(Record previousCommit) {
-    
-    this.previousCommit = previousCommit;
-    return this;
-  }
-
-   /**
-   * Get previousCommit
-   * @return previousCommit
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Record getPreviousCommit() {
-    return previousCommit;
-  }
-
-
-  public void setPreviousCommit(Record previousCommit) {
-    this.previousCommit = previousCommit;
+  public void setOperator(OperatorEnum operator) {
+    this.operator = operator;
   }
 
 
@@ -232,29 +222,25 @@ public class Commit {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Commit commit = (Commit) o;
-    return Objects.equals(this.atType, commit.atType) &&
-        Objects.equals(this.change, commit.change) &&
-        Objects.equals(this.containingProject, commit.containingProject) &&
-        Objects.equals(this.id, commit.id) &&
-        Objects.equals(this.previousCommit, commit.previousCommit);
+    CompositeConstraint compositeConstraint = (CompositeConstraint) o;
+    return Objects.equals(this.atType, compositeConstraint.atType) &&
+        Objects.equals(this.constraint, compositeConstraint.constraint) &&
+        Objects.equals(this.operator, compositeConstraint.operator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, change, containingProject, id, previousCommit);
+    return Objects.hash(atType, constraint, operator);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Commit {\n");
+    sb.append("class CompositeConstraint {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    change: ").append(toIndentedString(change)).append("\n");
-    sb.append("    containingProject: ").append(toIndentedString(containingProject)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    previousCommit: ").append(toIndentedString(previousCommit)).append("\n");
+    sb.append("    constraint: ").append(toIndentedString(constraint)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("}");
     return sb.toString();
   }

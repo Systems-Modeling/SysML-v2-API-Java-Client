@@ -25,25 +25,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.CommitContainingProject;
-import org.omg.sysml.model.ElementVersion;
-import org.omg.sysml.model.Record;
+import org.omg.sysml.model.Constraint;
+import org.omg.sysml.model.ElementIdentity;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Commit
+ * Model tests for Query
  */
-public class CommitTest {
-    private final Commit model = new Commit();
+public class QueryTest {
+    private final Query model = new Query();
 
     /**
-     * Model tests for Commit
+     * Model tests for Query
      */
     @Test
-    public void testCommit() {
-        // TODO: test Commit
+    public void testQuery() {
+        // TODO: test Query
     }
 
     /**
@@ -52,14 +52,6 @@ public class CommitTest {
     @Test
     public void atTypeTest() {
         // TODO: test atType
-    }
-
-    /**
-     * Test the property 'change'
-     */
-    @Test
-    public void changeTest() {
-        // TODO: test change
     }
 
     /**
@@ -79,11 +71,27 @@ public class CommitTest {
     }
 
     /**
-     * Test the property 'previousCommit'
+     * Test the property 'scope'
      */
     @Test
-    public void previousCommitTest() {
-        // TODO: test previousCommit
+    public void scopeTest() {
+        // TODO: test scope
+    }
+
+    /**
+     * Test the property 'select'
+     */
+    @Test
+    public void selectTest() {
+        // TODO: test select
+    }
+
+    /**
+     * Test the property 'where'
+     */
+    @Test
+    public void whereTest() {
+        // TODO: test where
     }
 
 }

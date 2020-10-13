@@ -135,7 +135,7 @@ public class RelationshipApi {
     }
 
     /**
-     * Get relationships by project, commit, and related element.
+     * Get relationships by project, commit, and related element
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
@@ -158,7 +158,7 @@ public class RelationshipApi {
     }
 
     /**
-     * Get relationships by project, commit, and related element.
+     * Get relationships by project, commit, and related element
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
@@ -182,7 +182,7 @@ public class RelationshipApi {
     }
 
     /**
-     * Get relationships by project, commit, and related element. (asynchronously)
+     * Get relationships by project, commit, and related element (asynchronously)
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)

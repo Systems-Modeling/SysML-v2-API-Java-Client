@@ -23,27 +23,24 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import org.omg.sysml.model.CommitContainingProject;
-import org.omg.sysml.model.ElementVersion;
-import org.omg.sysml.model.Record;
+import org.omg.sysml.model.Constraint;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Commit
+ * Model tests for CompositeConstraint
  */
-public class CommitTest {
-    private final Commit model = new Commit();
+public class CompositeConstraintTest {
+    private final CompositeConstraint model = new CompositeConstraint();
 
     /**
-     * Model tests for Commit
+     * Model tests for CompositeConstraint
      */
     @Test
-    public void testCommit() {
-        // TODO: test Commit
+    public void testCompositeConstraint() {
+        // TODO: test CompositeConstraint
     }
 
     /**
@@ -55,35 +52,19 @@ public class CommitTest {
     }
 
     /**
-     * Test the property 'change'
+     * Test the property 'constraint'
      */
     @Test
-    public void changeTest() {
-        // TODO: test change
+    public void constraintTest() {
+        // TODO: test constraint
     }
 
     /**
-     * Test the property 'containingProject'
+     * Test the property 'operator'
      */
     @Test
-    public void containingProjectTest() {
-        // TODO: test containingProject
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'previousCommit'
-     */
-    @Test
-    public void previousCommitTest() {
-        // TODO: test previousCommit
+    public void operatorTest() {
+        // TODO: test operator
     }
 
 }

@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.omg.sysml</groupId>
   <artifactId>sysml-v2-api-client</artifactId>
-  <version>2020-06</version>
+  <version>2020-09</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.omg.sysml:sysml-v2-api-client:2020-06"
+compile "org.omg.sysml:sysml-v2-api-client:2020-09"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sysml-v2-api-client-2020-06.jar`
+* `target/sysml-v2-api-client-2020-09.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -117,18 +117,29 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**getProjectById**](docs/ProjectApi.md#getProjectById) | **GET** /projects/{projectId} | Get project by ID
 *ProjectApi* | [**getProjects**](docs/ProjectApi.md#getProjects) | **GET** /projects | Get projects
 *ProjectApi* | [**postProject**](docs/ProjectApi.md#postProject) | **POST** /projects | Create project
-*RelationshipApi* | [**getRelationshipsByProjectCommitRelatedElement**](docs/RelationshipApi.md#getRelationshipsByProjectCommitRelatedElement) | **GET** /projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships | Get relationships by project, commit, and related element.
+*QueryApi* | [**getQueriesByProject**](docs/QueryApi.md#getQueriesByProject) | **GET** /projects/{projectId}/queries | Get queries by project
+*QueryApi* | [**getQueryByProjectAndId**](docs/QueryApi.md#getQueryByProjectAndId) | **GET** /projects/{projectId}/queries/{queryId} | Get query by project and ID
+*QueryApi* | [**getQueryResultsByProjectIdQuery**](docs/QueryApi.md#getQueryResultsByProjectIdQuery) | **GET** /projects/{projectId}/query-results | Get query results by project and query definition
+*QueryApi* | [**getQueryResultsByProjectIdQueryId**](docs/QueryApi.md#getQueryResultsByProjectIdQueryId) | **GET** /projects/{projectId}/queries/{queryId}/results | Get query results by project and query
+*QueryApi* | [**getQueryResultsByProjectIdQueryPost**](docs/QueryApi.md#getQueryResultsByProjectIdQueryPost) | **POST** /projects/{projectId}/query-results | Get query results by project and query definition via POST
+*QueryApi* | [**postQueryByProject**](docs/QueryApi.md#postQueryByProject) | **POST** /projects/{projectId}/queries | Create query by project
+*RelationshipApi* | [**getRelationshipsByProjectCommitRelatedElement**](docs/RelationshipApi.md#getRelationshipsByProjectCommitRelatedElement) | **GET** /projects/{projectId}/commits/{commitId}/elements/{relatedElementId}/relationships | Get relationships by project, commit, and related element
 
 
 ## Documentation for Models
 
  - [Commit](docs/Commit.md)
+ - [CommitContainingProject](docs/CommitContainingProject.md)
+ - [CompositeConstraint](docs/CompositeConstraint.md)
+ - [Constraint](docs/Constraint.md)
  - [Element](docs/Element.md)
  - [ElementIdentity](docs/ElementIdentity.md)
  - [ElementVersion](docs/ElementVersion.md)
  - [Error](docs/Error.md)
  - [Identified](docs/Identified.md)
+ - [PrimitiveConstraint](docs/PrimitiveConstraint.md)
  - [Project](docs/Project.md)
+ - [Query](docs/Query.md)
  - [Record](docs/Record.md)
  - [Relationship](docs/Relationship.md)
 
