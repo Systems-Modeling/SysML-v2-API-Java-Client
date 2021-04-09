@@ -79,6 +79,10 @@ public class Project {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
@@ -108,6 +112,29 @@ public class Project {
 
   public void setAtType(AtTypeEnum atType) {
     this.atType = atType;
+  }
+
+
+  public Project description(String description) {
+    
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -167,13 +194,14 @@ public class Project {
     }
     Project project = (Project) o;
     return Objects.equals(this.atType, project.atType) &&
+        Objects.equals(this.description, project.description) &&
         Objects.equals(this.id, project.id) &&
         Objects.equals(this.name, project.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, id, name);
+    return Objects.hash(atType, description, id, name);
   }
 
 
@@ -182,6 +210,7 @@ public class Project {
     StringBuilder sb = new StringBuilder();
     sb.append("class Project {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

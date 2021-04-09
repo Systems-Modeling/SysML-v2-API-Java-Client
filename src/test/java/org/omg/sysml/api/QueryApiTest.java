@@ -46,7 +46,10 @@ public class QueryApiTest {
     @Test
     public void getQueriesByProjectTest() throws ApiException {
         UUID projectId = null;
-        List<Query> response = api.getQueriesByProject(projectId);
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Query> response = api.getQueriesByProject(projectId, pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }

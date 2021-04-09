@@ -89,7 +89,7 @@ public class ElementApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/ld+json", "application/json"
+            "application/json", "application/ld+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -207,6 +207,9 @@ public class ElementApi {
      * Build call for getElementsByProjectCommit
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -220,7 +223,7 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementsByProjectCommitCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getElementsByProjectCommitCall(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -230,11 +233,23 @@ public class ElementApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (pageAfter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[after]", pageAfter));
+        }
+
+        if (pageBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[before]", pageBefore));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/ld+json", "application/json"
+            "application/json", "application/ld+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -252,7 +267,7 @@ public class ElementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getElementsByProjectCommitValidateBeforeCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getElementsByProjectCommitValidateBeforeCall(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
@@ -265,7 +280,7 @@ public class ElementApi {
         }
         
 
-        okhttp3.Call localVarCall = getElementsByProjectCommitCall(projectId, commitId, _callback);
+        okhttp3.Call localVarCall = getElementsByProjectCommitCall(projectId, commitId, pageAfter, pageBefore, pageSize, _callback);
         return localVarCall;
 
     }
@@ -275,6 +290,9 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return List&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -287,8 +305,8 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Element> getElementsByProjectCommit(UUID projectId, UUID commitId) throws ApiException {
-        ApiResponse<List<Element>> localVarResp = getElementsByProjectCommitWithHttpInfo(projectId, commitId);
+    public List<Element> getElementsByProjectCommit(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        ApiResponse<List<Element>> localVarResp = getElementsByProjectCommitWithHttpInfo(projectId, commitId, pageAfter, pageBefore, pageSize);
         return localVarResp.getData();
     }
 
@@ -297,6 +315,9 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return ApiResponse&lt;List&lt;Element&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -309,8 +330,8 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Element>> getElementsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId) throws ApiException {
-        okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, null);
+    public ApiResponse<List<Element>> getElementsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, pageAfter, pageBefore, pageSize, null);
         Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -320,6 +341,9 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -333,9 +357,9 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getElementsByProjectCommitAsync(UUID projectId, UUID commitId, final ApiCallback<List<Element>> _callback) throws ApiException {
+    public okhttp3.Call getElementsByProjectCommitAsync(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback<List<Element>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, _callback);
+        okhttp3.Call localVarCall = getElementsByProjectCommitValidateBeforeCall(projectId, commitId, pageAfter, pageBefore, pageSize, _callback);
         Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -344,6 +368,9 @@ public class ElementApi {
      * Build call for getRootsByProjectCommit
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -357,7 +384,7 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRootsByProjectCommitCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getRootsByProjectCommitCall(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -367,11 +394,23 @@ public class ElementApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (pageAfter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[after]", pageAfter));
+        }
+
+        if (pageBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[before]", pageBefore));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/ld+json", "application/json"
+            "application/json", "application/ld+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -389,7 +428,7 @@ public class ElementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRootsByProjectCommitValidateBeforeCall(UUID projectId, UUID commitId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getRootsByProjectCommitValidateBeforeCall(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
@@ -402,7 +441,7 @@ public class ElementApi {
         }
         
 
-        okhttp3.Call localVarCall = getRootsByProjectCommitCall(projectId, commitId, _callback);
+        okhttp3.Call localVarCall = getRootsByProjectCommitCall(projectId, commitId, pageAfter, pageBefore, pageSize, _callback);
         return localVarCall;
 
     }
@@ -412,6 +451,9 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return List&lt;Element&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -424,8 +466,8 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Element> getRootsByProjectCommit(UUID projectId, UUID commitId) throws ApiException {
-        ApiResponse<List<Element>> localVarResp = getRootsByProjectCommitWithHttpInfo(projectId, commitId);
+    public List<Element> getRootsByProjectCommit(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        ApiResponse<List<Element>> localVarResp = getRootsByProjectCommitWithHttpInfo(projectId, commitId, pageAfter, pageBefore, pageSize);
         return localVarResp.getData();
     }
 
@@ -434,6 +476,9 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return ApiResponse&lt;List&lt;Element&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -446,8 +491,8 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Element>> getRootsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId) throws ApiException {
-        okhttp3.Call localVarCall = getRootsByProjectCommitValidateBeforeCall(projectId, commitId, null);
+    public ApiResponse<List<Element>> getRootsByProjectCommitWithHttpInfo(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getRootsByProjectCommitValidateBeforeCall(projectId, commitId, pageAfter, pageBefore, pageSize, null);
         Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -457,6 +502,9 @@ public class ElementApi {
      * 
      * @param projectId ID of the project (required)
      * @param commitId ID of the commit (required)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -470,9 +518,9 @@ public class ElementApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRootsByProjectCommitAsync(UUID projectId, UUID commitId, final ApiCallback<List<Element>> _callback) throws ApiException {
+    public okhttp3.Call getRootsByProjectCommitAsync(UUID projectId, UUID commitId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback<List<Element>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getRootsByProjectCommitValidateBeforeCall(projectId, commitId, _callback);
+        okhttp3.Call localVarCall = getRootsByProjectCommitValidateBeforeCall(projectId, commitId, pageAfter, pageBefore, pageSize, _callback);
         Type localVarReturnType = new TypeToken<List<Element>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

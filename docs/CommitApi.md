@@ -78,7 +78,7 @@ No authorization required
 
 <a name="getCommitsByProject"></a>
 # **getCommitsByProject**
-> List&lt;Commit&gt; getCommitsByProject(projectId)
+> List&lt;Commit&gt; getCommitsByProject(projectId, pageAfter, pageBefore, pageSize)
 
 Get commits by project
 
@@ -98,8 +98,11 @@ public class Example {
 
     CommitApi apiInstance = new CommitApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
+    String pageAfter = "pageAfter_example"; // String | Page after
+    String pageBefore = "pageBefore_example"; // String | Page before
+    Integer pageSize = 56; // Integer | Page size
     try {
-      List<Commit> result = apiInstance.getCommitsByProject(projectId);
+      List<Commit> result = apiInstance.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CommitApi#getCommitsByProject");
@@ -117,6 +120,9 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | [**UUID**](.md)| ID of the project |
+ **pageAfter** | **String**| Page after | [optional]
+ **pageBefore** | **String**| Page before | [optional]
+ **pageSize** | **Integer**| Page size | [optional]
 
 ### Return type
 
