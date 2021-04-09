@@ -62,6 +62,9 @@ public class RelationshipApi {
      * @param commitId ID of the commit (required)
      * @param relatedElementId ID of the related element (required)
      * @param direction Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element (optional, default to both)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -74,7 +77,7 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRelationshipsByProjectCommitRelatedElementCall(UUID projectId, UUID commitId, UUID relatedElementId, String direction, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getRelationshipsByProjectCommitRelatedElementCall(UUID projectId, UUID commitId, UUID relatedElementId, String direction, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -89,11 +92,23 @@ public class RelationshipApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("direction", direction));
         }
 
+        if (pageAfter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[after]", pageAfter));
+        }
+
+        if (pageBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[before]", pageBefore));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/ld+json", "application/json"
+            "application/json", "application/ld+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -111,7 +126,7 @@ public class RelationshipApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(UUID projectId, UUID commitId, UUID relatedElementId, String direction, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(UUID projectId, UUID commitId, UUID relatedElementId, String direction, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
@@ -129,7 +144,7 @@ public class RelationshipApi {
         }
         
 
-        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementCall(projectId, commitId, relatedElementId, direction, _callback);
+        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementCall(projectId, commitId, relatedElementId, direction, pageAfter, pageBefore, pageSize, _callback);
         return localVarCall;
 
     }
@@ -141,6 +156,9 @@ public class RelationshipApi {
      * @param commitId ID of the commit (required)
      * @param relatedElementId ID of the related element (required)
      * @param direction Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element (optional, default to both)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return List&lt;Relationship&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -152,8 +170,8 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Relationship> getRelationshipsByProjectCommitRelatedElement(UUID projectId, UUID commitId, UUID relatedElementId, String direction) throws ApiException {
-        ApiResponse<List<Relationship>> localVarResp = getRelationshipsByProjectCommitRelatedElementWithHttpInfo(projectId, commitId, relatedElementId, direction);
+    public List<Relationship> getRelationshipsByProjectCommitRelatedElement(UUID projectId, UUID commitId, UUID relatedElementId, String direction, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        ApiResponse<List<Relationship>> localVarResp = getRelationshipsByProjectCommitRelatedElementWithHttpInfo(projectId, commitId, relatedElementId, direction, pageAfter, pageBefore, pageSize);
         return localVarResp.getData();
     }
 
@@ -164,6 +182,9 @@ public class RelationshipApi {
      * @param commitId ID of the commit (required)
      * @param relatedElementId ID of the related element (required)
      * @param direction Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element (optional, default to both)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return ApiResponse&lt;List&lt;Relationship&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -175,8 +196,8 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Relationship>> getRelationshipsByProjectCommitRelatedElementWithHttpInfo(UUID projectId, UUID commitId, UUID relatedElementId, String direction) throws ApiException {
-        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(projectId, commitId, relatedElementId, direction, null);
+    public ApiResponse<List<Relationship>> getRelationshipsByProjectCommitRelatedElementWithHttpInfo(UUID projectId, UUID commitId, UUID relatedElementId, String direction, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(projectId, commitId, relatedElementId, direction, pageAfter, pageBefore, pageSize, null);
         Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -188,6 +209,9 @@ public class RelationshipApi {
      * @param commitId ID of the commit (required)
      * @param relatedElementId ID of the related element (required)
      * @param direction Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element (optional, default to both)
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -200,9 +224,9 @@ public class RelationshipApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRelationshipsByProjectCommitRelatedElementAsync(UUID projectId, UUID commitId, UUID relatedElementId, String direction, final ApiCallback<List<Relationship>> _callback) throws ApiException {
+    public okhttp3.Call getRelationshipsByProjectCommitRelatedElementAsync(UUID projectId, UUID commitId, UUID relatedElementId, String direction, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback<List<Relationship>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(projectId, commitId, relatedElementId, direction, _callback);
+        okhttp3.Call localVarCall = getRelationshipsByProjectCommitRelatedElementValidateBeforeCall(projectId, commitId, relatedElementId, direction, pageAfter, pageBefore, pageSize, _callback);
         Type localVarReturnType = new TypeToken<List<Relationship>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

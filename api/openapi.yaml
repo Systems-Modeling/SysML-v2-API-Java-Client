@@ -15,6 +15,22 @@ paths:
   /projects:
     get:
       operationId: getProjects
+      parameters:
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -130,6 +146,21 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -310,15 +341,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
                 type: array
-            application/json:
+            application/ld+json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
@@ -329,19 +375,19 @@ paths:
           description: Not found.
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -380,10 +426,10 @@ paths:
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Element'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Element'
           description: Ok
@@ -392,19 +438,19 @@ paths:
           description: Not found.
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -433,15 +479,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
                 type: array
-            application/json:
+            application/ld+json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
@@ -452,19 +513,19 @@ paths:
           description: Not found.
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -511,15 +572,30 @@ paths:
           - out
           - both
           type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/Relationship'
                 type: array
-            application/json:
+            application/ld+json:
               schema:
                 items:
                   $ref: '#/components/schemas/Relationship'
@@ -527,19 +603,19 @@ paths:
           description: Ok
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -561,6 +637,21 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -710,12 +801,12 @@ paths:
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
                 type: array
-            application/json:
+            application/ld+json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
@@ -726,19 +817,19 @@ paths:
           description: Not found.
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -775,12 +866,12 @@ paths:
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
                 type: array
-            application/json:
+            application/ld+json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
@@ -791,19 +882,19 @@ paths:
           description: Not found.
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -843,12 +934,12 @@ paths:
       responses:
         "200":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
                 type: array
-            application/json:
+            application/ld+json:
               schema:
                 items:
                   $ref: '#/components/schemas/Element'
@@ -859,19 +950,19 @@ paths:
           description: Not found.
         "415":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
-            application/ld+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-            application/json:
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -923,11 +1014,14 @@ components:
       example:
         '@type': Project
         name: name
+        description: description
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         '@type':
           enum:
           - Project
+          type: string
+        description:
           type: string
         id:
           format: uuid

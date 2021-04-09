@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getRelationshipsByProjectCommitRelatedElement"></a>
 # **getRelationshipsByProjectCommitRelatedElement**
-> List&lt;Relationship&gt; getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction)
+> List&lt;Relationship&gt; getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction, pageAfter, pageBefore, pageSize)
 
 Get relationships by project, commit, and related element
 
@@ -32,8 +32,11 @@ public class Example {
     UUID commitId = new UUID(); // UUID | ID of the commit
     UUID relatedElementId = new UUID(); // UUID | ID of the related element
     String direction = "both"; // String | Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element
+    String pageAfter = "pageAfter_example"; // String | Page after
+    String pageBefore = "pageBefore_example"; // String | Page before
+    Integer pageSize = 56; // Integer | Page size
     try {
-      List<Relationship> result = apiInstance.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction);
+      List<Relationship> result = apiInstance.getRelationshipsByProjectCommitRelatedElement(projectId, commitId, relatedElementId, direction, pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RelationshipApi#getRelationshipsByProjectCommitRelatedElement");
@@ -54,6 +57,9 @@ Name | Type | Description  | Notes
  **commitId** | [**UUID**](.md)| ID of the commit |
  **relatedElementId** | [**UUID**](.md)| ID of the related element |
  **direction** | **String**| Filter for relationships that are incoming (in), outgoing (out), or both relative to the related element | [optional] [default to both] [enum: in, out, both]
+ **pageAfter** | **String**| Page after | [optional]
+ **pageBefore** | **String**| Page before | [optional]
+ **pageSize** | **Integer**| Page size | [optional]
 
 ### Return type
 
@@ -66,7 +72,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

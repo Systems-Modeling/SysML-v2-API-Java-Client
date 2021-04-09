@@ -60,7 +60,10 @@ public class ProjectApiTest {
      */
     @Test
     public void getProjectsTest() throws ApiException {
-        List<Project> response = api.getProjects();
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Project> response = api.getProjects(pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }
