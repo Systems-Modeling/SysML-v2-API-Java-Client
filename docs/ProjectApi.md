@@ -75,7 +75,7 @@ No authorization required
 
 <a name="getProjects"></a>
 # **getProjects**
-> List&lt;Project&gt; getProjects()
+> List&lt;Project&gt; getProjects(pageAfter, pageBefore, pageSize)
 
 Get projects
 
@@ -94,8 +94,11 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String pageAfter = "pageAfter_example"; // String | Page after
+    String pageBefore = "pageBefore_example"; // String | Page before
+    Integer pageSize = 56; // Integer | Page size
     try {
-      List<Project> result = apiInstance.getProjects();
+      List<Project> result = apiInstance.getProjects(pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProjectApi#getProjects");
@@ -109,7 +112,12 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageAfter** | **String**| Page after | [optional]
+ **pageBefore** | **String**| Page before | [optional]
+ **pageSize** | **Integer**| Page size | [optional]
 
 ### Return type
 

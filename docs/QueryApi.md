@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 <a name="getQueriesByProject"></a>
 # **getQueriesByProject**
-> List&lt;Query&gt; getQueriesByProject(projectId)
+> List&lt;Query&gt; getQueriesByProject(projectId, pageAfter, pageBefore, pageSize)
 
 Get queries by project
 
@@ -34,8 +34,11 @@ public class Example {
 
     QueryApi apiInstance = new QueryApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
+    String pageAfter = "pageAfter_example"; // String | Page after
+    String pageBefore = "pageBefore_example"; // String | Page before
+    Integer pageSize = 56; // Integer | Page size
     try {
-      List<Query> result = apiInstance.getQueriesByProject(projectId);
+      List<Query> result = apiInstance.getQueriesByProject(projectId, pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling QueryApi#getQueriesByProject");
@@ -53,6 +56,9 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | [**UUID**](.md)| ID of the project |
+ **pageAfter** | **String**| Page after | [optional]
+ **pageBefore** | **String**| Page before | [optional]
+ **pageSize** | **Integer**| Page size | [optional]
 
 ### Return type
 
@@ -199,7 +205,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -267,7 +273,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -337,7 +343,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

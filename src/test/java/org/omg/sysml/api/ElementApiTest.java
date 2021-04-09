@@ -64,7 +64,10 @@ public class ElementApiTest {
     public void getElementsByProjectCommitTest() throws ApiException {
         UUID projectId = null;
         UUID commitId = null;
-        List<Element> response = api.getElementsByProjectCommit(projectId, commitId);
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Element> response = api.getElementsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }
@@ -81,7 +84,10 @@ public class ElementApiTest {
     public void getRootsByProjectCommitTest() throws ApiException {
         UUID projectId = null;
         UUID commitId = null;
-        List<Element> response = api.getRootsByProjectCommit(projectId, commitId);
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Element> response = api.getRootsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }
