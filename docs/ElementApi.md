@@ -66,7 +66,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -79,7 +79,7 @@ No authorization required
 
 <a name="getElementsByProjectCommit"></a>
 # **getElementsByProjectCommit**
-> List&lt;Element&gt; getElementsByProjectCommit(projectId, commitId)
+> List&lt;Element&gt; getElementsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize)
 
 Get elements by project and commit
 
@@ -100,8 +100,11 @@ public class Example {
     ElementApi apiInstance = new ElementApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
     UUID commitId = new UUID(); // UUID | ID of the commit
+    String pageAfter = "pageAfter_example"; // String | Page after
+    String pageBefore = "pageBefore_example"; // String | Page before
+    Integer pageSize = 56; // Integer | Page size
     try {
-      List<Element> result = apiInstance.getElementsByProjectCommit(projectId, commitId);
+      List<Element> result = apiInstance.getElementsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ElementApi#getElementsByProjectCommit");
@@ -120,6 +123,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | [**UUID**](.md)| ID of the project |
  **commitId** | [**UUID**](.md)| ID of the commit |
+ **pageAfter** | **String**| Page after | [optional]
+ **pageBefore** | **String**| Page before | [optional]
+ **pageSize** | **Integer**| Page size | [optional]
 
 ### Return type
 
@@ -132,7 +138,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -145,7 +151,7 @@ No authorization required
 
 <a name="getRootsByProjectCommit"></a>
 # **getRootsByProjectCommit**
-> List&lt;Element&gt; getRootsByProjectCommit(projectId, commitId)
+> List&lt;Element&gt; getRootsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize)
 
 Get root elements by project and commit
 
@@ -166,8 +172,11 @@ public class Example {
     ElementApi apiInstance = new ElementApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
     UUID commitId = new UUID(); // UUID | ID of the commit
+    String pageAfter = "pageAfter_example"; // String | Page after
+    String pageBefore = "pageBefore_example"; // String | Page before
+    Integer pageSize = 56; // Integer | Page size
     try {
-      List<Element> result = apiInstance.getRootsByProjectCommit(projectId, commitId);
+      List<Element> result = apiInstance.getRootsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ElementApi#getRootsByProjectCommit");
@@ -186,6 +195,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | [**UUID**](.md)| ID of the project |
  **commitId** | [**UUID**](.md)| ID of the commit |
+ **pageAfter** | **String**| Page after | [optional]
+ **pageBefore** | **String**| Page before | [optional]
+ **pageSize** | **Integer**| Page size | [optional]
 
 ### Return type
 
@@ -198,7 +210,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/ld+json, application/json
+ - **Accept**: application/json, application/ld+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

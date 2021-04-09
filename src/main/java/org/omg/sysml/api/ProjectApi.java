@@ -185,6 +185,9 @@ public class ProjectApi {
     }
     /**
      * Build call for getProjects
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -197,7 +200,7 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProjectsCall(String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -205,6 +208,18 @@ public class ProjectApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (pageAfter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[after]", pageAfter));
+        }
+
+        if (pageBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[before]", pageBefore));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
@@ -227,10 +242,10 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProjectsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProjectsValidateBeforeCall(String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getProjectsCall(_callback);
+        okhttp3.Call localVarCall = getProjectsCall(pageAfter, pageBefore, pageSize, _callback);
         return localVarCall;
 
     }
@@ -238,6 +253,9 @@ public class ProjectApi {
     /**
      * Get projects
      * 
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return List&lt;Project&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -249,14 +267,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Project> getProjects() throws ApiException {
-        ApiResponse<List<Project>> localVarResp = getProjectsWithHttpInfo();
+    public List<Project> getProjects(String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        ApiResponse<List<Project>> localVarResp = getProjectsWithHttpInfo(pageAfter, pageBefore, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * Get projects
      * 
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @return ApiResponse&lt;List&lt;Project&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -268,8 +289,8 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Project>> getProjectsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(null);
+    public ApiResponse<List<Project>> getProjectsWithHttpInfo(String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(pageAfter, pageBefore, pageSize, null);
         Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -277,6 +298,9 @@ public class ProjectApi {
     /**
      * Get projects (asynchronously)
      * 
+     * @param pageAfter Page after (optional)
+     * @param pageBefore Page before (optional)
+     * @param pageSize Page size (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -289,9 +313,9 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectsAsync(final ApiCallback<List<Project>> _callback) throws ApiException {
+    public okhttp3.Call getProjectsAsync(String pageAfter, String pageBefore, Integer pageSize, final ApiCallback<List<Project>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(pageAfter, pageBefore, pageSize, _callback);
         Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

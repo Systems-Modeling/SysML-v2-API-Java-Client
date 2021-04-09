@@ -62,7 +62,10 @@ public class CommitApiTest {
     @Test
     public void getCommitsByProjectTest() throws ApiException {
         UUID projectId = null;
-        List<Commit> response = api.getCommitsByProject(projectId);
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Commit> response = api.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }
