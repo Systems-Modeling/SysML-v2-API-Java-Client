@@ -16,24 +16,18 @@ package org.omg.sysml.api;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
-import org.omg.sysml.model.Error;
 import org.omg.sysml.model.Project;
 import org.omg.sysml.model.Project.AtTypeEnum;
 
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 /**
  * API tests for ProjectApi
@@ -92,8 +86,6 @@ public class ProjectApiTest {
     
     /**
      * Get project by ID
-     *
-     * 
      *
      * @throws ApiException
      *          if the Api call fails
