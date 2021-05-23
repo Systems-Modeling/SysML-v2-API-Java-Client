@@ -23,24 +23,21 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.BranchOwningProject;
-import org.omg.sysml.model.ElementVersion;
 
 /**
- * Commit
+ * Branch
  */
 
-public class Commit {
+public class Branch {
   /**
    * Gets or Sets atType
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    COMMIT("Commit");
+    BRANCH("Branch");
 
     private String value;
 
@@ -84,9 +81,9 @@ public class Commit {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
-  public static final String SERIALIZED_NAME_CHANGE = "change";
-  @SerializedName(SERIALIZED_NAME_CHANGE)
-  private List<ElementVersion> change = null;
+  public static final String SERIALIZED_NAME_HEAD = "head";
+  @SerializedName(SERIALIZED_NAME_HEAD)
+  private BranchHead head;
 
   public static final String SERIALIZED_NAME_OWNING_PROJECT = "owningProject";
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
@@ -96,12 +93,12 @@ public class Commit {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_PREVIOUS_COMMIT = "previousCommit";
-  @SerializedName(SERIALIZED_NAME_PREVIOUS_COMMIT)
-  private BranchHead previousCommit;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
 
-  public Commit atType(AtTypeEnum atType) {
+  public Branch atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -124,38 +121,30 @@ public class Commit {
   }
 
 
-  public Commit change(List<ElementVersion> change) {
+  public Branch head(BranchHead head) {
     
-    this.change = change;
-    return this;
-  }
-
-  public Commit addChangeItem(ElementVersion changeItem) {
-    if (this.change == null) {
-      this.change = new ArrayList<ElementVersion>();
-    }
-    this.change.add(changeItem);
+    this.head = head;
     return this;
   }
 
    /**
-   * Get change
-   * @return change
+   * Get head
+   * @return head
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<ElementVersion> getChange() {
-    return change;
+  public BranchHead getHead() {
+    return head;
   }
 
 
-  public void setChange(List<ElementVersion> change) {
-    this.change = change;
+  public void setHead(BranchHead head) {
+    this.head = head;
   }
 
 
-  public Commit owningProject(BranchOwningProject owningProject) {
+  public Branch owningProject(BranchOwningProject owningProject) {
     
     this.owningProject = owningProject;
     return this;
@@ -178,7 +167,7 @@ public class Commit {
   }
 
 
-  public Commit id(UUID id) {
+  public Branch id(UUID id) {
     
     this.id = id;
     return this;
@@ -201,26 +190,26 @@ public class Commit {
   }
 
 
-  public Commit previousCommit(BranchHead previousCommit) {
+  public Branch name(String name) {
     
-    this.previousCommit = previousCommit;
+    this.name = name;
     return this;
   }
 
    /**
-   * Get previousCommit
-   * @return previousCommit
+   * Get name
+   * @return name
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public BranchHead getPreviousCommit() {
-    return previousCommit;
+  public String getName() {
+    return name;
   }
 
 
-  public void setPreviousCommit(BranchHead previousCommit) {
-    this.previousCommit = previousCommit;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -232,29 +221,29 @@ public class Commit {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Commit commit = (Commit) o;
-    return Objects.equals(this.atType, commit.atType) &&
-        Objects.equals(this.change, commit.change) &&
-        Objects.equals(this.owningProject, commit.owningProject) &&
-        Objects.equals(this.id, commit.id) &&
-        Objects.equals(this.previousCommit, commit.previousCommit);
+    Branch branch = (Branch) o;
+    return Objects.equals(this.atType, branch.atType) &&
+        Objects.equals(this.head, branch.head) &&
+        Objects.equals(this.owningProject, branch.owningProject) &&
+        Objects.equals(this.id, branch.id) &&
+        Objects.equals(this.name, branch.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, change, owningProject, id, previousCommit);
+    return Objects.hash(atType, head, owningProject, id, name);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Commit {\n");
+    sb.append("class Branch {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    change: ").append(toIndentedString(change)).append("\n");
+    sb.append("    head: ").append(toIndentedString(head)).append("\n");
     sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    previousCommit: ").append(toIndentedString(previousCommit)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

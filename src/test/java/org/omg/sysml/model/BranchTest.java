@@ -21,29 +21,26 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.BranchOwningProject;
-import org.omg.sysml.model.ElementVersion;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Commit
+ * Model tests for Branch
  */
-public class CommitTest {
-    private final Commit model = new Commit();
+public class BranchTest {
+    private final Branch model = new Branch();
 
     /**
-     * Model tests for Commit
+     * Model tests for Branch
      */
     @Test
-    public void testCommit() {
-        // TODO: test Commit
+    public void testBranch() {
+        // TODO: test Branch
     }
 
     /**
@@ -55,11 +52,11 @@ public class CommitTest {
     }
 
     /**
-     * Test the property 'change'
+     * Test the property 'head'
      */
     @Test
-    public void changeTest() {
-        // TODO: test change
+    public void headTest() {
+        // TODO: test head
     }
 
     /**
@@ -79,11 +76,11 @@ public class CommitTest {
     }
 
     /**
-     * Test the property 'previousCommit'
+     * Test the property 'name'
      */
     @Test
-    public void previousCommitTest() {
-        // TODO: test previousCommit
+    public void nameTest() {
+        // TODO: test name
     }
 
 }

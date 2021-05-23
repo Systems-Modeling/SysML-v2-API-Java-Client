@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
-**containingProject** | [**CommitContainingProject**](CommitContainingProject.md) |  |  [optional]
+**owningProject** | [**BranchOwningProject**](BranchOwningProject.md) |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
 **scope** | [**List&lt;ElementIdentity&gt;**](ElementIdentity.md) |  |  [optional]
 **select** | **List&lt;String&gt;** |  |  [optional]
