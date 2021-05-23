@@ -26,16 +26,17 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * CommitContainingProject
+ * Project
  */
+@ApiModel(description = "Project")
 
-public class CommitContainingProject {
+public class BranchOwningProject {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
 
-  public CommitContainingProject id(UUID id) {
+  public BranchOwningProject id(UUID id) {
     
     this.id = id;
     return this;
@@ -66,8 +67,8 @@ public class CommitContainingProject {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CommitContainingProject commitContainingProject = (CommitContainingProject) o;
-    return Objects.equals(this.id, commitContainingProject.id);
+    BranchOwningProject branchOwningProject = (BranchOwningProject) o;
+    return Objects.equals(this.id, branchOwningProject.id);
   }
 
   @Override
@@ -79,7 +80,7 @@ public class CommitContainingProject {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CommitContainingProject {\n");
+    sb.append("class BranchOwningProject {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
