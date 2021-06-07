@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.omg.sysml.model.CommitContainingProject;
+import org.omg.sysml.model.BranchOwningProject;
 import org.omg.sysml.model.Constraint;
 import org.omg.sysml.model.ElementIdentity;
 import org.junit.Assert;
@@ -55,11 +55,11 @@ public class QueryTest {
     }
 
     /**
-     * Test the property 'containingProject'
+     * Test the property 'owningProject'
      */
     @Test
-    public void containingProjectTest() {
-        // TODO: test containingProject
+    public void owningProjectTest() {
+        // TODO: test owningProject
     }
 
     /**

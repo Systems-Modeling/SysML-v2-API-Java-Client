@@ -7,6 +7,7 @@ servers:
 - url: /
 tags:
 - name: Project
+- name: Branch
 - name: Commit
 - name: Element
 - name: Relationship
@@ -135,6 +136,154 @@ paths:
       tags:
       - Project
       x-accepts: application/json
+  /projects/{projectId}/branches:
+    get:
+      operationId: getBranchesByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Branch'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get branches by project
+      tags:
+      - Branch
+      x-accepts: application/json
+    post:
+      operationId: postBranchByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Branch'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+          description: Created
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Create branch by project
+      tags:
+      - Branch
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /projects/{projectId}/branches/{branchId}:
+    get:
+      operationId: getBranchesByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the branch
+        in: path
+        name: branchId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get branch by project and ID
+      tags:
+      - Branch
+      x-accepts: application/json
   /projects/{projectId}/commits:
     get:
       operationId: getCommitsByProject
@@ -199,6 +348,12 @@ paths:
         in: path
         name: projectId
         required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the branch - project's default branch if unspecified
+        in: query
+        name: branchId
         schema:
           format: uuid
           type: string
@@ -280,46 +435,6 @@ paths:
           content: {}
           description: Unexpected response.
       summary: Get commit by project and ID
-      tags:
-      - Commit
-      x-accepts: application/json
-  /projects/{projectId}/head:
-    get:
-      operationId: getHeadCommitByProject
-      parameters:
-      - description: ID of the project
-        in: path
-        name: projectId
-        required: true
-        schema:
-          format: uuid
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Commit'
-          description: Ok
-        "404":
-          content: {}
-          description: Not found.
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: The requested content type is not acceptable.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error.
-        default:
-          content: {}
-          description: Unexpected response.
-      summary: Get head commit by project
       tags:
       - Commit
       x-accepts: application/json
@@ -1002,14 +1117,6 @@ components:
       content: {}
       description: Ok
   schemas:
-    Record:
-      example:
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        id:
-          format: uuid
-          type: string
-      type: object
     Project:
       example:
         '@type': Project
@@ -1023,6 +1130,30 @@ components:
           type: string
         description:
           type: string
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
+    Branch:
+      example:
+        head:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@type': Branch
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        owningProject:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@type':
+          enum:
+          - Branch
+          type: string
+        head:
+          $ref: '#/components/schemas/Branch_head'
+        owningProject:
+          $ref: '#/components/schemas/Branch_owningProject'
         id:
           format: uuid
           type: string
@@ -1054,7 +1185,7 @@ components:
         previousCommit:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        containingProject:
+        owningProject:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         '@type':
@@ -1065,13 +1196,13 @@ components:
           items:
             $ref: '#/components/schemas/ElementVersion'
           type: array
-        containingProject:
-          $ref: '#/components/schemas/Commit_containingProject'
+        owningProject:
+          $ref: '#/components/schemas/Branch_owningProject'
         id:
           format: uuid
           type: string
         previousCommit:
-          $ref: '#/components/schemas/Record'
+          $ref: '#/components/schemas/Branch_head'
       type: object
     ElementVersion:
       example:
@@ -1179,15 +1310,15 @@ components:
         where:
           '@type': PrimitiveConstraint
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        containingProject:
+        owningProject:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         '@type':
           enum:
           - Query
           type: string
-        containingProject:
-          $ref: '#/components/schemas/Commit_containingProject'
+        owningProject:
+          $ref: '#/components/schemas/Branch_owningProject'
         id:
           format: uuid
           type: string
@@ -1259,7 +1390,16 @@ components:
         error:
           type: string
       type: object
-    Commit_containingProject:
+    Branch_head:
+      description: Commit
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+    Branch_owningProject:
+      description: Project
       example:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:

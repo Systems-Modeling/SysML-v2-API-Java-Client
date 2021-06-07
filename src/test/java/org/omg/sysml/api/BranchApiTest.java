@@ -14,7 +14,7 @@
 package org.omg.sysml.api;
 
 import org.omg.sysml.ApiException;
-import org.omg.sysml.model.Commit;
+import org.omg.sysml.model.Branch;
 import org.omg.sysml.model.Error;
 import java.util.UUID;
 import org.junit.Test;
@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for CommitApi
+ * API tests for BranchApi
  */
 @Ignore
-public class CommitApiTest {
+public class BranchApiTest {
 
-    private final CommitApi api = new CommitApi();
+    private final BranchApi api = new BranchApi();
 
     
     /**
-     * Get commit by project and ID
+     * Get branches by project
      *
      * 
      *
@@ -43,35 +43,18 @@ public class CommitApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getCommitByProjectAndIdTest() throws ApiException {
-        UUID projectId = null;
-        UUID commitId = null;
-        Commit response = api.getCommitByProjectAndId(projectId, commitId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Get commits by project
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getCommitsByProjectTest() throws ApiException {
+    public void getBranchesByProjectTest() throws ApiException {
         UUID projectId = null;
         String pageAfter = null;
         String pageBefore = null;
         Integer pageSize = null;
-        List<Commit> response = api.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
+        List<Branch> response = api.getBranchesByProject(projectId, pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }
     
     /**
-     * Create commit by project
+     * Get branch by project and ID
      *
      * 
      *
@@ -79,11 +62,27 @@ public class CommitApiTest {
      *          if the Api call fails
      */
     @Test
-    public void postCommitByProjectTest() throws ApiException {
+    public void getBranchesByProjectAndIdTest() throws ApiException {
         UUID projectId = null;
-        Commit body = null;
         UUID branchId = null;
-        Commit response = api.postCommitByProject(projectId, body, branchId);
+        Branch response = api.getBranchesByProjectAndId(projectId, branchId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Create branch by project
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void postBranchByProjectTest() throws ApiException {
+        UUID projectId = null;
+        Branch body = null;
+        Branch response = api.postBranchByProject(projectId, body);
 
         // TODO: test validations
     }

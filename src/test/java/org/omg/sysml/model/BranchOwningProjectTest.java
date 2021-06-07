@@ -28,17 +28,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for Record
+ * Model tests for BranchOwningProject
  */
-public class RecordTest {
-    private final Record model = new Record();
+public class BranchOwningProjectTest {
+    private final BranchOwningProject model = new BranchOwningProject();
 
     /**
-     * Model tests for Record
+     * Model tests for BranchOwningProject
      */
     @Test
-    public void testRecord() {
-        // TODO: test Record
+    public void testBranchOwningProject() {
+        // TODO: test BranchOwningProject
     }
 
     /**

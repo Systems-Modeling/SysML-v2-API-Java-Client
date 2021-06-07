@@ -26,16 +26,17 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Record
+ * Commit
  */
+@ApiModel(description = "Commit")
 
-public class Record {
+public class BranchHead {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
 
-  public Record id(UUID id) {
+  public BranchHead id(UUID id) {
     
     this.id = id;
     return this;
@@ -66,8 +67,8 @@ public class Record {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Record record = (Record) o;
-    return Objects.equals(this.id, record.id);
+    BranchHead branchHead = (BranchHead) o;
+    return Objects.equals(this.id, branchHead.id);
   }
 
   @Override
@@ -79,7 +80,7 @@ public class Record {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Record {\n");
+    sb.append("class BranchHead {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
