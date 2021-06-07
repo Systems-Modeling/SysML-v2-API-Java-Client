@@ -1120,6 +1120,8 @@ components:
     Project:
       example:
         '@type': Project
+        defaultBranch:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         description: description
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1128,6 +1130,8 @@ components:
           enum:
           - Project
           type: string
+        defaultBranch:
+          $ref: '#/components/schemas/Project_defaultBranch'
         description:
           type: string
         id:
@@ -1390,6 +1394,14 @@ components:
         error:
           type: string
       type: object
+    Project_defaultBranch:
+      description: Branch
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
     Branch_head:
       description: Commit
       example:

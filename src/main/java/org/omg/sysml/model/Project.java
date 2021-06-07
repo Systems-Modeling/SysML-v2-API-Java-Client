@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+import org.omg.sysml.model.ProjectDefaultBranch;
 
 /**
  * Project
@@ -79,6 +80,10 @@ public class Project {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
+  public static final String SERIALIZED_NAME_DEFAULT_BRANCH = "defaultBranch";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_BRANCH)
+  private ProjectDefaultBranch defaultBranch;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -112,6 +117,29 @@ public class Project {
 
   public void setAtType(AtTypeEnum atType) {
     this.atType = atType;
+  }
+
+
+  public Project defaultBranch(ProjectDefaultBranch defaultBranch) {
+    
+    this.defaultBranch = defaultBranch;
+    return this;
+  }
+
+   /**
+   * Get defaultBranch
+   * @return defaultBranch
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ProjectDefaultBranch getDefaultBranch() {
+    return defaultBranch;
+  }
+
+
+  public void setDefaultBranch(ProjectDefaultBranch defaultBranch) {
+    this.defaultBranch = defaultBranch;
   }
 
 
@@ -194,6 +222,7 @@ public class Project {
     }
     Project project = (Project) o;
     return Objects.equals(this.atType, project.atType) &&
+        Objects.equals(this.defaultBranch, project.defaultBranch) &&
         Objects.equals(this.description, project.description) &&
         Objects.equals(this.id, project.id) &&
         Objects.equals(this.name, project.name);
@@ -201,7 +230,7 @@ public class Project {
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, description, id, name);
+    return Objects.hash(atType, defaultBranch, description, id, name);
   }
 
 
@@ -210,6 +239,7 @@ public class Project {
     StringBuilder sb = new StringBuilder();
     sb.append("class Project {\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    defaultBranch: ").append(toIndentedString(defaultBranch)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
