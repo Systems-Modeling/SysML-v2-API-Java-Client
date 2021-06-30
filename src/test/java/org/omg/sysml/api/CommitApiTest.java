@@ -152,7 +152,7 @@ public class CommitApiTest {
      * @throws ApiException
      *          if the Api call fails
      */
-    @Test
+    
     public void postCommitByProjectTest()  {
     	if (projectId == null)
     		fail("Failed - no project is available.");
