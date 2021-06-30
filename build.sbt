@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "org.omg.sysml",
     name := "sysml-v2-api-client",
-    version := "2021-03",
+    version := "2021-05",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

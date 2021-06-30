@@ -65,28 +65,21 @@ public class CommitApiTest {
 	}
     
     /**
-     * Get head commit by project
+     * Get commit by project and ID
+     *
+     * 
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void get1HeadCommitByProjectTest() {
-    	if (projectId == null)
-    		fail("Failed - no project is available.");
-    	else {
-	        try {
-				Commit response = api.getHeadCommitByProject(projectId);
-				System.out.println("=== getHeadCommitByProjectTest() ===\n" + response);
-				assertTrue(response != null);
-			} catch (ApiException e) {
-				e.printStackTrace();
-				fail("Failed - response(Commit) is null");
-			}
-    	}
-    }
-    
+    public void getCommitByProjectAndIdTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        Commit response = api.getCommitByProjectAndId(projectId, commitId);
 
+        // TODO: test validations
+    }
     /**
      * Get commits by project
      *
@@ -100,9 +93,11 @@ public class CommitApiTest {
     	if (projectId == null)
     		fail("Failed - no project is available.");
     	else {
-	    	List<Commit> response = null;
+    		 String pageAfter = null;
+    	     String pageBefore = null;
+    	     Integer pageSize = null;
 			try {
-				response = api.getCommitsByProject(projectId, null, null, null);
+				List<Commit> response = api.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
 				System.out.println("=== getCommitsByProjectTest() ===\n" + response);
 				assertTrue(response.size() > 0);
 				commit = response.get(0);
@@ -152,6 +147,7 @@ public class CommitApiTest {
      * @throws ApiException
      *          if the Api call fails
      */
+
     
     public void postCommitByProjectTest()  {
     	if (projectId == null)
@@ -183,9 +179,11 @@ public class CommitApiTest {
 	        previousCommit.setId(commit.getId());
 	        body.setPreviousCommit(previousCommit);
 	        
-	        Commit response;
+	        UUID branchId = null;
+	        	        
 			try {
-				response = api.postCommitByProject(projectId, body);
+				
+				Commit response = api.postCommitByProject(projectId, body, branchId);
 				System.out.println("=== postCommitByProjectTest() ===\n" + response);
 				assertTrue(response != null);
 			} catch (ApiException e) {

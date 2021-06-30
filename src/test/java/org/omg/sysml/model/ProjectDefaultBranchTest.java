@@ -28,17 +28,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for CommitContainingProject
+ * Model tests for ProjectDefaultBranch
  */
-public class CommitContainingProjectTest {
-    private final CommitContainingProject model = new CommitContainingProject();
+public class ProjectDefaultBranchTest {
+    private final ProjectDefaultBranch model = new ProjectDefaultBranch();
 
     /**
-     * Model tests for CommitContainingProject
+     * Model tests for ProjectDefaultBranch
      */
     @Test
-    public void testCommitContainingProject() {
-        // TODO: test CommitContainingProject
+    public void testProjectDefaultBranch() {
+        // TODO: test ProjectDefaultBranch
     }
 
     /**

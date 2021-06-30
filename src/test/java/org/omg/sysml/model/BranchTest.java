@@ -22,24 +22,25 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.omg.sysml.model.ProjectDefaultBranch;
+import org.omg.sysml.model.BranchHead;
+import org.omg.sysml.model.BranchOwningProject;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Project
+ * Model tests for Branch
  */
-public class ProjectTest {
-    private final Project model = new Project();
+public class BranchTest {
+    private final Branch model = new Branch();
 
     /**
-     * Model tests for Project
+     * Model tests for Branch
      */
     @Test
-    public void testProject() {
-        // TODO: test Project
+    public void testBranch() {
+        // TODO: test Branch
     }
 
     /**
@@ -51,19 +52,19 @@ public class ProjectTest {
     }
 
     /**
-     * Test the property 'defaultBranch'
+     * Test the property 'head'
      */
     @Test
-    public void defaultBranchTest() {
-        // TODO: test defaultBranch
+    public void headTest() {
+        // TODO: test head
     }
 
     /**
-     * Test the property 'description'
+     * Test the property 'owningProject'
      */
     @Test
-    public void descriptionTest() {
-        // TODO: test description
+    public void owningProjectTest() {
+        // TODO: test owningProject
     }
 
     /**
