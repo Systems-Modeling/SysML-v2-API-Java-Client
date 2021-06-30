@@ -166,9 +166,9 @@ public class ProjectApiTest {
         body.setId(id);
         body.setDescription(description);
         body.setName(name);
-        Project response;
+        
 		try {
-			response = api.postProject(body);
+			Project response = api.postProject(body);
 			System.out.println(response);
 			assertEquals(id.toString(), response.getId().toString());
 		    assertEquals(description, response.getDescription());
@@ -176,7 +176,7 @@ public class ProjectApiTest {
 		    assertEquals(AtTypeEnum.PROJECT, response.getAtType());
 		} catch (ApiException e) {
 			e.printStackTrace();
-			fail("getProjectByIdTest_404 failed: not expecting ApiException"); 
+			fail("postProjectTest failed: not expecting ApiException"); 
 		}
     }
     
