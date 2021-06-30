@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * wip - test returns list<element> contains element but without Id, then no able to test API requires elementId
  * API tests for ElementApi
  */
 
@@ -123,7 +124,8 @@ public class ElementApiTest {
 
     
     /**
-     * WIP - response size = 0
+     * WIP - response size > 0 but Element atType = null atId = null, identifer = null
+     * Is this ok?
      * Get elements by project and commit
      *
      * 
