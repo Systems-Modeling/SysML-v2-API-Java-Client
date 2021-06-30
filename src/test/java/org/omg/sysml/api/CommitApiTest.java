@@ -17,11 +17,9 @@ import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.model.Commit;
-import org.omg.sysml.model.CommitContainingProject;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.model.ElementVersion;
 import org.omg.sysml.model.Project;
-import org.omg.sysml.model.Record;
 
 import java.util.UUID;
 import org.junit.Test;
@@ -35,6 +33,10 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 /**
+ * test name is prefixed with alphabet to control order
+ * using @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+ * WIP - getByproject return but using the commitId to get the Commit failed
+ * WIP - post
  * API tests for CommitApi
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -43,8 +45,8 @@ public class CommitApiTest {
     private final static CommitApi api = new CommitApi();
     private final static ProjectApi projectApi = new ProjectApi();
     private static UUID projectId;
-    //private static UUID commitId;
-    private static Commit commit;
+    private static UUID commitId;
+    //private static Commit commit;
     
     @BeforeClass
     public static void setUp() {
@@ -65,22 +67,6 @@ public class CommitApiTest {
 	}
     
     /**
-     * Get commit by project and ID
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getCommitByProjectAndIdTest() throws ApiException {
-        UUID projectId = null;
-        UUID commitId = null;
-        Commit response = api.getCommitByProjectAndId(projectId, commitId);
-
-        // TODO: test validations
-    }
-    /**
      * Get commits by project
      *
      * Using the setup to projectId
@@ -88,29 +74,28 @@ public class CommitApiTest {
      *          if the Api call fails
      */
     @Test
-    public void get2CommitsByProjectTest() {
+    public void a_getCommitsByProjectTest() {
         
-    	if (projectId == null)
-    		fail("Failed - no project is available.");
-    	else {
-    		 String pageAfter = null;
-    	     String pageBefore = null;
-    	     Integer pageSize = null;
-			try {
-				List<Commit> response = api.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
-				System.out.println("=== getCommitsByProjectTest() ===\n" + response);
-				assertTrue(response.size() > 0);
-				commit = response.get(0);
-			} catch (ApiException e) {
-				e.printStackTrace();
-				fail("Failed - no project available to query commit.");
-			}
+    	if (projectId == null) {
+    		fail("Failed - no project available.");
+    		return;
     	}
+
+		String pageAfter = null;
+	    String pageBefore = null;
+	    Integer pageSize = null;
+		try {
+			List<Commit> response = api.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
+			System.out.println("=== getCommitsByProjectTest() ===\n" + response);
+			assertTrue(response.size() > 0);
+			commitId = response.get(0).getId();
+		} catch (ApiException e) {
+			e.printStackTrace();
+			fail("Failed - no Commit returned.");
+		}
 	    
     }
-    
-   
-    
+     
     /**
      * Get commit by project and ID
      *
@@ -120,21 +105,23 @@ public class CommitApiTest {
      *          if the Api call fails
      */
     @Test
-    public void get3CommitByProjectAndIdTest() {
-    	UUID commitId;
-        if (projectId == null)
-    		fail("Failed - no project is available.");
-        else if ((commitId = commit.getId()) == null)
-    		fail("Failed - no commit is available.");
-		else {
-			try {
-				Commit response = api.getCommitByProjectAndId(projectId, commitId);
-				System.out.println("=== getCommitByProjectAndIdTest() ===\n" + response);
-				assertTrue(response != null);
-			} catch (ApiException e) {
-				e.printStackTrace();
-				fail("Failed - response(Commit) is null");
-			}
+    public void b_getCommitByProjectAndIdTest() {
+    	
+    	if (projectId == null) {
+    		fail("Failed - no project available.");
+    		return;
+    	}
+    	if (commitId == null) {
+    		fail("Failed - no commitId available");
+    	}
+    	
+		try {
+			Commit response = api.getCommitByProjectAndId(projectId, commitId);
+			System.out.println("=== b_getCommitByProjectAndIdTest() ===\n" + response);
+			assertTrue(response != null);
+		} catch (ApiException e) {
+			e.printStackTrace();
+			fail("Failed - response(Commit) is null");
 		}
     }
     
@@ -168,7 +155,7 @@ public class CommitApiTest {
 	        elementVersion.setId(UUID.randomUUID());
 	        //elementVersion.setIdentity(identity);
 	        
-	        CommitContainingProject containingProject = new CommitContainingProject();
+	        /*CommitContainingProject containingProject = new CommitContainingProject();
 	        containingProject.setId(UUID.randomUUID());
 	        
 	        body.addChangeItem(elementVersion);
@@ -178,7 +165,7 @@ public class CommitApiTest {
 	        Record previousCommit = new Record();
 	        previousCommit.setId(commit.getId());
 	        body.setPreviousCommit(previousCommit);
-	        
+	        */
 	        UUID branchId = null;
 	        	        
 			try {
