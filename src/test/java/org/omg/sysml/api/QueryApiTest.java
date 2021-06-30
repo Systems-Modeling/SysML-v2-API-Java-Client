@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * wip - test returns list<Query> contains no Query object and  no able to test API requires queryId
  * API tests for QueryApi
  */
 public class QueryApiTest {
@@ -154,7 +155,7 @@ public class QueryApiTest {
     	if (body == null) {
     		fail("Failed - no query available");
     	}
-    	try {
+    	try { 
     		UUID commitId = null;
     		List<Element> response = api.getQueryResultsByProjectIdQuery(projectId, body, commitId);
     		System.out.println("=== getQueryResultsByProjectIdQueryTest() === " + response.size());
