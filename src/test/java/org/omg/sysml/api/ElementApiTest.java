@@ -22,7 +22,9 @@ import org.omg.sysml.model.Project;
 
 import java.util.UUID;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -33,7 +35,7 @@ import java.util.List;
  * wip - test returns list<element> contains element but without Id, then no able to test API requires elementId
  * API tests for ElementApi
  */
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ElementApiTest {
 
 	private final static ProjectApi project_api = new ProjectApi();
@@ -86,7 +88,7 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getRootsByProjectCommitTest() throws ApiException {
+    public void a_getRootsByProjectCommitTest() throws ApiException {
         
     	if (projectId == null) {
       		fail("Failed - no project is available.");
@@ -109,7 +111,8 @@ public class ElementApiTest {
 				Element element = response.get(i);
 				System.out.println(element);
 			}
-			//assertTrue(element.getAtId() != null);
+			Element element = response.get(0);
+			assertTrue(element.getAtId() != null);
 			//elementId = element.getId();
 			//System.out.println("elementId: " + elementId);
 			
@@ -131,7 +134,7 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getElementsByProjectCommitTest() throws ApiException {
+    public void b_getElementsByProjectCommitTest() throws ApiException {
     	
     	if (projectId == null) {
      		fail("Failed - no project is available.");
@@ -150,7 +153,7 @@ public class ElementApiTest {
 	        assertTrue(response.size() > 0);
 			Element element = response.get(0);
 			System.out.println(element);
-			assertTrue(element.getIdentifier() != null);
+			assertTrue(element.getAtId() != null);
 			//elementId = element.getId();
 			//System.out.println("elementId: " + elementId);
 		} catch (ApiException e) {
@@ -170,7 +173,7 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getElementByProjectCommitIdTest() {
+    public void c_getElementByProjectCommitIdTest() {
     	if (projectId == null) {
      		fail("Failed - no project available.");
          	return;
