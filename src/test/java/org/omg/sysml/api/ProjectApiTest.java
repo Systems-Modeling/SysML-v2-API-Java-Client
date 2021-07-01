@@ -18,6 +18,7 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.model.Project;
 import org.omg.sysml.model.Project.AtTypeEnum;
+import org.omg.sysml.model.ProjectDefaultBranch;
 
 import java.util.UUID;
 import org.junit.Test;
@@ -40,7 +41,7 @@ public class ProjectApiTest {
     @BeforeClass
     public static void setUp() {
 		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
+		apiClient.setBasePath("http://sysml2-dev.intercax.com:9000");
 	    api.setApiClient(apiClient);
 	}
     
@@ -166,6 +167,10 @@ public class ProjectApiTest {
         body.setId(id);
         body.setDescription(description);
         body.setName(name);
+        ProjectDefaultBranch db = new ProjectDefaultBranch();
+        db.setId(UUID.randomUUID());
+        body.setDefaultBranch(db);
+        body.setAtType(AtTypeEnum.PROJECT);
         
 		try {
 			Project response = api.postProject(body);
