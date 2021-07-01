@@ -50,7 +50,7 @@ public class QueryApiTest {
     @BeforeClass
     public static void setUp() {
 		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
+		apiClient.setBasePath("http://sysml2-dev.intercax.com:9000");
 	    api.setApiClient(apiClient);
 	    project_api.setApiClient(apiClient);
 	   
