@@ -35,8 +35,6 @@ import java.util.List;
 /**
  * test name is prefixed with alphabet to control order
  * using @FixMethodOrder(MethodSorters.NAME_ASCENDING)
- * WIP - getByproject return but using the commitId to get the Commit failed
- * WIP - post
  * API tests for CommitApi
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -51,7 +49,7 @@ public class CommitApiTest {
     @BeforeClass
     public static void setUp() {
 		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
+		apiClient.setBasePath("http://sysml2-dev.intercax.com:9000");
 	    api.setApiClient(apiClient);
 	    projectApi.setApiClient(apiClient);
 	    
@@ -86,7 +84,7 @@ public class CommitApiTest {
 	    Integer pageSize = null;
 		try {
 			List<Commit> response = api.getCommitsByProject(projectId, pageAfter, pageBefore, pageSize);
-			System.out.println("=== getCommitsByProjectTest() ===\n" + response);
+			System.out.println("=== a_getCommitsByProjectTest() ===\n" + response.size());
 			assertTrue(response.size() > 0);
 			commitId = response.get(0).getId();
 		} catch (ApiException e) {
@@ -135,44 +133,30 @@ public class CommitApiTest {
      *          if the Api call fails
      */
 
-    
-    public void postCommitByProjectTest()  {
+    @Test
+    public void c_postCommitByProjectTest()  {
     	if (projectId == null)
     		fail("Failed - no project is available.");
     	else {
 	        Commit body = new Commit();
 	        body.setAtType(org.omg.sysml.model.Commit.AtTypeEnum.COMMIT);
-	        
-	        Element element = new Element();
-	        element.setAtType("Package");
-	        element.setAtId(UUID.randomUUID());
-	        
-	        //element.setIdentifier();
-	        
-	        ElementVersion elementVersion = new ElementVersion();
-	        elementVersion.setAtType(org.omg.sysml.model.ElementVersion.AtTypeEnum.ELEMENTVERSION);
-	        elementVersion.setData(element);
-	        elementVersion.setId(UUID.randomUUID());
-	        //elementVersion.setIdentity(identity);
-	        
-	        /*CommitContainingProject containingProject = new CommitContainingProject();
-	        containingProject.setId(UUID.randomUUID());
-	        
-	        body.addChangeItem(elementVersion);
-	        body.setContainingProject(containingProject);
-	        body.setId(UUID.randomUUID());
-	        //body.setPreviousCommit(null);
-	        Record previousCommit = new Record();
-	        previousCommit.setId(commit.getId());
-	        body.setPreviousCommit(previousCommit);
-	        */
 	        UUID branchId = null;
-	        	        
 			try {
 				
 				Commit response = api.postCommitByProject(projectId, body, branchId);
-				System.out.println("=== postCommitByProjectTest() ===\n" + response);
+				System.out.println("=== c_postCommitByProjectTest() ===\n" + response);
 				assertTrue(response != null);
+				UUID returnedCommitId = response.getId();
+				//check returned Commit is in the project (check by id)
+				try {
+					Commit c_response = api.getCommitByProjectAndId(projectId, returnedCommitId);
+					System.out.println("=== b_getCommitByProjectAndIdTest() ===\n" + c_response);
+					assertTrue(c_response != null);
+					assertTrue(c_response.getId().toString().compareTo(returnedCommitId.toString()) == 0);
+				} catch (ApiException e) {
+					e.printStackTrace();
+					fail("Failed - response(Commit) is null or the commit is not found from ");
+				}
 			} catch (ApiException e) {
 				System.out.println("=== ApiException: postCommitByProjectTest() ===\n");
 				System.out.println(e.getCode());
