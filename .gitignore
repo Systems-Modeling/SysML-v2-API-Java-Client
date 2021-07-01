@@ -19,3 +19,9 @@ hs_err_pid*
 target
 .gradle
 build
+
+#eclipse related files
+.classpath
+.project
+.settings/*.prefs
+
