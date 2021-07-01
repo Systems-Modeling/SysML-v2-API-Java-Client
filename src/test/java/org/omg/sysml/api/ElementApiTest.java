@@ -18,21 +18,16 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.Element;
-import org.omg.sysml.model.Error;
 import org.omg.sysml.model.Project;
 
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * wip - test returns list<element> contains element but without Id, then no able to test API requires elementId
@@ -52,7 +47,7 @@ public class ElementApiTest {
     @BeforeClass
     public static void setUp() {
 		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
+		apiClient.setBasePath("http://sysml2-dev.intercax.com:9000");
 	    api.setApiClient(apiClient);
 	    project_api.setApiClient(apiClient);
 	    commit_api.setApiClient(apiClient);
@@ -110,9 +105,11 @@ public class ElementApiTest {
 			List<Element> response = api.getRootsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
 			System.out.println("=== getRootsByProjectCommitTest() ===\n" + response.size());
 			assertTrue(response.size() > 0);
-			Element element = response.get(0);
-			System.out.println(element);
-			assertTrue(element.getIdentifier() != null);
+			for (int i = 0; i < response.size(); i++) {
+				Element element = response.get(i);
+				System.out.println(element);
+			}
+			//assertTrue(element.getAtId() != null);
 			//elementId = element.getId();
 			//System.out.println("elementId: " + elementId);
 			
