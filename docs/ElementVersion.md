@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**atId** | [**UUID**](UUID.md) |  |  [optional]
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
 **data** | [**Element**](Element.md) |  |  [optional]
-**id** | [**UUID**](UUID.md) |  |  [optional]
 **identity** | [**ElementIdentity**](ElementIdentity.md) |  |  [optional]
 
 

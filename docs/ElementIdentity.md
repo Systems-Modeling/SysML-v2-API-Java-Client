@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**atId** | [**UUID**](UUID.md) |  |  [optional]
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
-**id** | [**UUID**](UUID.md) |  |  [optional]
 
 
 

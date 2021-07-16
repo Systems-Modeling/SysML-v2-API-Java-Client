@@ -35,6 +35,10 @@ import org.omg.sysml.model.ElementIdentity;
  */
 
 public class Query {
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   /**
    * Gets or Sets atType
    */
@@ -88,10 +92,6 @@ public class Query {
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
   private BranchOwningProject owningProject;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
   public static final String SERIALIZED_NAME_SCOPE = "scope";
   @SerializedName(SERIALIZED_NAME_SCOPE)
   private List<ElementIdentity> scope = null;
@@ -103,6 +103,29 @@ public class Query {
   public static final String SERIALIZED_NAME_WHERE = "where";
   @SerializedName(SERIALIZED_NAME_WHERE)
   private Constraint where;
+
+
+  public Query atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
+  }
 
 
   public Query atType(AtTypeEnum atType) {
@@ -148,29 +171,6 @@ public class Query {
 
   public void setOwningProject(BranchOwningProject owningProject) {
     this.owningProject = owningProject;
-  }
-
-
-  public Query id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
   }
 
 
@@ -268,9 +268,9 @@ public class Query {
       return false;
     }
     Query query = (Query) o;
-    return Objects.equals(this.atType, query.atType) &&
+    return Objects.equals(this.atId, query.atId) &&
+        Objects.equals(this.atType, query.atType) &&
         Objects.equals(this.owningProject, query.owningProject) &&
-        Objects.equals(this.id, query.id) &&
         Objects.equals(this.scope, query.scope) &&
         Objects.equals(this.select, query.select) &&
         Objects.equals(this.where, query.where);
@@ -278,7 +278,7 @@ public class Query {
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, owningProject, id, scope, select, where);
+    return Objects.hash(atId, atType, owningProject, scope, select, where);
   }
 
 
@@ -286,9 +286,9 @@ public class Query {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Query {\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    select: ").append(toIndentedString(select)).append("\n");
     sb.append("    where: ").append(toIndentedString(where)).append("\n");

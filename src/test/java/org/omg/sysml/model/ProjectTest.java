@@ -43,6 +43,14 @@ public class ProjectTest {
     }
 
     /**
+     * Test the property 'atId'
+     */
+    @Test
+    public void atIdTest() {
+        // TODO: test atId
+    }
+
+    /**
      * Test the property 'atType'
      */
     @Test
@@ -64,14 +72,6 @@ public class ProjectTest {
     @Test
     public void descriptionTest() {
         // TODO: test description
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
     }
 
     /**

@@ -31,31 +31,31 @@ import java.util.UUID;
 @ApiModel(description = "Branch")
 
 public class ProjectDefaultBranch {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
 
 
-  public ProjectDefaultBranch id(UUID id) {
+  public ProjectDefaultBranch atId(UUID atId) {
     
-    this.id = id;
+    this.atId = atId;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get atId
+   * @return atId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public UUID getId() {
-    return id;
+  public UUID getAtId() {
+    return atId;
   }
 
 
-  public void setId(UUID id) {
-    this.id = id;
+  public void setAtId(UUID atId) {
+    this.atId = atId;
   }
 
 
@@ -68,12 +68,12 @@ public class ProjectDefaultBranch {
       return false;
     }
     ProjectDefaultBranch projectDefaultBranch = (ProjectDefaultBranch) o;
-    return Objects.equals(this.id, projectDefaultBranch.id);
+    return Objects.equals(this.atId, projectDefaultBranch.atId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(atId);
   }
 
 
@@ -81,7 +81,7 @@ public class ProjectDefaultBranch {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectDefaultBranch {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

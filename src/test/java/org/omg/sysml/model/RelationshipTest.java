@@ -45,19 +45,19 @@ public class RelationshipTest {
     }
 
     /**
-     * Test the property 'atType'
-     */
-    @Test
-    public void atTypeTest() {
-        // TODO: test atType
-    }
-
-    /**
      * Test the property 'atId'
      */
     @Test
     public void atIdTest() {
         // TODO: test atId
+    }
+
+    /**
+     * Test the property 'atType'
+     */
+    @Test
+    public void atTypeTest() {
+        // TODO: test atType
     }
 
     /**

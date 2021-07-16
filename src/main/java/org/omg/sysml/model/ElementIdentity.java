@@ -30,6 +30,10 @@ import java.util.UUID;
  */
 
 public class ElementIdentity {
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   /**
    * Gets or Sets atType
    */
@@ -79,9 +83,28 @@ public class ElementIdentity {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
+
+  public ElementIdentity atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
+  }
 
 
   public ElementIdentity atType(AtTypeEnum atType) {
@@ -107,29 +130,6 @@ public class ElementIdentity {
   }
 
 
-  public ElementIdentity id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -139,13 +139,13 @@ public class ElementIdentity {
       return false;
     }
     ElementIdentity elementIdentity = (ElementIdentity) o;
-    return Objects.equals(this.atType, elementIdentity.atType) &&
-        Objects.equals(this.id, elementIdentity.id);
+    return Objects.equals(this.atId, elementIdentity.atId) &&
+        Objects.equals(this.atType, elementIdentity.atType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, id);
+    return Objects.hash(atId, atType);
   }
 
 
@@ -153,8 +153,8 @@ public class ElementIdentity {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ElementIdentity {\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

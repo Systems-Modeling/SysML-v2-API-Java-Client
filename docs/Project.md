@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**atId** | [**UUID**](UUID.md) |  |  [optional]
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
 **defaultBranch** | [**ProjectDefaultBranch**](ProjectDefaultBranch.md) |  |  [optional]
 **description** | **String** |  |  [optional]
-**id** | [**UUID**](UUID.md) |  |  [optional]
 **name** | **String** |  |  [optional]
 
 

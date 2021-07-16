@@ -47,6 +47,14 @@ public class CommitTest {
     }
 
     /**
+     * Test the property 'atId'
+     */
+    @Test
+    public void atIdTest() {
+        // TODO: test atId
+    }
+
+    /**
      * Test the property 'atType'
      */
     @Test
@@ -68,14 +76,6 @@ public class CommitTest {
     @Test
     public void owningProjectTest() {
         // TODO: test owningProject
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
     }
 
     /**

@@ -40,16 +40,27 @@ paths:
                 items:
                   $ref: '#/components/schemas/Project'
                 type: array
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Project'
+                type: array
           description: Ok
         "415":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -74,16 +85,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Project'
           description: Created
         "415":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -113,6 +133,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Project'
           description: Ok
         "404":
           content: {}
@@ -122,10 +145,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -170,6 +199,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/Branch'
                 type: array
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Branch'
+                type: array
           description: Ok
         "404":
           content: {}
@@ -179,10 +213,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -215,16 +255,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Branch'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Branch'
           description: Created
         "415":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -261,6 +310,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Branch'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Branch'
           description: Ok
         "404":
           content: {}
@@ -270,10 +322,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -318,6 +376,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/Commit'
                 type: array
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Commit'
+                type: array
           description: Ok
         "404":
           content: {}
@@ -327,10 +390,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -369,16 +438,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Commit'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Commit'
           description: Created
         "415":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -415,6 +493,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Commit'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Commit'
           description: Ok
         "404":
           content: {}
@@ -424,10 +505,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
           description: The requested content type is not acceptable.
         "500":
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error.
@@ -1121,11 +1208,14 @@ components:
       example:
         '@type': Project
         defaultBranch:
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         description: description
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        '@id':
+          format: uuid
+          type: string
         '@type':
           enum:
           - Project
@@ -1134,22 +1224,22 @@ components:
           $ref: '#/components/schemas/Project_defaultBranch'
         description:
           type: string
-        id:
-          format: uuid
-          type: string
         name:
           type: string
       type: object
     Branch:
       example:
         head:
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         '@type': Branch
         name: name
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         owningProject:
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        '@id':
+          format: uuid
+          type: string
         '@type':
           enum:
           - Branch
@@ -1158,9 +1248,6 @@ components:
           $ref: '#/components/schemas/Branch_head'
         owningProject:
           $ref: '#/components/schemas/Branch_owningProject'
-        id:
-          format: uuid
-          type: string
         name:
           type: string
       type: object
@@ -1175,8 +1262,8 @@ components:
           '@type': ElementVersion
           identity:
             '@type': ElementIdentity
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - data:
             identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             '@type': '@type'
@@ -1184,14 +1271,17 @@ components:
           '@type': ElementVersion
           identity:
             '@type': ElementIdentity
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         previousCommit:
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         owningProject:
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        '@id':
+          format: uuid
+          type: string
         '@type':
           enum:
           - Commit
@@ -1202,9 +1292,6 @@ components:
           type: array
         owningProject:
           $ref: '#/components/schemas/Branch_owningProject'
-        id:
-          format: uuid
-          type: string
         previousCommit:
           $ref: '#/components/schemas/Branch_head'
       type: object
@@ -1217,32 +1304,32 @@ components:
         '@type': ElementVersion
         identity:
           '@type': ElementIdentity
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        '@id':
+          format: uuid
+          type: string
         '@type':
           enum:
           - ElementVersion
           type: string
         data:
           $ref: '#/components/schemas/Element'
-        id:
-          format: uuid
-          type: string
         identity:
           $ref: '#/components/schemas/ElementIdentity'
       type: object
     ElementIdentity:
       example:
         '@type': ElementIdentity
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        '@id':
+          format: uuid
+          type: string
         '@type':
           enum:
           - ElementIdentity
-          type: string
-        id:
-          format: uuid
           type: string
       type: object
     Identified:
@@ -1262,10 +1349,10 @@ components:
         '@type': '@type'
         '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        '@type':
-          type: string
         '@id':
           format: uuid
+          type: string
+        '@type':
           type: string
         identifier:
           format: uuid
@@ -1283,10 +1370,10 @@ components:
         - '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        '@type':
-          type: string
         '@id':
           format: uuid
+          type: string
+        '@type':
           type: string
         identifier:
           format: uuid
@@ -1308,24 +1395,24 @@ components:
         '@type': Query
         scope:
         - '@type': ElementIdentity
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - '@type': ElementIdentity
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         where:
           '@type': PrimitiveConstraint
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         owningProject:
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        '@id':
+          format: uuid
+          type: string
         '@type':
           enum:
           - Query
           type: string
         owningProject:
           $ref: '#/components/schemas/Branch_owningProject'
-        id:
-          format: uuid
-          type: string
         scope:
           items:
             $ref: '#/components/schemas/ElementIdentity'
@@ -1397,25 +1484,25 @@ components:
     Project_defaultBranch:
       description: Branch
       example:
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        id:
+        '@id':
           format: uuid
           type: string
     Branch_head:
       description: Commit
       example:
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        id:
+        '@id':
           format: uuid
           type: string
     Branch_owningProject:
       description: Project
       example:
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
-        id:
+        '@id':
           format: uuid
           type: string
 

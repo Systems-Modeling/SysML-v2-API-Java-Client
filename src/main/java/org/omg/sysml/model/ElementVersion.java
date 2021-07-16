@@ -32,6 +32,10 @@ import org.omg.sysml.model.ElementIdentity;
  */
 
 public class ElementVersion {
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   /**
    * Gets or Sets atType
    */
@@ -85,13 +89,32 @@ public class ElementVersion {
   @SerializedName(SERIALIZED_NAME_DATA)
   private Element data;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
   public static final String SERIALIZED_NAME_IDENTITY = "identity";
   @SerializedName(SERIALIZED_NAME_IDENTITY)
   private ElementIdentity identity;
+
+
+  public ElementVersion atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
+  }
 
 
   public ElementVersion atType(AtTypeEnum atType) {
@@ -140,29 +163,6 @@ public class ElementVersion {
   }
 
 
-  public ElementVersion id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
   public ElementVersion identity(ElementIdentity identity) {
     
     this.identity = identity;
@@ -195,15 +195,15 @@ public class ElementVersion {
       return false;
     }
     ElementVersion elementVersion = (ElementVersion) o;
-    return Objects.equals(this.atType, elementVersion.atType) &&
+    return Objects.equals(this.atId, elementVersion.atId) &&
+        Objects.equals(this.atType, elementVersion.atType) &&
         Objects.equals(this.data, elementVersion.data) &&
-        Objects.equals(this.id, elementVersion.id) &&
         Objects.equals(this.identity, elementVersion.identity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, data, id, identity);
+    return Objects.hash(atId, atType, data, identity);
   }
 
 
@@ -211,9 +211,9 @@ public class ElementVersion {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ElementVersion {\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
     sb.append("}");
     return sb.toString();
