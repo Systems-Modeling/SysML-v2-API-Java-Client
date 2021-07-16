@@ -42,11 +42,11 @@ public class BranchOwningProjectTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'atId'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
+    public void atIdTest() {
+        // TODO: test atId
     }
 
 }

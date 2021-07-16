@@ -32,40 +32,17 @@ import java.util.UUID;
  */
 
 public class Element extends HashMap<String, Object> {
-  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
-  @SerializedName(SERIALIZED_NAME_AT_TYPE)
-  private String atType;
-
   public static final String SERIALIZED_NAME_AT_ID = "@id";
   @SerializedName(SERIALIZED_NAME_AT_ID)
   private UUID atId;
 
+  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
+  @SerializedName(SERIALIZED_NAME_AT_TYPE)
+  private String atType;
+
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
   private UUID identifier;
-
-
-  public Element atType(String atType) {
-    
-    this.atType = atType;
-    return this;
-  }
-
-   /**
-   * Get atType
-   * @return atType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getAtType() {
-    return atType;
-  }
-
-
-  public void setAtType(String atType) {
-    this.atType = atType;
-  }
 
 
   public Element atId(UUID atId) {
@@ -88,6 +65,29 @@ public class Element extends HashMap<String, Object> {
 
   public void setAtId(UUID atId) {
     this.atId = atId;
+  }
+
+
+  public Element atType(String atType) {
+    
+    this.atType = atType;
+    return this;
+  }
+
+   /**
+   * Get atType
+   * @return atType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getAtType() {
+    return atType;
+  }
+
+
+  public void setAtType(String atType) {
+    this.atType = atType;
   }
 
 
@@ -123,15 +123,15 @@ public class Element extends HashMap<String, Object> {
       return false;
     }
     Element element = (Element) o;
-    return Objects.equals(this.atType, element.atType) &&
-        Objects.equals(this.atId, element.atId) &&
+    return Objects.equals(this.atId, element.atId) &&
+        Objects.equals(this.atType, element.atType) &&
         Objects.equals(this.identifier, element.identifier) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, atId, identifier, super.hashCode());
+    return Objects.hash(atId, atType, identifier, super.hashCode());
   }
 
 
@@ -140,8 +140,8 @@ public class Element extends HashMap<String, Object> {
     StringBuilder sb = new StringBuilder();
     sb.append("class Element {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
+    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("}");
     return sb.toString();

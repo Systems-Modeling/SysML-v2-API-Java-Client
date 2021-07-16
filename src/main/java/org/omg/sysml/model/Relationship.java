@@ -33,13 +33,13 @@ import org.omg.sysml.model.Identified;
  */
 
 public class Relationship {
-  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
-  @SerializedName(SERIALIZED_NAME_AT_TYPE)
-  private String atType;
-
   public static final String SERIALIZED_NAME_AT_ID = "@id";
   @SerializedName(SERIALIZED_NAME_AT_ID)
   private UUID atId;
+
+  public static final String SERIALIZED_NAME_AT_TYPE = "@type";
+  @SerializedName(SERIALIZED_NAME_AT_TYPE)
+  private String atType;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
@@ -52,29 +52,6 @@ public class Relationship {
   public static final String SERIALIZED_NAME_TARGET = "target";
   @SerializedName(SERIALIZED_NAME_TARGET)
   private List<Identified> target = null;
-
-
-  public Relationship atType(String atType) {
-    
-    this.atType = atType;
-    return this;
-  }
-
-   /**
-   * Get atType
-   * @return atType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getAtType() {
-    return atType;
-  }
-
-
-  public void setAtType(String atType) {
-    this.atType = atType;
-  }
 
 
   public Relationship atId(UUID atId) {
@@ -97,6 +74,29 @@ public class Relationship {
 
   public void setAtId(UUID atId) {
     this.atId = atId;
+  }
+
+
+  public Relationship atType(String atType) {
+    
+    this.atType = atType;
+    return this;
+  }
+
+   /**
+   * Get atType
+   * @return atType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getAtType() {
+    return atType;
+  }
+
+
+  public void setAtType(String atType) {
+    this.atType = atType;
   }
 
 
@@ -194,8 +194,8 @@ public class Relationship {
       return false;
     }
     Relationship relationship = (Relationship) o;
-    return Objects.equals(this.atType, relationship.atType) &&
-        Objects.equals(this.atId, relationship.atId) &&
+    return Objects.equals(this.atId, relationship.atId) &&
+        Objects.equals(this.atType, relationship.atType) &&
         Objects.equals(this.identifier, relationship.identifier) &&
         Objects.equals(this.source, relationship.source) &&
         Objects.equals(this.target, relationship.target);
@@ -203,7 +203,7 @@ public class Relationship {
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, atId, identifier, source, target);
+    return Objects.hash(atId, atType, identifier, source, target);
   }
 
 
@@ -211,8 +211,8 @@ public class Relationship {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Relationship {\n");
-    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
+    sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    target: ").append(toIndentedString(target)).append("\n");

@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**atId** | [**UUID**](UUID.md) |  |  [optional]
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
 **owningProject** | [**BranchOwningProject**](BranchOwningProject.md) |  |  [optional]
-**id** | [**UUID**](UUID.md) |  |  [optional]
 **scope** | [**List&lt;ElementIdentity&gt;**](ElementIdentity.md) |  |  [optional]
 **select** | **List&lt;String&gt;** |  |  [optional]
 **where** | [**Constraint**](Constraint.md) |  |  [optional]

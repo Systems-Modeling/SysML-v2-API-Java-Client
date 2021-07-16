@@ -31,31 +31,31 @@ import java.util.UUID;
 @ApiModel(description = "Commit")
 
 public class BranchHead {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
 
 
-  public BranchHead id(UUID id) {
+  public BranchHead atId(UUID atId) {
     
-    this.id = id;
+    this.atId = atId;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get atId
+   * @return atId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public UUID getId() {
-    return id;
+  public UUID getAtId() {
+    return atId;
   }
 
 
-  public void setId(UUID id) {
-    this.id = id;
+  public void setAtId(UUID atId) {
+    this.atId = atId;
   }
 
 
@@ -68,12 +68,12 @@ public class BranchHead {
       return false;
     }
     BranchHead branchHead = (BranchHead) o;
-    return Objects.equals(this.id, branchHead.id);
+    return Objects.equals(this.atId, branchHead.atId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(atId);
   }
 
 
@@ -81,7 +81,7 @@ public class BranchHead {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BranchHead {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
