@@ -32,6 +32,10 @@ import org.omg.sysml.model.BranchOwningProject;
  */
 
 public class Branch {
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   /**
    * Gets or Sets atType
    */
@@ -89,13 +93,32 @@ public class Branch {
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
   private BranchOwningProject owningProject;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+
+  public Branch atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
+  }
 
 
   public Branch atType(AtTypeEnum atType) {
@@ -167,29 +190,6 @@ public class Branch {
   }
 
 
-  public Branch id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
   public Branch name(String name) {
     
     this.name = name;
@@ -222,16 +222,16 @@ public class Branch {
       return false;
     }
     Branch branch = (Branch) o;
-    return Objects.equals(this.atType, branch.atType) &&
+    return Objects.equals(this.atId, branch.atId) &&
+        Objects.equals(this.atType, branch.atType) &&
         Objects.equals(this.head, branch.head) &&
         Objects.equals(this.owningProject, branch.owningProject) &&
-        Objects.equals(this.id, branch.id) &&
         Objects.equals(this.name, branch.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, head, owningProject, id, name);
+    return Objects.hash(atId, atType, head, owningProject, name);
   }
 
 
@@ -239,10 +239,10 @@ public class Branch {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Branch {\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    head: ").append(toIndentedString(head)).append("\n");
     sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

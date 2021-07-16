@@ -31,6 +31,10 @@ import org.omg.sysml.model.ProjectDefaultBranch;
  */
 
 public class Project {
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   /**
    * Gets or Sets atType
    */
@@ -88,13 +92,32 @@ public class Project {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+
+  public Project atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
+  }
 
 
   public Project atType(AtTypeEnum atType) {
@@ -166,29 +189,6 @@ public class Project {
   }
 
 
-  public Project id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
   public Project name(String name) {
     
     this.name = name;
@@ -221,16 +221,16 @@ public class Project {
       return false;
     }
     Project project = (Project) o;
-    return Objects.equals(this.atType, project.atType) &&
+    return Objects.equals(this.atId, project.atId) &&
+        Objects.equals(this.atType, project.atType) &&
         Objects.equals(this.defaultBranch, project.defaultBranch) &&
         Objects.equals(this.description, project.description) &&
-        Objects.equals(this.id, project.id) &&
         Objects.equals(this.name, project.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, defaultBranch, description, id, name);
+    return Objects.hash(atId, atType, defaultBranch, description, name);
   }
 
 
@@ -238,10 +238,10 @@ public class Project {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Project {\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    defaultBranch: ").append(toIndentedString(defaultBranch)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

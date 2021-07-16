@@ -35,6 +35,10 @@ import org.omg.sysml.model.ElementVersion;
  */
 
 public class Commit {
+  public static final String SERIALIZED_NAME_AT_ID = "@id";
+  @SerializedName(SERIALIZED_NAME_AT_ID)
+  private UUID atId;
+
   /**
    * Gets or Sets atType
    */
@@ -92,13 +96,32 @@ public class Commit {
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
   private BranchOwningProject owningProject;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
   public static final String SERIALIZED_NAME_PREVIOUS_COMMIT = "previousCommit";
   @SerializedName(SERIALIZED_NAME_PREVIOUS_COMMIT)
   private BranchHead previousCommit;
+
+
+  public Commit atId(UUID atId) {
+    
+    this.atId = atId;
+    return this;
+  }
+
+   /**
+   * Get atId
+   * @return atId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UUID getAtId() {
+    return atId;
+  }
+
+
+  public void setAtId(UUID atId) {
+    this.atId = atId;
+  }
 
 
   public Commit atType(AtTypeEnum atType) {
@@ -178,29 +201,6 @@ public class Commit {
   }
 
 
-  public Commit id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
   public Commit previousCommit(BranchHead previousCommit) {
     
     this.previousCommit = previousCommit;
@@ -233,16 +233,16 @@ public class Commit {
       return false;
     }
     Commit commit = (Commit) o;
-    return Objects.equals(this.atType, commit.atType) &&
+    return Objects.equals(this.atId, commit.atId) &&
+        Objects.equals(this.atType, commit.atType) &&
         Objects.equals(this.change, commit.change) &&
         Objects.equals(this.owningProject, commit.owningProject) &&
-        Objects.equals(this.id, commit.id) &&
         Objects.equals(this.previousCommit, commit.previousCommit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atType, change, owningProject, id, previousCommit);
+    return Objects.hash(atId, atType, change, owningProject, previousCommit);
   }
 
 
@@ -250,10 +250,10 @@ public class Commit {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Commit {\n");
+    sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    change: ").append(toIndentedString(change)).append("\n");
     sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    previousCommit: ").append(toIndentedString(previousCommit)).append("\n");
     sb.append("}");
     return sb.toString();

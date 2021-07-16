@@ -44,6 +44,14 @@ public class ElementVersionTest {
     }
 
     /**
+     * Test the property 'atId'
+     */
+    @Test
+    public void atIdTest() {
+        // TODO: test atId
+    }
+
+    /**
      * Test the property 'atType'
      */
     @Test
@@ -57,14 +65,6 @@ public class ElementVersionTest {
     @Test
     public void dataTest() {
         // TODO: test data
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
     }
 
     /**

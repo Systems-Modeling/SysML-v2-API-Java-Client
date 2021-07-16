@@ -47,6 +47,14 @@ public class QueryTest {
     }
 
     /**
+     * Test the property 'atId'
+     */
+    @Test
+    public void atIdTest() {
+        // TODO: test atId
+    }
+
+    /**
      * Test the property 'atType'
      */
     @Test
@@ -60,14 +68,6 @@ public class QueryTest {
     @Test
     public void owningProjectTest() {
         // TODO: test owningProject
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
     }
 
     /**
