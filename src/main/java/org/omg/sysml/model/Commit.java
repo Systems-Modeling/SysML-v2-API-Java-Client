@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.BranchOwningProject;
-import org.omg.sysml.model.ElementVersion;
+import org.omg.sysml.model.DataVersion;
 
 /**
  * Commit
@@ -90,7 +90,7 @@ public class Commit {
 
   public static final String SERIALIZED_NAME_CHANGE = "change";
   @SerializedName(SERIALIZED_NAME_CHANGE)
-  private List<ElementVersion> change = null;
+  private List<DataVersion> change = null;
 
   public static final String SERIALIZED_NAME_OWNING_PROJECT = "owningProject";
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
@@ -147,15 +147,15 @@ public class Commit {
   }
 
 
-  public Commit change(List<ElementVersion> change) {
+  public Commit change(List<DataVersion> change) {
     
     this.change = change;
     return this;
   }
 
-  public Commit addChangeItem(ElementVersion changeItem) {
+  public Commit addChangeItem(DataVersion changeItem) {
     if (this.change == null) {
-      this.change = new ArrayList<ElementVersion>();
+      this.change = new ArrayList<DataVersion>();
     }
     this.change.add(changeItem);
     return this;
@@ -168,12 +168,12 @@ public class Commit {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<ElementVersion> getChange() {
+  public List<DataVersion> getChange() {
     return change;
   }
 
 
-  public void setChange(List<ElementVersion> change) {
+  public void setChange(List<DataVersion> change) {
     this.change = change;
   }
 

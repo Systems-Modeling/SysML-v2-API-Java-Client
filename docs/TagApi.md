@@ -1,20 +1,20 @@
-# BranchApi
+# TagApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteBranchByProjectAndId**](BranchApi.md#deleteBranchByProjectAndId) | **DELETE** /projects/{projectId}/branches/{branchId} | Delete branch by project and ID
-[**getBranchesByProject**](BranchApi.md#getBranchesByProject) | **GET** /projects/{projectId}/branches | Get branches by project
-[**getBranchesByProjectAndId**](BranchApi.md#getBranchesByProjectAndId) | **GET** /projects/{projectId}/branches/{branchId} | Get branch by project and ID
-[**postBranchByProject**](BranchApi.md#postBranchByProject) | **POST** /projects/{projectId}/branches | Create branch by project
+[**deleteTagByProjectAndId**](TagApi.md#deleteTagByProjectAndId) | **DELETE** /projects/{projectId}/tags/{tagId} | Delete tag by project and ID
+[**getTagByProjectAndId**](TagApi.md#getTagByProjectAndId) | **GET** /projects/{projectId}/tags/{tagId} | Get tag by project and ID
+[**getTagsByProject**](TagApi.md#getTagsByProject) | **GET** /projects/{projectId}/tags | Get tags by project
+[**postTagByProject**](TagApi.md#postTagByProject) | **POST** /projects/{projectId}/tags | Create tag by project
 
 
-<a name="deleteBranchByProjectAndId"></a>
-# **deleteBranchByProjectAndId**
-> Branch deleteBranchByProjectAndId(projectId, branchId)
+<a name="deleteTagByProjectAndId"></a>
+# **deleteTagByProjectAndId**
+> Tag deleteTagByProjectAndId(projectId, tagId)
 
-Delete branch by project and ID
+Delete tag by project and ID
 
 ### Example
 ```java
@@ -23,21 +23,21 @@ import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.models.*;
-import org.omg.sysml.api.BranchApi;
+import org.omg.sysml.api.TagApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    BranchApi apiInstance = new BranchApi(defaultClient);
+    TagApi apiInstance = new TagApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
-    UUID branchId = new UUID(); // UUID | ID of the branch
+    UUID tagId = new UUID(); // UUID | ID of the tag
     try {
-      Branch result = apiInstance.deleteBranchByProjectAndId(projectId, branchId);
+      Tag result = apiInstance.deleteTagByProjectAndId(projectId, tagId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling BranchApi#deleteBranchByProjectAndId");
+      System.err.println("Exception when calling TagApi#deleteTagByProjectAndId");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -52,11 +52,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | [**UUID**](.md)| ID of the project |
- **branchId** | [**UUID**](.md)| ID of the branch |
+ **tagId** | [**UUID**](.md)| ID of the tag |
 
 ### Return type
 
-[**Branch**](Branch.md)
+[**Tag**](Tag.md)
 
 ### Authorization
 
@@ -76,11 +76,11 @@ No authorization required
 **500** | Internal server error. |  -  |
 **0** | Unexpected response. |  -  |
 
-<a name="getBranchesByProject"></a>
-# **getBranchesByProject**
-> List&lt;Branch&gt; getBranchesByProject(projectId, pageAfter, pageBefore, pageSize)
+<a name="getTagByProjectAndId"></a>
+# **getTagByProjectAndId**
+> Tag getTagByProjectAndId(projectId, tagId)
 
-Get branches by project
+Get tag by project and ID
 
 ### Example
 ```java
@@ -89,23 +89,89 @@ import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.models.*;
-import org.omg.sysml.api.BranchApi;
+import org.omg.sysml.api.TagApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    BranchApi apiInstance = new BranchApi(defaultClient);
+    TagApi apiInstance = new TagApi(defaultClient);
+    UUID projectId = new UUID(); // UUID | ID of the project
+    UUID tagId = new UUID(); // UUID | ID of the tag
+    try {
+      Tag result = apiInstance.getTagByProjectAndId(projectId, tagId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TagApi#getTagByProjectAndId");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | [**UUID**](.md)| ID of the project |
+ **tagId** | [**UUID**](.md)| ID of the tag |
+
+### Return type
+
+[**Tag**](Tag.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/ld+json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**404** | Not found. |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
+
+<a name="getTagsByProject"></a>
+# **getTagsByProject**
+> List&lt;Tag&gt; getTagsByProject(projectId, pageAfter, pageBefore, pageSize)
+
+Get tags by project
+
+### Example
+```java
+// Import classes:
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.TagApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TagApi apiInstance = new TagApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
     String pageAfter = "pageAfter_example"; // String | Page after
     String pageBefore = "pageBefore_example"; // String | Page before
     Integer pageSize = 56; // Integer | Page size
     try {
-      List<Branch> result = apiInstance.getBranchesByProject(projectId, pageAfter, pageBefore, pageSize);
+      List<Tag> result = apiInstance.getTagsByProject(projectId, pageAfter, pageBefore, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling BranchApi#getBranchesByProject");
+      System.err.println("Exception when calling TagApi#getTagsByProject");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -126,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;Branch&gt;**](Branch.md)
+[**List&lt;Tag&gt;**](Tag.md)
 
 ### Authorization
 
@@ -146,11 +212,11 @@ No authorization required
 **500** | Internal server error. |  -  |
 **0** | Unexpected response. |  -  |
 
-<a name="getBranchesByProjectAndId"></a>
-# **getBranchesByProjectAndId**
-> Branch getBranchesByProjectAndId(projectId, branchId)
+<a name="postTagByProject"></a>
+# **postTagByProject**
+> Branch postTagByProject(projectId, body)
 
-Get branch by project and ID
+Create tag by project
 
 ### Example
 ```java
@@ -159,21 +225,21 @@ import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.Configuration;
 import org.omg.sysml.models.*;
-import org.omg.sysml.api.BranchApi;
+import org.omg.sysml.api.TagApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
 
-    BranchApi apiInstance = new BranchApi(defaultClient);
+    TagApi apiInstance = new TagApi(defaultClient);
     UUID projectId = new UUID(); // UUID | ID of the project
-    UUID branchId = new UUID(); // UUID | ID of the branch
+    Tag body = new Tag(); // Tag | 
     try {
-      Branch result = apiInstance.getBranchesByProjectAndId(projectId, branchId);
+      Branch result = apiInstance.postTagByProject(projectId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling BranchApi#getBranchesByProjectAndId");
+      System.err.println("Exception when calling TagApi#postTagByProject");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -188,73 +254,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | [**UUID**](.md)| ID of the project |
- **branchId** | [**UUID**](.md)| ID of the branch |
-
-### Return type
-
-[**Branch**](Branch.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/ld+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ok |  -  |
-**404** | Not found. |  -  |
-**415** | The requested content type is not acceptable. |  -  |
-**500** | Internal server error. |  -  |
-**0** | Unexpected response. |  -  |
-
-<a name="postBranchByProject"></a>
-# **postBranchByProject**
-> Branch postBranchByProject(projectId, body)
-
-Create branch by project
-
-### Example
-```java
-// Import classes:
-import org.omg.sysml.ApiClient;
-import org.omg.sysml.ApiException;
-import org.omg.sysml.Configuration;
-import org.omg.sysml.models.*;
-import org.omg.sysml.api.BranchApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    BranchApi apiInstance = new BranchApi(defaultClient);
-    UUID projectId = new UUID(); // UUID | ID of the project
-    Branch body = new Branch(); // Branch | 
-    try {
-      Branch result = apiInstance.postBranchByProject(projectId, body);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling BranchApi#postBranchByProject");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | [**UUID**](.md)| ID of the project |
- **body** | [**Branch**](Branch.md)|  |
+ **body** | [**Tag**](Tag.md)|  |
 
 ### Return type
 

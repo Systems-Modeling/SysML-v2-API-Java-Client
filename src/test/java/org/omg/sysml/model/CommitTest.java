@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.BranchOwningProject;
-import org.omg.sysml.model.ElementVersion;
+import org.omg.sysml.model.DataVersion;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

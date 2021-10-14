@@ -1,6 +1,6 @@
 
 
-# ElementVersion
+# DataVersion
 
 ## Properties
 
@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atId** | [**UUID**](UUID.md) |  |  [optional]
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
-**data** | [**Element**](Element.md) |  |  [optional]
-**identity** | [**ElementIdentity**](ElementIdentity.md) |  |  [optional]
+**payload** | [**Data**](Data.md) |  |  [optional]
+**identity** | [**DataIdentity**](DataIdentity.md) |  |  [optional]
 
 
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-ELEMENTVERSION | &quot;ElementVersion&quot;
+DATAVERSION | &quot;DataVersion&quot;
 
 
 

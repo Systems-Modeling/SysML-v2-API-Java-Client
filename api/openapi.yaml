@@ -8,6 +8,7 @@ servers:
 tags:
 - name: Project
 - name: Branch
+- name: Tag
 - name: Commit
 - name: Element
 - name: Relationship
@@ -117,6 +118,54 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
   /projects/{projectId}:
+    delete:
+      operationId: deleteProjectById
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Delete project by ID
+      tags:
+      - Project
+      x-accepts: application/json
     get:
       operationId: getProjectById
       parameters:
@@ -164,6 +213,59 @@ paths:
       summary: Get project by ID
       tags:
       - Project
+      x-accepts: application/json
+    put:
+      operationId: putProjectById
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Ok
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Update project by ID
+      tags:
+      - Project
+      x-codegen-request-body-name: body
+      x-contentType: application/json
       x-accepts: application/json
   /projects/{projectId}/branches:
     get:
@@ -287,6 +389,61 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
   /projects/{projectId}/branches/{branchId}:
+    delete:
+      operationId: deleteBranchByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the branch
+        in: path
+        name: branchId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Delete branch by project and ID
+      tags:
+      - Branch
+      x-accepts: application/json
     get:
       operationId: getBranchesByProjectAndId
       parameters:
@@ -341,6 +498,238 @@ paths:
       summary: Get branch by project and ID
       tags:
       - Branch
+      x-accepts: application/json
+  /projects/{projectId}/tags:
+    get:
+      operationId: getTagsByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Page after
+        in: query
+        name: page[after]
+        schema:
+          type: string
+      - description: Page before
+        in: query
+        name: page[before]
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: page[size]
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Tag'
+                type: array
+            application/ld+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Tag'
+                type: array
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get tags by project
+      tags:
+      - Tag
+      x-accepts: application/json
+    post:
+      operationId: postTagByProject
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+          description: Created
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Create tag by project
+      tags:
+      - Tag
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /projects/{projectId}/tags/{tagId}:
+    delete:
+      operationId: deleteTagByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the tag
+        in: path
+        name: tagId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Delete tag by project and ID
+      tags:
+      - Tag
+      x-accepts: application/json
+    get:
+      operationId: getTagByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the tag
+        in: path
+        name: tagId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Get tag by project and ID
+      tags:
+      - Tag
       x-accepts: application/json
   /projects/{projectId}/commits:
     get:
@@ -930,6 +1319,52 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
   /projects/{projectId}/queries/{queryId}:
+    delete:
+      operationId: deleteQueryByProjectAndId
+      parameters:
+      - description: ID of the project
+        in: path
+        name: projectId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: ID of the query
+        in: path
+        name: queryId
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+          description: Ok
+        "404":
+          content: {}
+          description: Not found.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested content type is not acceptable.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error.
+        default:
+          content: {}
+          description: Unexpected response.
+      summary: Delete query by project and ID
+      tags:
+      - Query
+      x-accepts: application/json
     get:
       operationId: getQueryByProjectAndId
       parameters:
@@ -1234,8 +1669,11 @@ components:
         '@type': Branch
         name: name
         '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        referencedCommit:
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         owningProject:
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         '@id':
           format: uuid
@@ -1246,31 +1684,66 @@ components:
           type: string
         head:
           $ref: '#/components/schemas/Branch_head'
+        name:
+          type: string
         owningProject:
           $ref: '#/components/schemas/Branch_owningProject'
+        referencedCommit:
+          $ref: '#/components/schemas/Branch_head'
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    Tag:
+      example:
+        '@type': Tag
+        taggedCommit:
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        referencedCommit:
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        owningProject:
+          '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        '@id':
+          format: uuid
+          type: string
+        '@type':
+          enum:
+          - Tag
+          type: string
         name:
+          type: string
+        owningProject:
+          $ref: '#/components/schemas/Branch_owningProject'
+        referencedCommit:
+          $ref: '#/components/schemas/Branch_head'
+        taggedCommit:
+          $ref: '#/components/schemas/Branch_head'
+        timestamp:
+          format: date-time
           type: string
       type: object
     Commit:
       example:
         '@type': Commit
         change:
-        - data:
-            identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - payload:
             '@type': '@type'
             '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          '@type': ElementVersion
+          '@type': DataVersion
           identity:
-            '@type': ElementIdentity
+            '@type': DataIdentity
             '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - data:
-            identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - payload:
             '@type': '@type'
             '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          '@type': ElementVersion
+          '@type': DataVersion
           identity:
-            '@type': ElementIdentity
+            '@type': DataIdentity
             '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         previousCommit:
@@ -1288,22 +1761,21 @@ components:
           type: string
         change:
           items:
-            $ref: '#/components/schemas/ElementVersion'
+            $ref: '#/components/schemas/DataVersion'
           type: array
         owningProject:
           $ref: '#/components/schemas/Branch_owningProject'
         previousCommit:
           $ref: '#/components/schemas/Branch_head'
       type: object
-    ElementVersion:
+    DataVersion:
       example:
-        data:
-          identifier: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        payload:
           '@type': '@type'
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        '@type': ElementVersion
+        '@type': DataVersion
         identity:
-          '@type': ElementIdentity
+          '@type': DataIdentity
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -1312,16 +1784,16 @@ components:
           type: string
         '@type':
           enum:
-          - ElementVersion
+          - DataVersion
           type: string
-        data:
-          $ref: '#/components/schemas/Element'
+        payload:
+          $ref: '#/components/schemas/Data'
         identity:
-          $ref: '#/components/schemas/ElementIdentity'
+          $ref: '#/components/schemas/DataIdentity'
       type: object
-    ElementIdentity:
+    DataIdentity:
       example:
-        '@type': ElementIdentity
+        '@type': DataIdentity
         '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         '@id':
@@ -1329,8 +1801,26 @@ components:
           type: string
         '@type':
           enum:
-          - ElementIdentity
+          - DataIdentity
           type: string
+      type: object
+    Data:
+      additionalProperties:
+        properties: {}
+        type: object
+      discriminator:
+        propertyName: '@type'
+      example:
+        '@type': '@type'
+        '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        '@id':
+          format: uuid
+          type: string
+        '@type':
+          type: string
+      required:
+      - '@type'
       type: object
     Identified:
       example:
@@ -1394,9 +1884,9 @@ components:
         - select
         '@type': Query
         scope:
-        - '@type': ElementIdentity
+        - '@type': DataIdentity
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - '@type': ElementIdentity
+        - '@type': DataIdentity
           '@id': 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         where:
           '@type': PrimitiveConstraint
@@ -1415,7 +1905,7 @@ components:
           $ref: '#/components/schemas/Branch_owningProject'
         scope:
           items:
-            $ref: '#/components/schemas/ElementIdentity'
+            $ref: '#/components/schemas/DataIdentity'
           type: array
         select:
           items:

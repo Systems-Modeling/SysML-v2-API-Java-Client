@@ -27,8 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import org.omg.sysml.model.Branch;
 import org.omg.sysml.model.Error;
-import org.omg.sysml.model.Project;
+import org.omg.sysml.model.Tag;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
@@ -37,14 +38,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjectApi {
+public class TagApi {
     private ApiClient localVarApiClient;
 
-    public ProjectApi() {
+    public TagApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ProjectApi(ApiClient apiClient) {
+    public TagApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -57,8 +58,9 @@ public class ProjectApi {
     }
 
     /**
-     * Build call for deleteProjectById
+     * Build call for deleteTagByProjectAndId
      * @param projectId ID of the project (required)
+     * @param tagId ID of the tag (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -72,12 +74,13 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProjectByIdCall(UUID projectId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteTagByProjectAndIdCall(UUID projectId, UUID tagId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/projects/{projectId}"
-            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
+        String localVarPath = "/projects/{projectId}/tags/{tagId}"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "tagId" + "\\}", localVarApiClient.escapeString(tagId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -103,24 +106,30 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteProjectByIdValidateBeforeCall(UUID projectId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteTagByProjectAndIdValidateBeforeCall(UUID projectId, UUID tagId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
-            throw new ApiException("Missing the required parameter 'projectId' when calling deleteProjectById(Async)");
+            throw new ApiException("Missing the required parameter 'projectId' when calling deleteTagByProjectAndId(Async)");
+        }
+        
+        // verify the required parameter 'tagId' is set
+        if (tagId == null) {
+            throw new ApiException("Missing the required parameter 'tagId' when calling deleteTagByProjectAndId(Async)");
         }
         
 
-        okhttp3.Call localVarCall = deleteProjectByIdCall(projectId, _callback);
+        okhttp3.Call localVarCall = deleteTagByProjectAndIdCall(projectId, tagId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Delete project by ID
+     * Delete tag by project and ID
      * 
      * @param projectId ID of the project (required)
-     * @return Project
+     * @param tagId ID of the tag (required)
+     * @return Tag
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -132,16 +141,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Project deleteProjectById(UUID projectId) throws ApiException {
-        ApiResponse<Project> localVarResp = deleteProjectByIdWithHttpInfo(projectId);
+    public Tag deleteTagByProjectAndId(UUID projectId, UUID tagId) throws ApiException {
+        ApiResponse<Tag> localVarResp = deleteTagByProjectAndIdWithHttpInfo(projectId, tagId);
         return localVarResp.getData();
     }
 
     /**
-     * Delete project by ID
+     * Delete tag by project and ID
      * 
      * @param projectId ID of the project (required)
-     * @return ApiResponse&lt;Project&gt;
+     * @param tagId ID of the tag (required)
+     * @return ApiResponse&lt;Tag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -153,16 +163,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Project> deleteProjectByIdWithHttpInfo(UUID projectId) throws ApiException {
-        okhttp3.Call localVarCall = deleteProjectByIdValidateBeforeCall(projectId, null);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+    public ApiResponse<Tag> deleteTagByProjectAndIdWithHttpInfo(UUID projectId, UUID tagId) throws ApiException {
+        okhttp3.Call localVarCall = deleteTagByProjectAndIdValidateBeforeCall(projectId, tagId, null);
+        Type localVarReturnType = new TypeToken<Tag>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Delete project by ID (asynchronously)
+     * Delete tag by project and ID (asynchronously)
      * 
      * @param projectId ID of the project (required)
+     * @param tagId ID of the tag (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -176,16 +187,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProjectByIdAsync(UUID projectId, final ApiCallback<Project> _callback) throws ApiException {
+    public okhttp3.Call deleteTagByProjectAndIdAsync(UUID projectId, UUID tagId, final ApiCallback<Tag> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteProjectByIdValidateBeforeCall(projectId, _callback);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+        okhttp3.Call localVarCall = deleteTagByProjectAndIdValidateBeforeCall(projectId, tagId, _callback);
+        Type localVarReturnType = new TypeToken<Tag>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getProjectById
+     * Build call for getTagByProjectAndId
      * @param projectId ID of the project (required)
+     * @param tagId ID of the tag (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -199,12 +211,13 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectByIdCall(UUID projectId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getTagByProjectAndIdCall(UUID projectId, UUID tagId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/projects/{projectId}"
-            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
+        String localVarPath = "/projects/{projectId}/tags/{tagId}"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "tagId" + "\\}", localVarApiClient.escapeString(tagId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -230,24 +243,30 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProjectByIdValidateBeforeCall(UUID projectId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getTagByProjectAndIdValidateBeforeCall(UUID projectId, UUID tagId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
-            throw new ApiException("Missing the required parameter 'projectId' when calling getProjectById(Async)");
+            throw new ApiException("Missing the required parameter 'projectId' when calling getTagByProjectAndId(Async)");
+        }
+        
+        // verify the required parameter 'tagId' is set
+        if (tagId == null) {
+            throw new ApiException("Missing the required parameter 'tagId' when calling getTagByProjectAndId(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getProjectByIdCall(projectId, _callback);
+        okhttp3.Call localVarCall = getTagByProjectAndIdCall(projectId, tagId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get project by ID
+     * Get tag by project and ID
      * 
      * @param projectId ID of the project (required)
-     * @return Project
+     * @param tagId ID of the tag (required)
+     * @return Tag
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -259,16 +278,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Project getProjectById(UUID projectId) throws ApiException {
-        ApiResponse<Project> localVarResp = getProjectByIdWithHttpInfo(projectId);
+    public Tag getTagByProjectAndId(UUID projectId, UUID tagId) throws ApiException {
+        ApiResponse<Tag> localVarResp = getTagByProjectAndIdWithHttpInfo(projectId, tagId);
         return localVarResp.getData();
     }
 
     /**
-     * Get project by ID
+     * Get tag by project and ID
      * 
      * @param projectId ID of the project (required)
-     * @return ApiResponse&lt;Project&gt;
+     * @param tagId ID of the tag (required)
+     * @return ApiResponse&lt;Tag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -280,16 +300,17 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Project> getProjectByIdWithHttpInfo(UUID projectId) throws ApiException {
-        okhttp3.Call localVarCall = getProjectByIdValidateBeforeCall(projectId, null);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+    public ApiResponse<Tag> getTagByProjectAndIdWithHttpInfo(UUID projectId, UUID tagId) throws ApiException {
+        okhttp3.Call localVarCall = getTagByProjectAndIdValidateBeforeCall(projectId, tagId, null);
+        Type localVarReturnType = new TypeToken<Tag>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get project by ID (asynchronously)
+     * Get tag by project and ID (asynchronously)
      * 
      * @param projectId ID of the project (required)
+     * @param tagId ID of the tag (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -303,15 +324,16 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectByIdAsync(UUID projectId, final ApiCallback<Project> _callback) throws ApiException {
+    public okhttp3.Call getTagByProjectAndIdAsync(UUID projectId, UUID tagId, final ApiCallback<Tag> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProjectByIdValidateBeforeCall(projectId, _callback);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+        okhttp3.Call localVarCall = getTagByProjectAndIdValidateBeforeCall(projectId, tagId, _callback);
+        Type localVarReturnType = new TypeToken<Tag>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getProjects
+     * Build call for getTagsByProject
+     * @param projectId ID of the project (required)
      * @param pageAfter Page after (optional)
      * @param pageBefore Page before (optional)
      * @param pageSize Page size (optional)
@@ -322,16 +344,18 @@ public class ProjectApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectsCall(String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getTagsByProjectCall(UUID projectId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/projects";
+        String localVarPath = "/projects/{projectId}/tags"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -369,62 +393,72 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProjectsValidateBeforeCall(String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getTagsByProjectValidateBeforeCall(UUID projectId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling getTagsByProject(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = getProjectsCall(pageAfter, pageBefore, pageSize, _callback);
+        okhttp3.Call localVarCall = getTagsByProjectCall(projectId, pageAfter, pageBefore, pageSize, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get projects
+     * Get tags by project
      * 
+     * @param projectId ID of the project (required)
      * @param pageAfter Page after (optional)
      * @param pageBefore Page before (optional)
      * @param pageSize Page size (optional)
-     * @return List&lt;Project&gt;
+     * @return List&lt;Tag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public List<Project> getProjects(String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
-        ApiResponse<List<Project>> localVarResp = getProjectsWithHttpInfo(pageAfter, pageBefore, pageSize);
+    public List<Tag> getTagsByProject(UUID projectId, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        ApiResponse<List<Tag>> localVarResp = getTagsByProjectWithHttpInfo(projectId, pageAfter, pageBefore, pageSize);
         return localVarResp.getData();
     }
 
     /**
-     * Get projects
+     * Get tags by project
      * 
+     * @param projectId ID of the project (required)
      * @param pageAfter Page after (optional)
      * @param pageBefore Page before (optional)
      * @param pageSize Page size (optional)
-     * @return ApiResponse&lt;List&lt;Project&gt;&gt;
+     * @return ApiResponse&lt;List&lt;Tag&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Project>> getProjectsWithHttpInfo(String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
-        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(pageAfter, pageBefore, pageSize, null);
-        Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
+    public ApiResponse<List<Tag>> getTagsByProjectWithHttpInfo(UUID projectId, String pageAfter, String pageBefore, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getTagsByProjectValidateBeforeCall(projectId, pageAfter, pageBefore, pageSize, null);
+        Type localVarReturnType = new TypeToken<List<Tag>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get projects (asynchronously)
+     * Get tags by project (asynchronously)
      * 
+     * @param projectId ID of the project (required)
      * @param pageAfter Page after (optional)
      * @param pageBefore Page before (optional)
      * @param pageSize Page size (optional)
@@ -435,21 +469,23 @@ public class ProjectApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProjectsAsync(String pageAfter, String pageBefore, Integer pageSize, final ApiCallback<List<Project>> _callback) throws ApiException {
+    public okhttp3.Call getTagsByProjectAsync(UUID projectId, String pageAfter, String pageBefore, Integer pageSize, final ApiCallback<List<Tag>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProjectsValidateBeforeCall(pageAfter, pageBefore, pageSize, _callback);
-        Type localVarReturnType = new TypeToken<List<Project>>(){}.getType();
+        okhttp3.Call localVarCall = getTagsByProjectValidateBeforeCall(projectId, pageAfter, pageBefore, pageSize, _callback);
+        Type localVarReturnType = new TypeToken<List<Tag>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for postProject
-     * @param body  (optional)
+     * Build call for postTagByProject
+     * @param projectId ID of the project (required)
+     * @param body  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -462,11 +498,12 @@ public class ProjectApi {
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postProjectCall(Project body, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postTagByProjectCall(UUID projectId, Tag body, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
-        String localVarPath = "/projects";
+        String localVarPath = "/projects/{projectId}/tags"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -492,202 +529,88 @@ public class ProjectApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postProjectValidateBeforeCall(Project body, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = postProjectCall(body, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Create project
-     * 
-     * @param body  (optional)
-     * @return Project
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Project postProject(Project body) throws ApiException {
-        ApiResponse<Project> localVarResp = postProjectWithHttpInfo(body);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Create project
-     * 
-     * @param body  (optional)
-     * @return ApiResponse&lt;Project&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Project> postProjectWithHttpInfo(Project body) throws ApiException {
-        okhttp3.Call localVarCall = postProjectValidateBeforeCall(body, null);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Create project (asynchronously)
-     * 
-     * @param body  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call postProjectAsync(Project body, final ApiCallback<Project> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = postProjectValidateBeforeCall(body, _callback);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for putProjectById
-     * @param projectId ID of the project (required)
-     * @param body  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putProjectByIdCall(UUID projectId, Project body, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/projects/{projectId}"
-            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json", "application/ld+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call putProjectByIdValidateBeforeCall(UUID projectId, Project body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call postTagByProjectValidateBeforeCall(UUID projectId, Tag body, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'projectId' is set
         if (projectId == null) {
-            throw new ApiException("Missing the required parameter 'projectId' when calling putProjectById(Async)");
+            throw new ApiException("Missing the required parameter 'projectId' when calling postTagByProject(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling postTagByProject(Async)");
         }
         
 
-        okhttp3.Call localVarCall = putProjectByIdCall(projectId, body, _callback);
+        okhttp3.Call localVarCall = postTagByProjectCall(projectId, body, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update project by ID
+     * Create tag by project
      * 
      * @param projectId ID of the project (required)
-     * @param body  (optional)
-     * @return Project
+     * @param body  (required)
+     * @return Branch
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public Project putProjectById(UUID projectId, Project body) throws ApiException {
-        ApiResponse<Project> localVarResp = putProjectByIdWithHttpInfo(projectId, body);
+    public Branch postTagByProject(UUID projectId, Tag body) throws ApiException {
+        ApiResponse<Branch> localVarResp = postTagByProjectWithHttpInfo(projectId, body);
         return localVarResp.getData();
     }
 
     /**
-     * Update project by ID
+     * Create tag by project
      * 
      * @param projectId ID of the project (required)
-     * @param body  (optional)
-     * @return ApiResponse&lt;Project&gt;
+     * @param body  (required)
+     * @return ApiResponse&lt;Branch&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Project> putProjectByIdWithHttpInfo(UUID projectId, Project body) throws ApiException {
-        okhttp3.Call localVarCall = putProjectByIdValidateBeforeCall(projectId, body, null);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+    public ApiResponse<Branch> postTagByProjectWithHttpInfo(UUID projectId, Tag body) throws ApiException {
+        okhttp3.Call localVarCall = postTagByProjectValidateBeforeCall(projectId, body, null);
+        Type localVarReturnType = new TypeToken<Branch>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update project by ID (asynchronously)
+     * Create tag by project (asynchronously)
      * 
      * @param projectId ID of the project (required)
-     * @param body  (optional)
+     * @param body  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putProjectByIdAsync(UUID projectId, Project body, final ApiCallback<Project> _callback) throws ApiException {
+    public okhttp3.Call postTagByProjectAsync(UUID projectId, Tag body, final ApiCallback<Branch> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putProjectByIdValidateBeforeCall(projectId, body, _callback);
-        Type localVarReturnType = new TypeToken<Project>(){}.getType();
+        okhttp3.Call localVarCall = postTagByProjectValidateBeforeCall(projectId, body, _callback);
+        Type localVarReturnType = new TypeToken<Branch>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

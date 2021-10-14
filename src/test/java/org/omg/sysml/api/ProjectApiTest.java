@@ -13,36 +13,58 @@
 
 package org.omg.sysml.api;
 
-import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.Configuration;
+import org.omg.sysml.model.Error;
 import org.omg.sysml.model.Project;
-import org.omg.sysml.model.Project.AtTypeEnum;
-
 import java.util.UUID;
 import org.junit.Test;
-import org.junit.BeforeClass;
+import org.junit.Ignore;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * API tests for ProjectApi
  */
-
+@Ignore
 public class ProjectApiTest {
 
-    private final static ProjectApi api = new ProjectApi();
+    private final ProjectApi api = new ProjectApi();
 
-    @BeforeClass
-    public static void setUp() {
-		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
-	    api.setApiClient(apiClient);
-	}
+    
+    /**
+     * Delete project by ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteProjectByIdTest() throws ApiException {
+        UUID projectId = null;
+        Project response = api.deleteProjectById(projectId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get project by ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getProjectByIdTest() throws ApiException {
+        UUID projectId = null;
+        Project response = api.getProjectById(projectId);
+
+        // TODO: test validations
+    }
     
     /**
      * Get projects
@@ -53,152 +75,46 @@ public class ProjectApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getProjectsTest() {
-        
-        List<Project> response;
-		try {
-			response = api.getProjects(null, null, null);
-			assertTrue(response.size() >= 0); //no project then size = 0?
-		} catch (ApiException e) {
-			fail("getProjectsTest failed: not expecting ApiException");
-		}
-    }
-    
-    @Test
-    public void getProjectsTest_0() {
-       
-        ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercaxxxxxxx.com:9000");
-		ProjectApi api = new ProjectApi();
-	    api.setApiClient(apiClient);
-	    
-	    try {
-	        List<Project> response = api.getProjects(null, null, null);
-	        fail("getProjectsTest_0 failed: expecting ApiException");
-	        System.out.println(response);
-	    }
-	    catch( ApiException e) {
-	    	assertEquals("0", Integer.toString(e.getCode()));
-			assertEquals("java.net.UnknownHostException: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server (sysml2-sst.intercaxxxxxxx.com)", e.getMessage());
-	    }
-        
-    }
-    
-    /**
-     * Get project by ID
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getProjectByIdTest() {
+    public void getProjectsTest() throws ApiException {
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Project> response = api.getProjects(pageAfter, pageBefore, pageSize);
 
-    	try {
-		      List<Project> result = api.getProjects(null, null, null);
-		      if ( result.size() > 0) {
-		    	 UUID projectId = result.get(0).getId();
-		         Project response = api.getProjectById(projectId);
-		         assertEquals(projectId, response.getId());
-		         assertEquals(projectId.toString(), response.getId().toString());
-		      }
-		      else
-		    	  fail("getProjectByIdTest failed: No project available to test");
-		 } catch (ApiException e) {
-			 fail("getProjectByIdTest failed: not expecting ApiException");
-		 }
+        // TODO: test validations
     }
     
     /**
-     * Get project by ID when when ID is null
+     * Create project
      *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-   
-    @Test
-    public void getProjectByIdTest_0() throws ApiException {
-        
-    	try {
-	    	 UUID projectId = null;
-	         api.getProjectById(projectId);
-	         fail("getProjectByIdTest_0 failed: expecting ApiException"); //did not throw an ApiException
-		     
-		 } catch (ApiException e) {
-			  assertEquals("0", Integer.toString(e.getCode()));
-			  assertEquals("Missing the required parameter 'projectId' when calling getProjectById(Async)", e.getMessage());
-		 }
-    }
-    /**
-     * Get project by ID when randomly created ID (ID Not Found)
+     * 
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void getProjectByIdTest_404() throws ApiException {
-        
-    	try {
-    		 //create uuid not likely existing in the server
-	    	 UUID projectId = UUID.fromString("11345678-9012-3456-7890-123456789012");
-	         api.getProjectById(projectId);
-	         fail("getProjectByIdTest_404 failed: expecting ApiException"); //did not throw an ApiException
-		     
-		 } catch (ApiException e) {
-			  assertEquals("404", Integer.toString(e.getCode()));
-			  assertEquals("Not Found", e.getMessage());
-		 }
-    }
-    
-    /**
-     * Create project using ramdom uuid
-     *
-     * @throws ApiException
-     *     if the Api call fails
-     */
-    @Test
-    public void postProjectTest()  {
-       
-        UUID id = UUID.randomUUID();
-        String description = "desc"+ Math.random();
-        String name = "name" + Math.random();
-        
-        Project body = new Project();
-        body.setId(id);
-        body.setDescription(description);
-        body.setName(name);
-        
-		try {
-			Project response = api.postProject(body);
-			System.out.println(response);
-			assertEquals(id.toString(), response.getId().toString());
-		    assertEquals(description, response.getDescription());
-		    assertEquals(name, response.getName());
-		    assertEquals(AtTypeEnum.PROJECT, response.getAtType());
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("postProjectTest failed: not expecting ApiException"); 
-		}
-    }
-    
-    //? if the UUID exist in post, the response is the same as new creation.
-    // and able to change its attribute ... Is this supposed to be like that?  I thought return 415.
-    /*@Test
-    public void postProjectTest_415() throws ApiException {
-       
-        UUID id = UUID.fromString("90ac8d42-90bf-481d-a484-67491285a3d3");
-        String description = "postProjectTestDescription";
-        String name = "postProjectTestName!!!!!!!";
-        
-        Project body = new Project();
-        body.setId(id);
-        body.setDescription(description);
-        body.setName(name);
+    public void postProjectTest() throws ApiException {
+        Project body = null;
         Project response = api.postProject(body);
-        System.out.println(response);
-        assertEquals(id.toString(), response.getId().toString());
-        assertEquals(description, response.getDescription());
-        assertEquals(name, response.getName());
-        assertEquals(AtTypeEnum.PROJECT, response.getAtType());
-       
-    }*/
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update project by ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void putProjectByIdTest() throws ApiException {
+        UUID projectId = null;
+        Project body = null;
+        Project response = api.putProjectById(projectId, body);
+
+        // TODO: test validations
+    }
+    
 }
