@@ -1,6 +1,6 @@
 
 
-# Commit
+# Tag
 
 ## Properties
 
@@ -8,9 +8,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **atId** | [**UUID**](UUID.md) |  |  [optional]
 **atType** | [**AtTypeEnum**](#AtTypeEnum) |  |  [optional]
-**change** | [**List&lt;DataVersion&gt;**](DataVersion.md) |  |  [optional]
+**name** | **String** |  |  [optional]
 **owningProject** | [**BranchOwningProject**](BranchOwningProject.md) |  |  [optional]
-**previousCommit** | [**BranchHead**](BranchHead.md) |  |  [optional]
+**referencedCommit** | [**BranchHead**](BranchHead.md) |  |  [optional]
+**taggedCommit** | [**BranchHead**](BranchHead.md) |  |  [optional]
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 
 
 
@@ -18,7 +20,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-COMMIT | &quot;Commit&quot;
+TAG | &quot;Tag&quot;
 
 
 

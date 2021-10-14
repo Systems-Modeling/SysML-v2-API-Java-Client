@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteQueryByProjectAndId**](QueryApi.md#deleteQueryByProjectAndId) | **DELETE** /projects/{projectId}/queries/{queryId} | Delete query by project and ID
 [**getQueriesByProject**](QueryApi.md#getQueriesByProject) | **GET** /projects/{projectId}/queries | Get queries by project
 [**getQueryByProjectAndId**](QueryApi.md#getQueryByProjectAndId) | **GET** /projects/{projectId}/queries/{queryId} | Get query by project and ID
 [**getQueryResultsByProjectIdQuery**](QueryApi.md#getQueryResultsByProjectIdQuery) | **GET** /projects/{projectId}/query-results | Get query results by project and query definition
@@ -11,6 +12,72 @@ Method | HTTP request | Description
 [**getQueryResultsByProjectIdQueryPost**](QueryApi.md#getQueryResultsByProjectIdQueryPost) | **POST** /projects/{projectId}/query-results | Get query results by project and query definition via POST
 [**postQueryByProject**](QueryApi.md#postQueryByProject) | **POST** /projects/{projectId}/queries | Create query by project
 
+
+<a name="deleteQueryByProjectAndId"></a>
+# **deleteQueryByProjectAndId**
+> Query deleteQueryByProjectAndId(projectId, queryId)
+
+Delete query by project and ID
+
+### Example
+```java
+// Import classes:
+import org.omg.sysml.ApiClient;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.Configuration;
+import org.omg.sysml.models.*;
+import org.omg.sysml.api.QueryApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    QueryApi apiInstance = new QueryApi(defaultClient);
+    UUID projectId = new UUID(); // UUID | ID of the project
+    UUID queryId = new UUID(); // UUID | ID of the query
+    try {
+      Query result = apiInstance.deleteQueryByProjectAndId(projectId, queryId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling QueryApi#deleteQueryByProjectAndId");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | [**UUID**](.md)| ID of the project |
+ **queryId** | [**UUID**](.md)| ID of the query |
+
+### Return type
+
+[**Query**](Query.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**404** | Not found. |  -  |
+**415** | The requested content type is not acceptable. |  -  |
+**500** | Internal server error. |  -  |
+**0** | Unexpected response. |  -  |
 
 <a name="getQueriesByProject"></a>
 # **getQueriesByProject**

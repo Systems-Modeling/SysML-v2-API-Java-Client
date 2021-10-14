@@ -22,26 +22,23 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.omg.sysml.model.BranchHead;
-import org.omg.sysml.model.BranchOwningProject;
-import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for Branch
+ * Model tests for DataIdentity
  */
-public class BranchTest {
-    private final Branch model = new Branch();
+public class DataIdentityTest {
+    private final DataIdentity model = new DataIdentity();
 
     /**
-     * Model tests for Branch
+     * Model tests for DataIdentity
      */
     @Test
-    public void testBranch() {
-        // TODO: test Branch
+    public void testDataIdentity() {
+        // TODO: test DataIdentity
     }
 
     /**
@@ -58,46 +55,6 @@ public class BranchTest {
     @Test
     public void atTypeTest() {
         // TODO: test atType
-    }
-
-    /**
-     * Test the property 'head'
-     */
-    @Test
-    public void headTest() {
-        // TODO: test head
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'owningProject'
-     */
-    @Test
-    public void owningProjectTest() {
-        // TODO: test owningProject
-    }
-
-    /**
-     * Test the property 'referencedCommit'
-     */
-    @Test
-    public void referencedCommitTest() {
-        // TODO: test referencedCommit
-    }
-
-    /**
-     * Test the property 'timestamp'
-     */
-    @Test
-    public void timestampTest() {
-        // TODO: test timestamp
     }
 
 }

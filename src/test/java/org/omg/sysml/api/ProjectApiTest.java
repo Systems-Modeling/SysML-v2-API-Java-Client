@@ -35,6 +35,22 @@ public class ProjectApiTest {
 
     
     /**
+     * Delete project by ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteProjectByIdTest() throws ApiException {
+        UUID projectId = null;
+        Project response = api.deleteProjectById(projectId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get project by ID
      *
      * 
@@ -80,6 +96,23 @@ public class ProjectApiTest {
     public void postProjectTest() throws ApiException {
         Project body = null;
         Project response = api.postProject(body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update project by ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void putProjectByIdTest() throws ApiException {
+        UUID projectId = null;
+        Project body = null;
+        Project response = api.putProjectById(projectId, body);
 
         // TODO: test validations
     }

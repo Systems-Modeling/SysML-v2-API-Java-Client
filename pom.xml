@@ -5,7 +5,7 @@
     <artifactId>sysml-v2-api-client</artifactId>
     <packaging>jar</packaging>
     <name>sysml-v2-api-client</name>
-    <version>2021-06</version>
+    <version>2021-09</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>

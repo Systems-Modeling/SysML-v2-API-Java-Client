@@ -36,6 +36,23 @@ public class QueryApiTest {
 
     
     /**
+     * Delete query by project and ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteQueryByProjectAndIdTest() throws ApiException {
+        UUID projectId = null;
+        UUID queryId = null;
+        Query response = api.deleteQueryByProjectAndId(projectId, queryId);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get queries by project
      *
      * 

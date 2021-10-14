@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'org.omg.sysml'
-version = '2021-06'
+version = '2021-09'
 
 buildscript {
     repositories {

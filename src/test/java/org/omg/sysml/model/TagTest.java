@@ -22,25 +22,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.omg.sysml.model.Element;
-import org.omg.sysml.model.ElementIdentity;
+import org.omg.sysml.model.BranchHead;
+import org.omg.sysml.model.BranchOwningProject;
+import org.threeten.bp.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ElementVersion
+ * Model tests for Tag
  */
-public class ElementVersionTest {
-    private final ElementVersion model = new ElementVersion();
+public class TagTest {
+    private final Tag model = new Tag();
 
     /**
-     * Model tests for ElementVersion
+     * Model tests for Tag
      */
     @Test
-    public void testElementVersion() {
-        // TODO: test ElementVersion
+    public void testTag() {
+        // TODO: test Tag
     }
 
     /**
@@ -60,19 +61,43 @@ public class ElementVersionTest {
     }
 
     /**
-     * Test the property 'data'
+     * Test the property 'name'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**
-     * Test the property 'identity'
+     * Test the property 'owningProject'
      */
     @Test
-    public void identityTest() {
-        // TODO: test identity
+    public void owningProjectTest() {
+        // TODO: test owningProject
+    }
+
+    /**
+     * Test the property 'referencedCommit'
+     */
+    @Test
+    public void referencedCommitTest() {
+        // TODO: test referencedCommit
+    }
+
+    /**
+     * Test the property 'taggedCommit'
+     */
+    @Test
+    public void taggedCommitTest() {
+        // TODO: test taggedCommit
+    }
+
+    /**
+     * Test the property 'timestamp'
+     */
+    @Test
+    public void timestampTest() {
+        // TODO: test timestamp
     }
 
 }
