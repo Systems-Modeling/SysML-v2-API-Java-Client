@@ -26,10 +26,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * ElementIdentity
+ * DataIdentity
  */
 
-public class ElementIdentity {
+public class DataIdentity {
   public static final String SERIALIZED_NAME_AT_ID = "@id";
   @SerializedName(SERIALIZED_NAME_AT_ID)
   private UUID atId;
@@ -39,7 +39,7 @@ public class ElementIdentity {
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    ELEMENTIDENTITY("ElementIdentity");
+    DATAIDENTITY("DataIdentity");
 
     private String value;
 
@@ -84,7 +84,7 @@ public class ElementIdentity {
   private AtTypeEnum atType;
 
 
-  public ElementIdentity atId(UUID atId) {
+  public DataIdentity atId(UUID atId) {
     
     this.atId = atId;
     return this;
@@ -107,7 +107,7 @@ public class ElementIdentity {
   }
 
 
-  public ElementIdentity atType(AtTypeEnum atType) {
+  public DataIdentity atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -138,9 +138,9 @@ public class ElementIdentity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ElementIdentity elementIdentity = (ElementIdentity) o;
-    return Objects.equals(this.atId, elementIdentity.atId) &&
-        Objects.equals(this.atType, elementIdentity.atType);
+    DataIdentity dataIdentity = (DataIdentity) o;
+    return Objects.equals(this.atId, dataIdentity.atId) &&
+        Objects.equals(this.atType, dataIdentity.atType);
   }
 
   @Override
@@ -152,7 +152,7 @@ public class ElementIdentity {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ElementIdentity {\n");
+    sb.append("class DataIdentity {\n");
     sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("}");

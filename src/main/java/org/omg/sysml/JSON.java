@@ -61,6 +61,15 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "@type"));
                     }
           })
+                .registerTypeSelector(Data.class, new TypeSelector() {
+                    @Override
+                    public Class getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("Data", Data.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "@type"));
+                    }
+          })
         ;
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;

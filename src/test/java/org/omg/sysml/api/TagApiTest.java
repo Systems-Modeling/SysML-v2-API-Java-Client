@@ -16,6 +16,7 @@ package org.omg.sysml.api;
 import org.omg.sysml.ApiException;
 import org.omg.sysml.model.Branch;
 import org.omg.sysml.model.Error;
+import org.omg.sysml.model.Tag;
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -26,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for BranchApi
+ * API tests for TagApi
  */
 @Ignore
-public class BranchApiTest {
+public class TagApiTest {
 
-    private final BranchApi api = new BranchApi();
+    private final TagApi api = new TagApi();
 
     
     /**
-     * Delete branch by project and ID
+     * Delete tag by project and ID
      *
      * 
      *
@@ -43,16 +44,16 @@ public class BranchApiTest {
      *          if the Api call fails
      */
     @Test
-    public void deleteBranchByProjectAndIdTest() throws ApiException {
+    public void deleteTagByProjectAndIdTest() throws ApiException {
         UUID projectId = null;
-        UUID branchId = null;
-        Branch response = api.deleteBranchByProjectAndId(projectId, branchId);
+        UUID tagId = null;
+        Tag response = api.deleteTagByProjectAndId(projectId, tagId);
 
         // TODO: test validations
     }
     
     /**
-     * Get branches by project
+     * Get tag by project and ID
      *
      * 
      *
@@ -60,18 +61,35 @@ public class BranchApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getBranchesByProjectTest() throws ApiException {
+    public void getTagByProjectAndIdTest() throws ApiException {
+        UUID projectId = null;
+        UUID tagId = null;
+        Tag response = api.getTagByProjectAndId(projectId, tagId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get tags by project
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getTagsByProjectTest() throws ApiException {
         UUID projectId = null;
         String pageAfter = null;
         String pageBefore = null;
         Integer pageSize = null;
-        List<Branch> response = api.getBranchesByProject(projectId, pageAfter, pageBefore, pageSize);
+        List<Tag> response = api.getTagsByProject(projectId, pageAfter, pageBefore, pageSize);
 
         // TODO: test validations
     }
     
     /**
-     * Get branch by project and ID
+     * Create tag by project
      *
      * 
      *
@@ -79,27 +97,10 @@ public class BranchApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getBranchesByProjectAndIdTest() throws ApiException {
+    public void postTagByProjectTest() throws ApiException {
         UUID projectId = null;
-        UUID branchId = null;
-        Branch response = api.getBranchesByProjectAndId(projectId, branchId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Create branch by project
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void postBranchByProjectTest() throws ApiException {
-        UUID projectId = null;
-        Branch body = null;
-        Branch response = api.postBranchByProject(projectId, body);
+        Tag body = null;
+        Branch response = api.postTagByProject(projectId, body);
 
         // TODO: test validations
     }

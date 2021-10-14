@@ -13,21 +13,13 @@
 
 package org.omg.sysml.api;
 
-import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.Configuration;
-import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Error;
-import org.omg.sysml.model.Project;
 import org.omg.sysml.model.Query;
 import java.util.UUID;
 import org.junit.Test;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,37 +27,31 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * wip - test returns list<Query> contains no Query object and  no able to test API requires queryId
  * API tests for QueryApi
  */
+@Ignore
 public class QueryApiTest {
 
-	private final static ProjectApi project_api = new ProjectApi();
-    private final static QueryApi api = new QueryApi();
+    private final QueryApi api = new QueryApi();
 
-    private static UUID projectId;
-    private static UUID queryId;
-    private static Query body;
     
-    @BeforeClass
-    public static void setUp() {
-		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
-	    api.setApiClient(apiClient);
-	    project_api.setApiClient(apiClient);
-	   
-	    List<Project> project_response;
- 		try {
- 			project_response = project_api.getProjects(null, null, null);
- 			assertTrue(project_response.size() >= 0); //no project then size = 0?
- 			System.out.println(project_response);
- 			projectId = project_response.get(0).getId();
-    	
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("Failed - no project available.");
-		}
-	}
+    /**
+     * Delete query by project and ID
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteQueryByProjectAndIdTest() throws ApiException {
+        UUID projectId = null;
+        UUID queryId = null;
+        Query response = api.deleteQueryByProjectAndId(projectId, queryId);
+
+        // TODO: test validations
+    }
+    
     /**
      * Get queries by project
      *
@@ -76,31 +62,13 @@ public class QueryApiTest {
      */
     @Test
     public void getQueriesByProjectTest() throws ApiException {
-
-    	if (projectId == null) {
-      		fail("Failed - no project available.");
-          	return;
-      	}
-    	String pageAfter = null;
+        UUID projectId = null;
+        String pageAfter = null;
         String pageBefore = null;
         Integer pageSize = null;
+        List<Query> response = api.getQueriesByProject(projectId, pageAfter, pageBefore, pageSize);
 
-        
-        try {
-        	List<Query> response = api.getQueriesByProject(projectId, pageAfter, pageBefore, pageSize);
-        	System.out.println("=== getQueriesByProjectTest() === " + response.size());
-			assertTrue(response.size() > 0); //no query
-			System.out.println(response);
-			queryId = response.get(0).getId();
-			
-			
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("getQueriesByProjectTest failed: not expecting ApiException");
-		}
- 			
- 			
- 		
+        // TODO: test validations
     }
     
     /**
@@ -113,31 +81,14 @@ public class QueryApiTest {
      */
     @Test
     public void getQueryByProjectAndIdTest() throws ApiException {
-    	
-    	if (projectId == null) {
-      		fail("Failed - no project available.");
-          	return;
-      	}
-    	if (queryId == null) {
-    		fail("Failed - no queryId available");
-    	}
-    	try {
-    		Query response = api.getQueryByProjectAndId(projectId, queryId);
-    		System.out.println("=== getQueryByProjectAndIdTest() ===\n");
-    		assertTrue(response != null);
-    		System.out.println(response);
-    	
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("getQueriesByProjectTest failed: not expecting ApiException");
-		}
-        
+        UUID projectId = null;
+        UUID queryId = null;
+        Query response = api.getQueryByProjectAndId(projectId, queryId);
+
+        // TODO: test validations
     }
     
     /**
-	 * WIP - response size must be > 0?
-	 * no element returning
-	 * 
      * Get query results by project and query definition
      *
      * 
@@ -147,34 +98,15 @@ public class QueryApiTest {
      */
     @Test
     public void getQueryResultsByProjectIdQueryTest() throws ApiException {
-        
-        if (projectId == null) {
-      		fail("Failed - no project available.");
-          	return;
-      	}
-    	if (body == null) {
-    		fail("Failed - no query available");
-    	}
-    	try { 
-    		UUID commitId = null;
-    		List<Element> response = api.getQueryResultsByProjectIdQuery(projectId, body, commitId);
-    		System.out.println("=== getQueryResultsByProjectIdQueryTest() === " + response.size());
-    		assertTrue(response.size() > 0); //no returned element ok?
-			System.out.println(response);
-			
-			//Element element = response.get(0).getId()
+        UUID projectId = null;
+        Query body = null;
+        UUID commitId = null;
+        List<Element> response = api.getQueryResultsByProjectIdQuery(projectId, body, commitId);
 
-	    } catch (ApiException e) {
-			e.printStackTrace();
-			fail("getQueryResultsByProjectIdQueryTest failed: not expecting ApiException");
-		}
-
+        // TODO: test validations
     }
     
     /**
-     * WIP no queryId available for test
-     * WIP response size should be always > 0?
-     * 
      * Get query results by project and query
      *
      * 
@@ -184,27 +116,12 @@ public class QueryApiTest {
      */
     @Test
     public void getQueryResultsByProjectIdQueryIdTest() throws ApiException {
-        if (projectId == null) {
-      		fail("Failed - no project available.");
-          	return;
-      	}
-    	if (queryId == null) {
-    		fail("Failed - no query available");
-    	}
-    	try {
-    		UUID commitId = null;
-    		List<Element> response = api.getQueryResultsByProjectIdQueryId(projectId, queryId, commitId);
-    		System.out.println("=== getQueryResultsByProjectIdQueryIdTest() === " + response.size());
-    		assertTrue(response.size() > 0); //no returned element ok?
-			System.out.println(response);
-			
-			//Element element = response.get(0).getId()
+        UUID projectId = null;
+        UUID queryId = null;
+        UUID commitId = null;
+        List<Element> response = api.getQueryResultsByProjectIdQueryId(projectId, queryId, commitId);
 
-	    } catch (ApiException e) {
-			e.printStackTrace();
-			fail("getQueryResultsByProjectIdQueryTest failed: not expecting ApiException");
-		}
-
+        // TODO: test validations
     }
     
     /**

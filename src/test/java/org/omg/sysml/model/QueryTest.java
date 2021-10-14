@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.UUID;
 import org.omg.sysml.model.BranchOwningProject;
 import org.omg.sysml.model.Constraint;
-import org.omg.sysml.model.ElementIdentity;
+import org.omg.sysml.model.DataIdentity;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

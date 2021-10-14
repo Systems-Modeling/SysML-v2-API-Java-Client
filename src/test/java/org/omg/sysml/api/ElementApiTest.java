@@ -13,21 +13,12 @@
 
 package org.omg.sysml.api;
 
-import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.Configuration;
-import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Error;
-import org.omg.sysml.model.Project;
-
 import java.util.UUID;
 import org.junit.Test;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,55 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * wip - test returns list<element> contains element but without Id, then no able to test API requires elementId
  * API tests for ElementApi
  */
-
+@Ignore
 public class ElementApiTest {
 
-	private final static ProjectApi project_api = new ProjectApi();
-	private final static CommitApi commit_api = new CommitApi();
-    private final static ElementApi api = new ElementApi();
-    
-    private static UUID projectId;
-    private static UUID commitId;
-    private static UUID elementId;
+    private final ElementApi api = new ElementApi();
 
-    @BeforeClass
-    public static void setUp() {
-		ApiClient apiClient = Configuration.getDefaultApiClient();
-		apiClient.setBasePath("http://sysml2-sst.intercax.com:9000");
-	    api.setApiClient(apiClient);
-	    project_api.setApiClient(apiClient);
-	    commit_api.setApiClient(apiClient);
-	    List<Project> project_response;
- 		try {
- 			project_response = project_api.getProjects(null, null, null);
- 			assertTrue(project_response.size() >= 0); //no project then size = 0?
- 			System.out.println(project_response);
- 			projectId = project_response.get(0).getId();
-    	
-	    	List<Commit> commit_response = null;
-			try {
-				commit_response = commit_api.getCommitsByProject(projectId, null, null, null);
-				System.out.println("=== getCommitsByProjectTest() ===\n" + commit_response);
-				assertTrue(commit_response.size() > 0);
-				Commit commit = commit_response.get(0);
-				commitId = commit.getId();
-	 		} catch (ApiException e) {
-				e.printStackTrace();
-				fail("Failed - no commitId.");
-			}
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("Failed - no project available.");
-		}
     
-	}
     /**
-     * WIP - response size = 0
-     * WIP Element does not have getId method
-     * Get root elements by project and commit
+     * Get element by project, commit and ID
      *
      * 
      *
@@ -91,41 +43,16 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getRootsByProjectCommitTest() throws ApiException {
-        
-    	if (projectId == null) {
-      		fail("Failed - no project is available.");
-          	return;
-      	}
-        if (commitId == null) {
-      		fail("Failed - no commit is available.");
-          	return;
-        }
-          
-        String pageAfter = null;
-        String pageBefore = null;
-        Integer pageSize = null;
-      
-		try {
-			List<Element> response = api.getRootsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
-			System.out.println("=== getRootsByProjectCommitTest() ===\n" + response.size());
-			assertTrue(response.size() > 0);
-			Element element = response.get(0);
-			System.out.println(element);
-			assertTrue(element.getIdentifier() != null);
-			//elementId = element.getId();
-			//System.out.println("elementId: " + elementId);
-			
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("Failed - getRootsByProjectCommitTest - no element");
-		}
-    }
+    public void getElementByProjectCommitIdTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        UUID elementId = null;
+        Element response = api.getElementByProjectCommitId(projectId, commitId, elementId);
 
+        // TODO: test validations
+    }
     
     /**
-     * WIP - response size > 0 but Element atType = null atId = null, identifer = null
-     * Is this ok?
      * Get elements by project and commit
      *
      * 
@@ -135,37 +62,18 @@ public class ElementApiTest {
      */
     @Test
     public void getElementsByProjectCommitTest() throws ApiException {
-    	
-    	if (projectId == null) {
-     		fail("Failed - no project is available.");
-         	return;
-     	}
-        if (commitId == null) {
-     		fail("Failed - no commit is available.");
-         	return;
-        }
+        UUID projectId = null;
+        UUID commitId = null;
         String pageAfter = null;
         String pageBefore = null;
         Integer pageSize = null;
-        try {
-	        List<Element> response = api.getElementsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
-	        System.out.println("=== getElementsByProjectCommitTest() ===\n" + response.size());
-	        assertTrue(response.size() > 0);
-			Element element = response.get(0);
-			System.out.println(element);
-			assertTrue(element.getIdentifier() != null);
-			//elementId = element.getId();
-			//System.out.println("elementId: " + elementId);
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("Failed - getElementsByProjectCommitTest. no element.");
-		}
+        List<Element> response = api.getElementsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
+
+        // TODO: test validations
     }
     
-    
     /**
-     * WIP - no elementId available from previous test
-     * Get element by project, commit and ID
+     * Get root elements by project and commit
      *
      * 
      *
@@ -173,38 +81,15 @@ public class ElementApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getElementByProjectCommitIdTest() {
-    	if (projectId == null) {
-     		fail("Failed - no project available.");
-         	return;
-     	}
-        if (commitId == null) {
-     		fail("Failed - no commit available.");
-         	return;
-        }
-        if (elementId == null) {
-        	fail("Failed - no element available.");
-        	return;
-        }
-    	
-				
-		try {
-			Element response = api.getElementByProjectCommitId(projectId, commitId, elementId);
-			assertTrue(response != null);
-			System.out.println("=== getElementByProjectCommitIdTest() ===\n" + response);
-	
-		} catch (ApiException e) {
-			e.printStackTrace();
-			fail("Failed - no element for elementId \'"+ elementId + "\' returned.");
-		}
-				
-			
-        
-        
+    public void getRootsByProjectCommitTest() throws ApiException {
+        UUID projectId = null;
+        UUID commitId = null;
+        String pageAfter = null;
+        String pageBefore = null;
+        Integer pageSize = null;
+        List<Element> response = api.getRootsByProjectCommit(projectId, commitId, pageAfter, pageBefore, pageSize);
+
         // TODO: test validations
     }
-
-    
-
     
 }

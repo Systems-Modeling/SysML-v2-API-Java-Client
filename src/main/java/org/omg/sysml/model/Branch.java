@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.UUID;
 import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.BranchOwningProject;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * Branch
@@ -89,13 +90,21 @@ public class Branch {
   @SerializedName(SERIALIZED_NAME_HEAD)
   private BranchHead head;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_OWNING_PROJECT = "owningProject";
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
   private BranchOwningProject owningProject;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_REFERENCED_COMMIT = "referencedCommit";
+  @SerializedName(SERIALIZED_NAME_REFERENCED_COMMIT)
+  private BranchHead referencedCommit;
+
+  public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
+  @SerializedName(SERIALIZED_NAME_TIMESTAMP)
+  private OffsetDateTime timestamp;
 
 
   public Branch atId(UUID atId) {
@@ -167,29 +176,6 @@ public class Branch {
   }
 
 
-  public Branch owningProject(BranchOwningProject owningProject) {
-    
-    this.owningProject = owningProject;
-    return this;
-  }
-
-   /**
-   * Get owningProject
-   * @return owningProject
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public BranchOwningProject getOwningProject() {
-    return owningProject;
-  }
-
-
-  public void setOwningProject(BranchOwningProject owningProject) {
-    this.owningProject = owningProject;
-  }
-
-
   public Branch name(String name) {
     
     this.name = name;
@@ -213,6 +199,75 @@ public class Branch {
   }
 
 
+  public Branch owningProject(BranchOwningProject owningProject) {
+    
+    this.owningProject = owningProject;
+    return this;
+  }
+
+   /**
+   * Get owningProject
+   * @return owningProject
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public BranchOwningProject getOwningProject() {
+    return owningProject;
+  }
+
+
+  public void setOwningProject(BranchOwningProject owningProject) {
+    this.owningProject = owningProject;
+  }
+
+
+  public Branch referencedCommit(BranchHead referencedCommit) {
+    
+    this.referencedCommit = referencedCommit;
+    return this;
+  }
+
+   /**
+   * Get referencedCommit
+   * @return referencedCommit
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public BranchHead getReferencedCommit() {
+    return referencedCommit;
+  }
+
+
+  public void setReferencedCommit(BranchHead referencedCommit) {
+    this.referencedCommit = referencedCommit;
+  }
+
+
+  public Branch timestamp(OffsetDateTime timestamp) {
+    
+    this.timestamp = timestamp;
+    return this;
+  }
+
+   /**
+   * Get timestamp
+   * @return timestamp
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getTimestamp() {
+    return timestamp;
+  }
+
+
+  public void setTimestamp(OffsetDateTime timestamp) {
+    this.timestamp = timestamp;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -225,13 +280,15 @@ public class Branch {
     return Objects.equals(this.atId, branch.atId) &&
         Objects.equals(this.atType, branch.atType) &&
         Objects.equals(this.head, branch.head) &&
+        Objects.equals(this.name, branch.name) &&
         Objects.equals(this.owningProject, branch.owningProject) &&
-        Objects.equals(this.name, branch.name);
+        Objects.equals(this.referencedCommit, branch.referencedCommit) &&
+        Objects.equals(this.timestamp, branch.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atId, atType, head, owningProject, name);
+    return Objects.hash(atId, atType, head, name, owningProject, referencedCommit, timestamp);
   }
 
 
@@ -242,8 +299,10 @@ public class Branch {
     sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
     sb.append("    head: ").append(toIndentedString(head)).append("\n");
-    sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
+    sb.append("    referencedCommit: ").append(toIndentedString(referencedCommit)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
   }

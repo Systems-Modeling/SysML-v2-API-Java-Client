@@ -24,14 +24,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.omg.sysml.model.Element;
-import org.omg.sysml.model.ElementIdentity;
+import org.omg.sysml.model.Data;
+import org.omg.sysml.model.DataIdentity;
 
 /**
- * ElementVersion
+ * DataVersion
  */
 
-public class ElementVersion {
+public class DataVersion {
   public static final String SERIALIZED_NAME_AT_ID = "@id";
   @SerializedName(SERIALIZED_NAME_AT_ID)
   private UUID atId;
@@ -41,7 +41,7 @@ public class ElementVersion {
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    ELEMENTVERSION("ElementVersion");
+    DATAVERSION("DataVersion");
 
     private String value;
 
@@ -85,16 +85,16 @@ public class ElementVersion {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private Element data;
+  public static final String SERIALIZED_NAME_PAYLOAD = "payload";
+  @SerializedName(SERIALIZED_NAME_PAYLOAD)
+  private Data payload;
 
   public static final String SERIALIZED_NAME_IDENTITY = "identity";
   @SerializedName(SERIALIZED_NAME_IDENTITY)
-  private ElementIdentity identity;
+  private DataIdentity identity;
 
 
-  public ElementVersion atId(UUID atId) {
+  public DataVersion atId(UUID atId) {
     
     this.atId = atId;
     return this;
@@ -117,7 +117,7 @@ public class ElementVersion {
   }
 
 
-  public ElementVersion atType(AtTypeEnum atType) {
+  public DataVersion atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -140,30 +140,30 @@ public class ElementVersion {
   }
 
 
-  public ElementVersion data(Element data) {
+  public DataVersion payload(Data payload) {
     
-    this.data = data;
+    this.payload = payload;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get payload
+   * @return payload
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Element getData() {
-    return data;
+  public Data getPayload() {
+    return payload;
   }
 
 
-  public void setData(Element data) {
-    this.data = data;
+  public void setPayload(Data payload) {
+    this.payload = payload;
   }
 
 
-  public ElementVersion identity(ElementIdentity identity) {
+  public DataVersion identity(DataIdentity identity) {
     
     this.identity = identity;
     return this;
@@ -176,12 +176,12 @@ public class ElementVersion {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public ElementIdentity getIdentity() {
+  public DataIdentity getIdentity() {
     return identity;
   }
 
 
-  public void setIdentity(ElementIdentity identity) {
+  public void setIdentity(DataIdentity identity) {
     this.identity = identity;
   }
 
@@ -194,26 +194,26 @@ public class ElementVersion {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ElementVersion elementVersion = (ElementVersion) o;
-    return Objects.equals(this.atId, elementVersion.atId) &&
-        Objects.equals(this.atType, elementVersion.atType) &&
-        Objects.equals(this.data, elementVersion.data) &&
-        Objects.equals(this.identity, elementVersion.identity);
+    DataVersion dataVersion = (DataVersion) o;
+    return Objects.equals(this.atId, dataVersion.atId) &&
+        Objects.equals(this.atType, dataVersion.atType) &&
+        Objects.equals(this.payload, dataVersion.payload) &&
+        Objects.equals(this.identity, dataVersion.identity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atId, atType, data, identity);
+    return Objects.hash(atId, atType, payload, identity);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ElementVersion {\n");
+    sb.append("class DataVersion {\n");
     sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
     sb.append("}");
     return sb.toString();

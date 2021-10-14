@@ -21,6 +21,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -28,17 +30,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for ElementIdentity
+ * Model tests for Data
  */
-public class ElementIdentityTest {
-    private final ElementIdentity model = new ElementIdentity();
+public class DataTest {
+    private final Data model = new Data();
 
     /**
-     * Model tests for ElementIdentity
+     * Model tests for Data
      */
     @Test
-    public void testElementIdentity() {
-        // TODO: test ElementIdentity
+    public void testData() {
+        // TODO: test Data
     }
 
     /**

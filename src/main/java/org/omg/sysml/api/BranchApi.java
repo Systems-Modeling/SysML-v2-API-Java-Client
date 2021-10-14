@@ -57,6 +57,143 @@ public class BranchApi {
     }
 
     /**
+     * Build call for deleteBranchByProjectAndId
+     * @param projectId ID of the project (required)
+     * @param branchId ID of the branch (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteBranchByProjectAndIdCall(UUID projectId, UUID branchId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/projects/{projectId}/branches/{branchId}"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "branchId" + "\\}", localVarApiClient.escapeString(branchId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json", "application/ld+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteBranchByProjectAndIdValidateBeforeCall(UUID projectId, UUID branchId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling deleteBranchByProjectAndId(Async)");
+        }
+        
+        // verify the required parameter 'branchId' is set
+        if (branchId == null) {
+            throw new ApiException("Missing the required parameter 'branchId' when calling deleteBranchByProjectAndId(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = deleteBranchByProjectAndIdCall(projectId, branchId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Delete branch by project and ID
+     * 
+     * @param projectId ID of the project (required)
+     * @param branchId ID of the branch (required)
+     * @return Branch
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Branch deleteBranchByProjectAndId(UUID projectId, UUID branchId) throws ApiException {
+        ApiResponse<Branch> localVarResp = deleteBranchByProjectAndIdWithHttpInfo(projectId, branchId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete branch by project and ID
+     * 
+     * @param projectId ID of the project (required)
+     * @param branchId ID of the branch (required)
+     * @return ApiResponse&lt;Branch&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Branch> deleteBranchByProjectAndIdWithHttpInfo(UUID projectId, UUID branchId) throws ApiException {
+        okhttp3.Call localVarCall = deleteBranchByProjectAndIdValidateBeforeCall(projectId, branchId, null);
+        Type localVarReturnType = new TypeToken<Branch>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete branch by project and ID (asynchronously)
+     * 
+     * @param projectId ID of the project (required)
+     * @param branchId ID of the branch (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteBranchByProjectAndIdAsync(UUID projectId, UUID branchId, final ApiCallback<Branch> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteBranchByProjectAndIdValidateBeforeCall(projectId, branchId, _callback);
+        Type localVarReturnType = new TypeToken<Branch>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getBranchesByProject
      * @param projectId ID of the project (required)
      * @param pageAfter Page after (optional)

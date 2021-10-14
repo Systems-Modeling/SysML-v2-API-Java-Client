@@ -23,18 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.BranchOwningProject;
-import org.omg.sysml.model.Constraint;
-import org.omg.sysml.model.DataIdentity;
+import org.threeten.bp.OffsetDateTime;
 
 /**
- * Query
+ * Tag
  */
 
-public class Query {
+public class Tag {
   public static final String SERIALIZED_NAME_AT_ID = "@id";
   @SerializedName(SERIALIZED_NAME_AT_ID)
   private UUID atId;
@@ -44,7 +42,7 @@ public class Query {
    */
   @JsonAdapter(AtTypeEnum.Adapter.class)
   public enum AtTypeEnum {
-    QUERY("Query");
+    TAG("Tag");
 
     private String value;
 
@@ -88,24 +86,28 @@ public class Query {
   @SerializedName(SERIALIZED_NAME_AT_TYPE)
   private AtTypeEnum atType;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
   public static final String SERIALIZED_NAME_OWNING_PROJECT = "owningProject";
   @SerializedName(SERIALIZED_NAME_OWNING_PROJECT)
   private BranchOwningProject owningProject;
 
-  public static final String SERIALIZED_NAME_SCOPE = "scope";
-  @SerializedName(SERIALIZED_NAME_SCOPE)
-  private List<DataIdentity> scope = null;
+  public static final String SERIALIZED_NAME_REFERENCED_COMMIT = "referencedCommit";
+  @SerializedName(SERIALIZED_NAME_REFERENCED_COMMIT)
+  private BranchHead referencedCommit;
 
-  public static final String SERIALIZED_NAME_SELECT = "select";
-  @SerializedName(SERIALIZED_NAME_SELECT)
-  private List<String> select = null;
+  public static final String SERIALIZED_NAME_TAGGED_COMMIT = "taggedCommit";
+  @SerializedName(SERIALIZED_NAME_TAGGED_COMMIT)
+  private BranchHead taggedCommit;
 
-  public static final String SERIALIZED_NAME_WHERE = "where";
-  @SerializedName(SERIALIZED_NAME_WHERE)
-  private Constraint where;
+  public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
+  @SerializedName(SERIALIZED_NAME_TIMESTAMP)
+  private OffsetDateTime timestamp;
 
 
-  public Query atId(UUID atId) {
+  public Tag atId(UUID atId) {
     
     this.atId = atId;
     return this;
@@ -128,7 +130,7 @@ public class Query {
   }
 
 
-  public Query atType(AtTypeEnum atType) {
+  public Tag atType(AtTypeEnum atType) {
     
     this.atType = atType;
     return this;
@@ -151,7 +153,30 @@ public class Query {
   }
 
 
-  public Query owningProject(BranchOwningProject owningProject) {
+  public Tag name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public Tag owningProject(BranchOwningProject owningProject) {
     
     this.owningProject = owningProject;
     return this;
@@ -174,88 +199,72 @@ public class Query {
   }
 
 
-  public Query scope(List<DataIdentity> scope) {
+  public Tag referencedCommit(BranchHead referencedCommit) {
     
-    this.scope = scope;
-    return this;
-  }
-
-  public Query addScopeItem(DataIdentity scopeItem) {
-    if (this.scope == null) {
-      this.scope = new ArrayList<DataIdentity>();
-    }
-    this.scope.add(scopeItem);
+    this.referencedCommit = referencedCommit;
     return this;
   }
 
    /**
-   * Get scope
-   * @return scope
+   * Get referencedCommit
+   * @return referencedCommit
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<DataIdentity> getScope() {
-    return scope;
+  public BranchHead getReferencedCommit() {
+    return referencedCommit;
   }
 
 
-  public void setScope(List<DataIdentity> scope) {
-    this.scope = scope;
+  public void setReferencedCommit(BranchHead referencedCommit) {
+    this.referencedCommit = referencedCommit;
   }
 
 
-  public Query select(List<String> select) {
+  public Tag taggedCommit(BranchHead taggedCommit) {
     
-    this.select = select;
-    return this;
-  }
-
-  public Query addSelectItem(String selectItem) {
-    if (this.select == null) {
-      this.select = new ArrayList<String>();
-    }
-    this.select.add(selectItem);
+    this.taggedCommit = taggedCommit;
     return this;
   }
 
    /**
-   * Get select
-   * @return select
+   * Get taggedCommit
+   * @return taggedCommit
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<String> getSelect() {
-    return select;
+  public BranchHead getTaggedCommit() {
+    return taggedCommit;
   }
 
 
-  public void setSelect(List<String> select) {
-    this.select = select;
+  public void setTaggedCommit(BranchHead taggedCommit) {
+    this.taggedCommit = taggedCommit;
   }
 
 
-  public Query where(Constraint where) {
+  public Tag timestamp(OffsetDateTime timestamp) {
     
-    this.where = where;
+    this.timestamp = timestamp;
     return this;
   }
 
    /**
-   * Get where
-   * @return where
+   * Get timestamp
+   * @return timestamp
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Constraint getWhere() {
-    return where;
+  public OffsetDateTime getTimestamp() {
+    return timestamp;
   }
 
 
-  public void setWhere(Constraint where) {
-    this.where = where;
+  public void setTimestamp(OffsetDateTime timestamp) {
+    this.timestamp = timestamp;
   }
 
 
@@ -267,31 +276,33 @@ public class Query {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Query query = (Query) o;
-    return Objects.equals(this.atId, query.atId) &&
-        Objects.equals(this.atType, query.atType) &&
-        Objects.equals(this.owningProject, query.owningProject) &&
-        Objects.equals(this.scope, query.scope) &&
-        Objects.equals(this.select, query.select) &&
-        Objects.equals(this.where, query.where);
+    Tag tag = (Tag) o;
+    return Objects.equals(this.atId, tag.atId) &&
+        Objects.equals(this.atType, tag.atType) &&
+        Objects.equals(this.name, tag.name) &&
+        Objects.equals(this.owningProject, tag.owningProject) &&
+        Objects.equals(this.referencedCommit, tag.referencedCommit) &&
+        Objects.equals(this.taggedCommit, tag.taggedCommit) &&
+        Objects.equals(this.timestamp, tag.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(atId, atType, owningProject, scope, select, where);
+    return Objects.hash(atId, atType, name, owningProject, referencedCommit, taggedCommit, timestamp);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Query {\n");
+    sb.append("class Tag {\n");
     sb.append("    atId: ").append(toIndentedString(atId)).append("\n");
     sb.append("    atType: ").append(toIndentedString(atType)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    owningProject: ").append(toIndentedString(owningProject)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    select: ").append(toIndentedString(select)).append("\n");
-    sb.append("    where: ").append(toIndentedString(where)).append("\n");
+    sb.append("    referencedCommit: ").append(toIndentedString(referencedCommit)).append("\n");
+    sb.append("    taggedCommit: ").append(toIndentedString(taggedCommit)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
   }

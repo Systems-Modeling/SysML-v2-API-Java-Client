@@ -58,6 +58,143 @@ public class QueryApi {
     }
 
     /**
+     * Build call for deleteQueryByProjectAndId
+     * @param projectId ID of the project (required)
+     * @param queryId ID of the query (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteQueryByProjectAndIdCall(UUID projectId, UUID queryId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/projects/{projectId}/queries/{queryId}"
+            .replaceAll("\\{" + "projectId" + "\\}", localVarApiClient.escapeString(projectId.toString()))
+            .replaceAll("\\{" + "queryId" + "\\}", localVarApiClient.escapeString(queryId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteQueryByProjectAndIdValidateBeforeCall(UUID projectId, UUID queryId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'projectId' is set
+        if (projectId == null) {
+            throw new ApiException("Missing the required parameter 'projectId' when calling deleteQueryByProjectAndId(Async)");
+        }
+        
+        // verify the required parameter 'queryId' is set
+        if (queryId == null) {
+            throw new ApiException("Missing the required parameter 'queryId' when calling deleteQueryByProjectAndId(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = deleteQueryByProjectAndIdCall(projectId, queryId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Delete query by project and ID
+     * 
+     * @param projectId ID of the project (required)
+     * @param queryId ID of the query (required)
+     * @return Query
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Query deleteQueryByProjectAndId(UUID projectId, UUID queryId) throws ApiException {
+        ApiResponse<Query> localVarResp = deleteQueryByProjectAndIdWithHttpInfo(projectId, queryId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete query by project and ID
+     * 
+     * @param projectId ID of the project (required)
+     * @param queryId ID of the query (required)
+     * @return ApiResponse&lt;Query&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Query> deleteQueryByProjectAndIdWithHttpInfo(UUID projectId, UUID queryId) throws ApiException {
+        okhttp3.Call localVarCall = deleteQueryByProjectAndIdValidateBeforeCall(projectId, queryId, null);
+        Type localVarReturnType = new TypeToken<Query>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete query by project and ID (asynchronously)
+     * 
+     * @param projectId ID of the project (required)
+     * @param queryId ID of the query (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found. </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> The requested content type is not acceptable. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Unexpected response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteQueryByProjectAndIdAsync(UUID projectId, UUID queryId, final ApiCallback<Query> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteQueryByProjectAndIdValidateBeforeCall(projectId, queryId, _callback);
+        Type localVarReturnType = new TypeToken<Query>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getQueriesByProject
      * @param projectId ID of the project (required)
      * @param pageAfter Page after (optional)
