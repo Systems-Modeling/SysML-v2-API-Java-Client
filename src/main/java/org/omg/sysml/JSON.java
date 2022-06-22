@@ -58,7 +58,7 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("Constraint", Constraint.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
-                                getDiscriminatorValue(readElement, "@type"));
+                                getDiscriminatorValue(readElement, "@type"), Constraint.class);
                     }
           })
                 .registerTypeSelector(Data.class, new TypeSelector() {
@@ -67,7 +67,7 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("Data", Data.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
-                                getDiscriminatorValue(readElement, "@type"));
+                                getDiscriminatorValue(readElement, "@type"), Data.class);
                     }
           })
         ;
@@ -90,10 +90,13 @@ public class JSON {
      * @param discriminatorValue The value of the OpenAPI discriminator in the input data.
      * @return The Java class that implements the OpenAPI schema
      */
-    private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue) {
+    private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue, Class defaultClass) {
         Class clazz = (Class) classByDiscriminatorValue.get(discriminatorValue);
         if (null == clazz) {
-            throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
+            if(null == defaultClass) {
+                throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
+            }
+            return defaultClass;
         }
         return clazz;
     }
