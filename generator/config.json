@@ -1,0 +1,22 @@
+{
+    "generatorName": "java",
+    "inputSpec": "local/generator/openapi_internalized.json",
+    "outputDir": "local",
+    "templateDir": "local/generator/template",
+    "additionalProperties" : {
+        "groupId": "org.omg.sysml",
+        "artifactId": "sysml-v2-api-client",
+        "artifactVersion": "20250201",
+        "invokerPackage": "org.omg.sysml",
+        "apiPackage": "org.omg.sysml.api",
+        "modelPackage": "org.omg.sysml.model",
+        "hideGenerationTimestamp": true
+    },
+    "globalProperties" : {
+        "modelDocs": false,
+        "apiDocs": false
+    },
+    "nameMappings" : {
+        "additionalProperties": "hasAdditionalProperties"
+    }
+}
