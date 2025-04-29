@@ -38,7 +38,7 @@ import org.omg.sysml.model.Type;
 
 
 import java.io.IOException;
-import java.lang.reflect.Type;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
